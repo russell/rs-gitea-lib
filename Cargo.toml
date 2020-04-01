@@ -1,8 +1,9 @@
 [package]
-name = "rs-gitea"
+name = "gitea"
 version = "1.0.0"
 authors = ["russell.sim@gmail.com"]
-repository =
+description = "Rust bindings for Gitea"
+repository = "https://github.com/russell/rs-gitea"
 license = "Apache-2.0"
 
 [dependencies]
