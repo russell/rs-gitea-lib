@@ -1,7 +1,9 @@
 [package]
 name = "rs-gitea"
 version = "1.0.0"
-authors = ["Swagger Codegen team and contributors"]
+authors = ["russell.sim@gmail.com"]
+repository =
+license = "Apache-2.0"
 
 [dependencies]
 serde = "1.0"
