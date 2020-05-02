@@ -4,8 +4,6 @@
 pub struct FileLinksResponse {
     pub git: Option<String>,
     pub html: Option<String>,
-    #[serde(rename = "self")]
-    pub self_: Option<String>,
 }
 
 impl FileLinksResponse {
@@ -40,12 +38,6 @@ impl FileLinksResponseBuilder {
     #[inline]
     pub fn html(mut self, value: impl Into<String>) -> Self {
         self.body.html = Some(value.into());
-        self
-    }
-
-    #[inline]
-    pub fn r#self(mut self, value: impl Into<String>) -> Self {
-        self.body.self_ = Some(value.into());
         self
     }
 }

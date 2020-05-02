@@ -6,68 +6,51 @@ pub struct CreateHookOption {
     pub branch_filter: Option<String>,
     pub config: std::collections::BTreeMap<String, String>,
     pub events: Option<Vec<String>>,
-    #[serde(rename = "type")]
-    pub type_: crate::create_hook_option::CreateHookOptionType,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[allow(non_camel_case_types)]
-pub enum CreateHookOptionType {
-    #[serde(rename = "gitea")]
-    Gitea,
-    #[serde(rename = "gogs")]
-    Gogs,
-    #[serde(rename = "slack")]
-    Slack,
-    #[serde(rename = "discord")]
-    Discord,
 }
 
 impl CreateHookOption {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> CreateHookOptionBuilder<crate::generics::MissingConfig, crate::generics::MissingType> {
+    pub fn builder() -> CreateHookOptionBuilder<crate::generics::MissingConfig> {
         CreateHookOptionBuilder {
             body: Default::default(),
             _config: core::marker::PhantomData,
-            _type: core::marker::PhantomData,
         }
     }
 
     #[inline]
-    pub fn org_create_hook() -> CreateHookOptionPostBuilder<crate::generics::MissingOrg, crate::generics::MissingConfig, crate::generics::MissingType> {
+    pub fn org_create_hook() -> CreateHookOptionPostBuilder<crate::generics::MissingOrg, crate::generics::MissingConfig> {
         CreateHookOptionPostBuilder {
             inner: Default::default(),
             _param_org: core::marker::PhantomData,
             _config: core::marker::PhantomData,
-            _type: core::marker::PhantomData,
         }
     }
 
     #[inline]
-    pub fn repo_create_hook() -> CreateHookOptionPostBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingConfig, crate::generics::MissingType> {
+    pub fn repo_create_hook() -> CreateHookOptionPostBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingConfig> {
         CreateHookOptionPostBuilder1 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
             _config: core::marker::PhantomData,
-            _type: core::marker::PhantomData,
         }
     }
 }
 
-impl Into<CreateHookOption> for CreateHookOptionBuilder<crate::generics::ConfigExists, crate::generics::TypeExists> {
+impl Into<CreateHookOption> for CreateHookOptionBuilder<crate::generics::ConfigExists> {
     fn into(self) -> CreateHookOption {
         self.body
     }
 }
 
-impl Into<CreateHookOption> for CreateHookOptionPostBuilder<crate::generics::OrgExists, crate::generics::ConfigExists, crate::generics::TypeExists> {
+impl Into<CreateHookOption> for CreateHookOptionPostBuilder<crate::generics::OrgExists, crate::generics::ConfigExists> {
     fn into(self) -> CreateHookOption {
         self.inner.body
     }
 }
 
-impl Into<CreateHookOption> for CreateHookOptionPostBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ConfigExists, crate::generics::TypeExists> {
+impl Into<CreateHookOption> for CreateHookOptionPostBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ConfigExists> {
     fn into(self) -> CreateHookOption {
         self.inner.body
     }
@@ -75,13 +58,12 @@ impl Into<CreateHookOption> for CreateHookOptionPostBuilder1<crate::generics::Ow
 
 /// Builder for [`CreateHookOption`](./struct.CreateHookOption.html) object.
 #[derive(Debug, Clone)]
-pub struct CreateHookOptionBuilder<Config, Type> {
+pub struct CreateHookOptionBuilder<Config> {
     body: self::CreateHookOption,
     _config: core::marker::PhantomData<Config>,
-    _type: core::marker::PhantomData<Type>,
 }
 
-impl<Config, Type> CreateHookOptionBuilder<Config, Type> {
+impl<Config> CreateHookOptionBuilder<Config> {
     #[inline]
     pub fn active(mut self, value: impl Into<bool>) -> Self {
         self.body.active = Some(value.into());
@@ -95,7 +77,7 @@ impl<Config, Type> CreateHookOptionBuilder<Config, Type> {
     }
 
     #[inline]
-    pub fn config(mut self, value: impl Iterator<Item = (String, impl Into<String>)>) -> CreateHookOptionBuilder<crate::generics::ConfigExists, Type> {
+    pub fn config(mut self, value: impl Iterator<Item = (String, impl Into<String>)>) -> CreateHookOptionBuilder<crate::generics::ConfigExists> {
         self.body.config = value.map(|(key, value)| (key, value.into())).collect::<std::collections::BTreeMap<_, _>>().into();
         unsafe { std::mem::transmute(self) }
     }
@@ -105,22 +87,15 @@ impl<Config, Type> CreateHookOptionBuilder<Config, Type> {
         self.body.events = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
         self
     }
-
-    #[inline]
-    pub fn r#type(mut self, value: crate::create_hook_option::CreateHookOptionType) -> CreateHookOptionBuilder<Config, crate::generics::TypeExists> {
-        self.body.type_ = value.into();
-        unsafe { std::mem::transmute(self) }
-    }
 }
 
 /// Builder created by [`CreateHookOption::org_create_hook`](./struct.CreateHookOption.html#method.org_create_hook) method for a `POST` operation associated with `CreateHookOption`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct CreateHookOptionPostBuilder<Org, Config, Type> {
+pub struct CreateHookOptionPostBuilder<Org, Config> {
     inner: CreateHookOptionPostBuilderContainer,
     _param_org: core::marker::PhantomData<Org>,
     _config: core::marker::PhantomData<Config>,
-    _type: core::marker::PhantomData<Type>,
 }
 
 #[derive(Debug, Default, Clone)]
@@ -129,10 +104,10 @@ struct CreateHookOptionPostBuilderContainer {
     param_org: Option<String>,
 }
 
-impl<Org, Config, Type> CreateHookOptionPostBuilder<Org, Config, Type> {
+impl<Org, Config> CreateHookOptionPostBuilder<Org, Config> {
     /// name of the organization
     #[inline]
-    pub fn org(mut self, value: impl Into<String>) -> CreateHookOptionPostBuilder<crate::generics::OrgExists, Config, Type> {
+    pub fn org(mut self, value: impl Into<String>) -> CreateHookOptionPostBuilder<crate::generics::OrgExists, Config> {
         self.inner.param_org = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -150,7 +125,7 @@ impl<Org, Config, Type> CreateHookOptionPostBuilder<Org, Config, Type> {
     }
 
     #[inline]
-    pub fn config(mut self, value: impl Iterator<Item = (String, impl Into<String>)>) -> CreateHookOptionPostBuilder<Org, crate::generics::ConfigExists, Type> {
+    pub fn config(mut self, value: impl Iterator<Item = (String, impl Into<String>)>) -> CreateHookOptionPostBuilder<Org, crate::generics::ConfigExists> {
         self.inner.body.config = value.map(|(key, value)| (key, value.into())).collect::<std::collections::BTreeMap<_, _>>().into();
         unsafe { std::mem::transmute(self) }
     }
@@ -160,15 +135,9 @@ impl<Org, Config, Type> CreateHookOptionPostBuilder<Org, Config, Type> {
         self.inner.body.events = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
         self
     }
-
-    #[inline]
-    pub fn r#type(mut self, value: crate::create_hook_option::CreateHookOptionType) -> CreateHookOptionPostBuilder<Org, Config, crate::generics::TypeExists> {
-        self.inner.body.type_ = value.into();
-        unsafe { std::mem::transmute(self) }
-    }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateHookOptionPostBuilder<crate::generics::OrgExists, crate::generics::ConfigExists, crate::generics::TypeExists> {
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateHookOptionPostBuilder<crate::generics::OrgExists, crate::generics::ConfigExists> {
     type Output = crate::post_repos_owner_repo_hooks_response::PostReposOwnerRepoHooksResponse;
 
     const METHOD: http::Method = http::Method::POST;
@@ -187,12 +156,11 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
 /// Builder created by [`CreateHookOption::repo_create_hook`](./struct.CreateHookOption.html#method.repo_create_hook) method for a `POST` operation associated with `CreateHookOption`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct CreateHookOptionPostBuilder1<Owner, Repo, Config, Type> {
+pub struct CreateHookOptionPostBuilder1<Owner, Repo, Config> {
     inner: CreateHookOptionPostBuilder1Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _config: core::marker::PhantomData<Config>,
-    _type: core::marker::PhantomData<Type>,
 }
 
 #[derive(Debug, Default, Clone)]
@@ -202,17 +170,17 @@ struct CreateHookOptionPostBuilder1Container {
     param_repo: Option<String>,
 }
 
-impl<Owner, Repo, Config, Type> CreateHookOptionPostBuilder1<Owner, Repo, Config, Type> {
+impl<Owner, Repo, Config> CreateHookOptionPostBuilder1<Owner, Repo, Config> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> CreateHookOptionPostBuilder1<crate::generics::OwnerExists, Repo, Config, Type> {
+    pub fn owner(mut self, value: impl Into<String>) -> CreateHookOptionPostBuilder1<crate::generics::OwnerExists, Repo, Config> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> CreateHookOptionPostBuilder1<Owner, crate::generics::RepoExists, Config, Type> {
+    pub fn repo(mut self, value: impl Into<String>) -> CreateHookOptionPostBuilder1<Owner, crate::generics::RepoExists, Config> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -230,7 +198,7 @@ impl<Owner, Repo, Config, Type> CreateHookOptionPostBuilder1<Owner, Repo, Config
     }
 
     #[inline]
-    pub fn config(mut self, value: impl Iterator<Item = (String, impl Into<String>)>) -> CreateHookOptionPostBuilder1<Owner, Repo, crate::generics::ConfigExists, Type> {
+    pub fn config(mut self, value: impl Iterator<Item = (String, impl Into<String>)>) -> CreateHookOptionPostBuilder1<Owner, Repo, crate::generics::ConfigExists> {
         self.inner.body.config = value.map(|(key, value)| (key, value.into())).collect::<std::collections::BTreeMap<_, _>>().into();
         unsafe { std::mem::transmute(self) }
     }
@@ -240,15 +208,9 @@ impl<Owner, Repo, Config, Type> CreateHookOptionPostBuilder1<Owner, Repo, Config
         self.inner.body.events = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
         self
     }
-
-    #[inline]
-    pub fn r#type(mut self, value: crate::create_hook_option::CreateHookOptionType) -> CreateHookOptionPostBuilder1<Owner, Repo, Config, crate::generics::TypeExists> {
-        self.inner.body.type_ = value.into();
-        unsafe { std::mem::transmute(self) }
-    }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateHookOptionPostBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ConfigExists, crate::generics::TypeExists> {
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateHookOptionPostBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ConfigExists> {
     type Output = crate::post_repos_owner_repo_hooks_response::PostReposOwnerRepoHooksResponse;
 
     const METHOD: http::Method = http::Method::POST;
@@ -263,4 +225,3 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         .json(&self.inner.body))
     }
 }
-

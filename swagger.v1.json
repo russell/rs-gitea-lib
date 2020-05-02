@@ -8505,16 +8505,6 @@
             "type": "string"
           },
           "x-go-name": "Events"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "gitea",
-            "gogs",
-            "slack",
-            "discord"
-          ],
-          "x-go-name": "Type"
         }
       },
       "x-go-package": "code.gitea.io/gitea/modules/structs"
@@ -9693,10 +9683,6 @@
         "html": {
           "type": "string",
           "x-go-name": "HTMLURL"
-        },
-        "self": {
-          "type": "string",
-          "x-go-name": "Self"
         }
       },
       "x-go-package": "code.gitea.io/gitea/modules/structs"
@@ -10194,15 +10180,6 @@
         "Do"
       ],
       "properties": {
-        "Do": {
-          "type": "string",
-          "enum": [
-            "merge",
-            "rebase",
-            "rebase-merge",
-            "squash"
-          ]
-        },
         "MergeMessageField": {
           "type": "string"
         },

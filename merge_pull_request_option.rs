@@ -2,55 +2,39 @@
 /// MergePullRequestForm form for merging Pull Request
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct MergePullRequestOption {
-    #[serde(rename = "Do")]
-    pub do: crate::merge_pull_request_option::MergePullRequestOptionDo,
     #[serde(rename = "MergeMessageField")]
     pub merge_message_field: Option<String>,
     #[serde(rename = "MergeTitleField")]
     pub merge_title_field: Option<String>,
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[allow(non_camel_case_types)]
-pub enum MergePullRequestOptionDo {
-    #[serde(rename = "merge")]
-    Merge,
-    #[serde(rename = "rebase")]
-    Rebase,
-    #[serde(rename = "rebase-merge")]
-    RebaseMerge,
-    #[serde(rename = "squash")]
-    Squash,
-}
 
 impl MergePullRequestOption {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> MergePullRequestOptionBuilder<crate::generics::MissingDo> {
+    pub fn builder() -> MergePullRequestOptionBuilder {
         MergePullRequestOptionBuilder {
             body: Default::default(),
-            _do: core::marker::PhantomData,
         }
     }
 
     #[inline]
-    pub fn repo_merge_pull_request() -> MergePullRequestOptionPostBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingIndex, crate::generics::MissingDo> {
+    pub fn repo_merge_pull_request() -> MergePullRequestOptionPostBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingIndex> {
         MergePullRequestOptionPostBuilder {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
             _param_index: core::marker::PhantomData,
-            _do: core::marker::PhantomData,
         }
     }
 }
 
-impl Into<MergePullRequestOption> for MergePullRequestOptionBuilder<crate::generics::DoExists> {
+impl Into<MergePullRequestOption> for MergePullRequestOptionBuilder {
     fn into(self) -> MergePullRequestOption {
         self.body
     }
 }
 
-impl Into<MergePullRequestOption> for MergePullRequestOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists, crate::generics::DoExists> {
+impl Into<MergePullRequestOption> for MergePullRequestOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
     fn into(self) -> MergePullRequestOption {
         self.inner.body
     }
@@ -58,18 +42,11 @@ impl Into<MergePullRequestOption> for MergePullRequestOptionPostBuilder<crate::g
 
 /// Builder for [`MergePullRequestOption`](./struct.MergePullRequestOption.html) object.
 #[derive(Debug, Clone)]
-pub struct MergePullRequestOptionBuilder<Do> {
+pub struct MergePullRequestOptionBuilder {
     body: self::MergePullRequestOption,
-    _do: core::marker::PhantomData<Do>,
 }
 
-impl<Do> MergePullRequestOptionBuilder<Do> {
-    #[inline]
-    pub fn do(mut self, value: crate::merge_pull_request_option::MergePullRequestOptionDo) -> MergePullRequestOptionBuilder<crate::generics::DoExists> {
-        self.body.do = value.into();
-        unsafe { std::mem::transmute(self) }
-    }
-
+impl MergePullRequestOptionBuilder {
     #[inline]
     pub fn merge_message_field(mut self, value: impl Into<String>) -> Self {
         self.body.merge_message_field = Some(value.into());
@@ -86,12 +63,11 @@ impl<Do> MergePullRequestOptionBuilder<Do> {
 /// Builder created by [`MergePullRequestOption::repo_merge_pull_request`](./struct.MergePullRequestOption.html#method.repo_merge_pull_request) method for a `POST` operation associated with `MergePullRequestOption`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct MergePullRequestOptionPostBuilder<Owner, Repo, Index, Do> {
+pub struct MergePullRequestOptionPostBuilder<Owner, Repo, Index> {
     inner: MergePullRequestOptionPostBuilderContainer,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_index: core::marker::PhantomData<Index>,
-    _do: core::marker::PhantomData<Do>,
 }
 
 #[derive(Debug, Default, Clone)]
@@ -102,31 +78,25 @@ struct MergePullRequestOptionPostBuilderContainer {
     param_index: Option<i64>,
 }
 
-impl<Owner, Repo, Index, Do> MergePullRequestOptionPostBuilder<Owner, Repo, Index, Do> {
+impl<Owner, Repo, Index> MergePullRequestOptionPostBuilder<Owner, Repo, Index> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> MergePullRequestOptionPostBuilder<crate::generics::OwnerExists, Repo, Index, Do> {
+    pub fn owner(mut self, value: impl Into<String>) -> MergePullRequestOptionPostBuilder<crate::generics::OwnerExists, Repo, Index> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> MergePullRequestOptionPostBuilder<Owner, crate::generics::RepoExists, Index, Do> {
+    pub fn repo(mut self, value: impl Into<String>) -> MergePullRequestOptionPostBuilder<Owner, crate::generics::RepoExists, Index> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// index of the pull request to merge
     #[inline]
-    pub fn index(mut self, value: impl Into<i64>) -> MergePullRequestOptionPostBuilder<Owner, Repo, crate::generics::IndexExists, Do> {
+    pub fn index(mut self, value: impl Into<i64>) -> MergePullRequestOptionPostBuilder<Owner, Repo, crate::generics::IndexExists> {
         self.inner.param_index = Some(value.into());
-        unsafe { std::mem::transmute(self) }
-    }
-
-    #[inline]
-    pub fn do(mut self, value: crate::merge_pull_request_option::MergePullRequestOptionDo) -> MergePullRequestOptionPostBuilder<Owner, Repo, Index, crate::generics::DoExists> {
-        self.inner.body.do = value.into();
         unsafe { std::mem::transmute(self) }
     }
 
@@ -143,7 +113,7 @@ impl<Owner, Repo, Index, Do> MergePullRequestOptionPostBuilder<Owner, Repo, Inde
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for MergePullRequestOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists, crate::generics::DoExists> {
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for MergePullRequestOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
     type Output = serde_json::Value;
 
     const METHOD: http::Method = http::Method::POST;
@@ -159,4 +129,3 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         .header(http::header::ACCEPT.as_str(), "application/json"))
     }
 }
-
