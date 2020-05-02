@@ -9774,7 +9774,7 @@
         "subkeys": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/GPGKey"
+            "type": "string"
           },
           "x-go-name": "SubsKey"
         }
@@ -10965,7 +10965,7 @@
           "$ref": "#/definitions/User"
         },
         "parent": {
-          "$ref": "#/definitions/Repository"
+          "type": "string"
         },
         "permissions": {
           "$ref": "#/definitions/Permission"
