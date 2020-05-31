@@ -162,6 +162,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<Vec<Organization>, OrganizationGetBuilder> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`Organization::org_get`](./struct.Organization.html#method.org_get) method for a `GET` operation associated with `Organization`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]

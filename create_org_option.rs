@@ -206,6 +206,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<crate::organization::Organization, CreateOrgOptionPostBuilder<crate::generics::UsernameExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`CreateOrgOption::org_create`](./struct.CreateOrgOption.html#method.org_create) method for a `POST` operation associated with `CreateOrgOption`.
 #[derive(Debug, Clone)]
 pub struct CreateOrgOptionPostBuilder1<Username> {
@@ -271,6 +282,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         use crate::client::Request;
         Ok(req
         .json(&self.body))
+    }
+}
+
+impl crate::client::ResponseWrapper<crate::organization::Organization, CreateOrgOptionPostBuilder1<crate::generics::UsernameExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }
 

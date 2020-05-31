@@ -169,6 +169,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<crate::public_key::PublicKey, CreateKeyOptionPostBuilder<crate::generics::UsernameExists, crate::generics::KeyExists, crate::generics::TitleExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`CreateKeyOption::repo_create_key`](./struct.CreateKeyOption.html#method.repo_create_key) method for a `POST` operation associated with `CreateKeyOption`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
@@ -240,6 +251,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<crate::deploy_key::DeployKey, CreateKeyOptionPostBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::KeyExists, crate::generics::TitleExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`CreateKeyOption::user_current_post_key`](./struct.CreateKeyOption.html#method.user_current_post_key) method for a `POST` operation associated with `CreateKeyOption`.
 #[derive(Debug, Clone)]
 pub struct CreateKeyOptionPostBuilder2<Key, Title> {
@@ -284,5 +306,16 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         use crate::client::Request;
         Ok(req
         .json(&self.body))
+    }
+}
+
+impl crate::client::ResponseWrapper<crate::public_key::PublicKey, CreateKeyOptionPostBuilder2<crate::generics::KeyExists, crate::generics::TitleExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }

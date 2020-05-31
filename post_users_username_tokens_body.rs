@@ -96,3 +96,22 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         .header(http::header::ACCEPT.as_str(), "application/json"))
     }
 }
+
+impl crate::client::ResponseWrapper<serde_json::Value, PostUsersUsernameTokensBodyPostBuilder<crate::generics::UsernameExists, crate::generics::NameExists>> {
+    #[inline]
+    pub fn id(&self) -> Option<i64> {
+        self.headers.get("id").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn name(&self) -> Option<String> {
+        self.headers.get("name").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn sha1(&self) -> Option<String> {
+        self.headers.get("sha1").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn token_last_eight(&self) -> Option<String> {
+        self.headers.get("token_last_eight").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}

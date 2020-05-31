@@ -160,6 +160,34 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<Vec<Commit>, CommitGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists>> {
+    /// True if there is another page
+    #[inline]
+    pub fn x_hasmore(&self) -> Option<bool> {
+        self.headers.get("x-hasmore").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    /// The current page
+    #[inline]
+    pub fn x_page(&self) -> Option<i64> {
+        self.headers.get("x-page").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    /// Total number of pages
+    #[inline]
+    pub fn x_pagecount(&self) -> Option<i64> {
+        self.headers.get("x-pagecount").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    /// Commits per page
+    #[inline]
+    pub fn x_perpage(&self) -> Option<i64> {
+        self.headers.get("x-perpage").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    /// Total commit count
+    #[inline]
+    pub fn x_total(&self) -> Option<i64> {
+        self.headers.get("x-total").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`Commit::repo_get_single_commit`](./struct.Commit.html#method.repo_get_single_commit) method for a `GET` operation associated with `Commit`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]

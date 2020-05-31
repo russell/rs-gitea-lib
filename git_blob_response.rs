@@ -122,3 +122,14 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         format!("/repos/{owner}/{repo}/git/blobs/{sha}", owner=self.inner.param_owner.as_ref().expect("missing parameter owner?"), repo=self.inner.param_repo.as_ref().expect("missing parameter repo?"), sha=self.inner.param_sha.as_ref().expect("missing parameter sha?")).into()
     }
 }
+
+impl crate::client::ResponseWrapper<GitBlobResponse, GitBlobResponseGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}

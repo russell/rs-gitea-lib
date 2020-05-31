@@ -207,3 +207,14 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         .json(&self.inner.body))
     }
 }
+
+impl crate::client::ResponseWrapper<crate::issue::Issue, CreateIssueOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::TitleExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}

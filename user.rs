@@ -232,6 +232,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<Vec<User>, UserGetBuilder> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`User::org_list_members`](./struct.User.html#method.org_list_members) method for a `GET` operation associated with `User`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]

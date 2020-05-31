@@ -119,6 +119,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<Vec<ReactionResponse>, ReactionResponseGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`ReactionResponse::issue_get_issue_reactions`](./struct.ReactionResponse.html#method.issue_get_issue_reactions) method for a `GET` operation associated with `ReactionResponse`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
@@ -166,5 +177,16 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
 
     fn rel_path(&self) -> std::borrow::Cow<'static, str> {
         format!("/repos/{owner}/{repo}/issues/{index}/reactions", owner=self.inner.param_owner.as_ref().expect("missing parameter owner?"), repo=self.inner.param_repo.as_ref().expect("missing parameter repo?"), index=self.inner.param_index.as_ref().expect("missing parameter index?")).into()
+    }
+}
+
+impl crate::client::ResponseWrapper<Vec<ReactionResponse>, ReactionResponseGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }

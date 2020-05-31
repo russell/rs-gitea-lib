@@ -39,526 +39,6 @@ args:
 
 subcommands:
 
-  - repo-list-pull-requests:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - page:
-            long: page
-            help: "Page number"
-            takes_value: true
-        - state:
-            long: state
-            help: "State of pull request: open or closed (optional)"
-            takes_value: true
-        - sort:
-            long: sort
-            help: "Type of sort"
-            takes_value: true
-        - milestone:
-            long: milestone
-            help: "ID of the milestone"
-            takes_value: true
-        - labels:
-            long: labels
-            help: "Label IDs"
-            takes_value: true
-  - repo-get-pull-request:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - index:
-            long: index
-            required: true
-            help: "index of the pull request to get"
-            takes_value: true
-
-  - repo-get-combined-status-by-ref:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - ref:
-            long: ref
-            required: true
-            help: "name of branch/tag/commit"
-            takes_value: true
-        - page:
-            long: page
-            help: "page number of results"
-            takes_value: true
-  - repo-list-statuses:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - sha:
-            long: sha
-            required: true
-            help: "sha of the commit"
-            takes_value: true
-        - page:
-            long: page
-            help: "page number of results"
-            takes_value: true
-        - sort:
-            long: sort
-            help: "type of sort"
-            takes_value: true
-        - state:
-            long: state
-            help: "type of state"
-            takes_value: true
-
-  - user-create-token:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: PostUsersUsernameTokensBody) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - username:
-            long: username
-            required: true
-            help: "username of user"
-            takes_value: true
-
-  - user-add-email:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateEmailOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-
-
-  - issue-tracked-times:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "index of the issue"
-            takes_value: true
-  - repo-tracked-times:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-  - user-tracked-times:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - user:
-            long: user
-            required: true
-            help: "username of user"
-            takes_value: true
-  - user-current-tracked-times:
-
-  - user-get-tokens:
-      args:
-        - username:
-            long: username
-            required: true
-            help: "username of user"
-            takes_value: true
-
-  - repo-list-branches:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-  - repo-get-branch:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - branch:
-            long: branch
-            required: true
-            help: "branch to get"
-            takes_value: true
-
-  - admin-create-repo:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateRepoOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - username:
-            long: username
-            required: true
-            help: "username of the user. This user will own the created repository"
-            takes_value: true
-  - create-org-repo:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateRepoOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - org:
-            long: org
-            required: true
-            help: "name of organization"
-            takes_value: true
-  - create-current-user-repo:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateRepoOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-
-
-  - issue-create-comment:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateIssueCommentOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - index:
-            long: index
-            required: true
-            help: "index of the issue"
-            takes_value: true
-
-  - repo-list-keys:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - key-id:
-            long: key-id
-            help: "the key_id to search for"
-            takes_value: true
-        - fingerprint:
-            long: fingerprint
-            help: "fingerprint of the key"
-            takes_value: true
-  - repo-get-key:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the key to get"
-            takes_value: true
-
-  - repo-create-pull-request:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreatePullRequestOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-
-  - issue-edit-label:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: EditLabelOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the label to edit"
-            takes_value: true
-
-  - org-list-hooks:
-      args:
-        - org:
-            long: org
-            required: true
-            help: "name of the organization"
-            takes_value: true
-  - org-get-hook:
-      args:
-        - org:
-            long: org
-            required: true
-            help: "name of the organization"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the hook to get"
-            takes_value: true
-  - repo-list-hooks:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-  - repo-get-hook:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the hook to get"
-            takes_value: true
-
-
-  - issue-get-comment-reactions:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the comment to edit"
-            takes_value: true
-  - issue-get-issue-reactions:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - index:
-            long: index
-            required: true
-            help: "index of the issue"
-            takes_value: true
-
-
-  - repo-edit-release:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: EditReleaseOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the release to edit"
-            takes_value: true
-
-  - admin-get-all-orgs:
-      args:
-        - page:
-            long: page
-            help: "page number of results to return (1-based)"
-            takes_value: true
-        - limit:
-            long: limit
-            help: "page size of results, maximum page size is 50"
-            takes_value: true
-  - org-get:
-      args:
-        - org:
-            long: org
-            required: true
-            help: "name of the organization to get"
-            takes_value: true
-  - org-list-current-user-orgs:
-  - org-list-user-orgs:
-      args:
-        - username:
-            long: username
-            required: true
-            help: "username of user"
-            takes_value: true
-
-
-  - user-get-stop-watches:
-
-  - issue-get-repo-comments:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - since:
-            long: since
-            help: "if provided, only comments updated since the provided time are returned."
-            takes_value: true
-  - issue-get-comments:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - index:
-            long: index
-            required: true
-            help: "index of the issue"
-            takes_value: true
-        - since:
-            long: since
-            help: "if provided, only comments updated since the specified time are returned."
-            takes_value: true
-
   - issue-post-comment-reaction:
       args:
         - payload:
@@ -648,39 +128,8 @@ subcommands:
             help: "index of the issue"
             takes_value: true
 
-  - org-edit:
+  - repo-get-contents-list:
       args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: EditOrgOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - org:
-            long: org
-            required: true
-            help: "name of the organization to edit"
-            takes_value: true
-
-
-  - org-create-hook:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateHookOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - org:
-            long: org
-            required: true
-            help: "name of the organization"
-            takes_value: true
-  - repo-create-hook:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateHookOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
         - owner:
             long: owner
             required: true
@@ -691,14 +140,12 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
-
-  - repo-create-file:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateFileOptions) or pass '-' for stdin"
+        - ref:
+            long: ref
+            help: "The name of the commit/branch/tag. Default the repository’s default branch (usually master)"
             takes_value: true
-            required: true
+  - repo-get-contents:
+      args:
         - owner:
             long: owner
             required: true
@@ -712,14 +159,20 @@ subcommands:
         - filepath:
             long: filepath
             required: true
-            help: "path of the file to create"
+            help: "path of the dir, file, symlink or submodule in the repo"
+            takes_value: true
+        - ref:
+            long: ref
+            help: "The name of the commit/branch/tag. Default the repository’s default branch (usually master)"
             takes_value: true
 
-  - repo-edit-git-hook:
+
+
+  - repo-add-collaborator:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: EditGitHookOption) or pass '-' for stdin"
+            help: "Path to payload (schema: AddCollaboratorOption) or pass '-' for stdin"
             takes_value: true
             required: true
         - owner:
@@ -732,17 +185,17 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
-        - id:
-            long: id
+        - collaborator:
+            long: collaborator
             required: true
-            help: "id of the hook to get"
+            help: "username of the collaborator to add"
             takes_value: true
 
-  - issue-edit-issue:
+  - issue-create-comment:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: EditIssueOption) or pass '-' for stdin"
+            help: "Path to payload (schema: CreateIssueCommentOption) or pass '-' for stdin"
             takes_value: true
             required: true
         - owner:
@@ -758,49 +211,136 @@ subcommands:
         - index:
             long: index
             required: true
-            help: "index of the issue to edit"
+            help: "index of the issue"
             takes_value: true
 
-  - repo-migrate:
+  - user-delete-email:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: MigrateRepoForm) or pass '-' for stdin"
+            help: "Path to payload (schema: DeleteEmailOption) or pass '-' for stdin"
             takes_value: true
             required: true
 
-  - admin-edit-user:
+  - repo-merge-pull-request:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: EditUserOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - username:
-            long: username
-            required: true
-            help: "username of user to edit"
-            takes_value: true
-
-  - get-version:
-
-
-  - repo-edit:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: EditRepoOption) or pass '-' for stdin"
+            help: "Path to payload (schema: MergePullRequestOption) or pass '-' for stdin"
             takes_value: true
             required: true
         - owner:
             long: owner
             required: true
-            help: "owner of the repo to edit"
+            help: "owner of the repo"
             takes_value: true
         - repo:
             long: repo
             required: true
-            help: "name of the repo to edit"
+            help: "name of the repo"
+            takes_value: true
+        - index:
+            long: index
+            required: true
+            help: "index of the pull request to merge"
+            takes_value: true
+
+
+  - repo-list-all-git-refs:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+  - repo-list-git-refs:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - ref:
+            long: ref
+            required: true
+            help: "part or full name of the ref"
+            takes_value: true
+
+  - repo-get-all-commits:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - sha:
+            long: sha
+            help: "SHA or branch to start listing commits from (usually \'master\')"
+            takes_value: true
+        - page:
+            long: page
+            help: "page number of requested commits"
+            takes_value: true
+  - repo-get-single-commit:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - sha:
+            long: sha
+            required: true
+            help: "the commit hash"
+            takes_value: true
+
+  - user-current-list-gpg-keys:
+  - user-current-get-gpg-key:
+      args:
+        - id:
+            long: id
+            required: true
+            help: "id of key to get"
+            takes_value: true
+  - user-list-gpg-keys:
+      args:
+        - username:
+            long: username
+            required: true
+            help: "username of user"
+            takes_value: true
+
+  - repo-list-tags:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
             takes_value: true
 
   - repo-search:
@@ -862,245 +402,6 @@ subcommands:
             help: "sort order, either \"asc\" (ascending) or \"desc\" (descending). Default is \"asc\", ignored if \"sort\" is not specified."
             takes_value: true
 
-  - issue-create-milestone:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateMilestoneOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-
-  - issue-add-time:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: AddTimeOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "index of the issue to add tracked time to"
-            takes_value: true
-
-  - repo-list-topics:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-
-  - user-list-emails:
-
-  - repo-list-git-hooks:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-  - repo-get-git-hook:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the hook to get"
-            takes_value: true
-
-  - user-current-list-gpg-keys:
-  - user-current-get-gpg-key:
-      args:
-        - id:
-            long: id
-            required: true
-            help: "id of key to get"
-            takes_value: true
-  - user-list-gpg-keys:
-      args:
-        - username:
-            long: username
-            required: true
-            help: "username of user"
-            takes_value: true
-
-  - topic-search:
-      args:
-        - q:
-            long: q
-            required: true
-            help: "keywords to search"
-            takes_value: true
-
-  - user-search:
-      args:
-        - q:
-            long: q
-            help: "keyword"
-            takes_value: true
-        - uid:
-            long: uid
-            help: "ID of the user to search for"
-            takes_value: true
-        - limit:
-            long: limit
-            help: "maximum number of users to return"
-            takes_value: true
-
-  - get-tree:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - sha:
-            long: sha
-            required: true
-            help: "sha of the commit"
-            takes_value: true
-        - recursive:
-            long: recursive
-            help: "show all directories and files"
-            takes_value: true
-        - page:
-            long: page
-            help: "page number; the \'truncated\' field in the response will be true if there are still more items after this page, false if the last page"
-            takes_value: true
-        - per-page:
-            long: per-page
-            help: "number of items per page; default is 1000 or what is set in app.ini as DEFAULT_GIT_TREES_PER_PAGE"
-            takes_value: true
-
-  - repo-update-file:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: UpdateFileOptions) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - filepath:
-            long: filepath
-            required: true
-            help: "path of the file to update"
-            takes_value: true
-
-  - admin-create-org:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateOrgOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - username:
-            long: username
-            required: true
-            help: "username of the user that will own the created organization"
-            takes_value: true
-  - org-create:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateOrgOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-
-
-  - get-tag:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - sha:
-            long: sha
-            required: true
-            help: "sha of the tag. The Git tags API only supports annotated tag objects, not lightweight tags."
-            takes_value: true
-
-  - repo-edit-pull-request:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: EditPullRequestOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - index:
-            long: index
-            required: true
-            help: "index of the pull request to edit"
-            takes_value: true
 
   - admin-create-public-key:
       args:
@@ -1139,61 +440,13 @@ subcommands:
             takes_value: true
             required: true
 
-  - repo-create-status:
+  - repo-edit-release-attachment:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: CreateStatusOption) or pass '-' for stdin"
+            help: "Path to payload (schema: EditAttachmentOptions) or pass '-' for stdin"
             takes_value: true
             required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - sha:
-            long: sha
-            required: true
-            help: "sha of the commit"
-            takes_value: true
-
-
-  - issue-get-labels:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - index:
-            long: index
-            required: true
-            help: "index of the issue"
-            takes_value: true
-  - issue-list-labels:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-  - issue-get-label:
-      args:
         - owner:
             long: owner
             required: true
@@ -1207,52 +460,20 @@ subcommands:
         - id:
             long: id
             required: true
-            help: "id of the label to get"
+            help: "id of the release"
+            takes_value: true
+        - attachment-id:
+            long: attachment-id
+            required: true
+            help: "id of the attachment to edit"
             takes_value: true
 
-  - repo-list-releases:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - page:
-            long: page
-            help: "page wants to load"
-            takes_value: true
-        - per-page:
-            long: per-page
-            help: "items count every page wants to load"
-            takes_value: true
-  - repo-get-release:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the release to get"
-            takes_value: true
 
-  - repo-delete-file:
+  - repo-update-topics:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: DeleteFileOptions) or pass '-' for stdin"
+            help: "Path to payload (schema: RepoTopicOptions) or pass '-' for stdin"
             takes_value: true
             required: true
         - owner:
@@ -1265,103 +486,55 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
-        - filepath:
-            long: filepath
-            required: true
-            help: "path of the file to delete"
-            takes_value: true
 
-  - repo-merge-pull-request:
+  - team-search:
       args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: MergePullRequestOption) or pass '-' for stdin"
-            takes_value: true
+        - org:
+            long: org
             required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
+            help: "name of the organization"
             takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
+        - q:
+            long: q
+            help: "keywords to search"
             takes_value: true
-        - index:
-            long: index
-            required: true
-            help: "index of the pull request to merge"
+        - include-desc:
+            long: include-desc
+            help: "include search within team description (defaults to true)"
             takes_value: true
-
-
-  - repo-list-all-git-refs:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-  - repo-list-git-refs:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - ref:
-            long: ref
-            required: true
-            help: "part or full name of the ref"
-            takes_value: true
-
-
-  - repo-get-all-commits:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - sha:
-            long: sha
-            help: "SHA or branch to start listing commits from (usually \'master\')"
+        - limit:
+            long: limit
+            help: "limit size of results"
             takes_value: true
         - page:
             long: page
-            help: "page number of requested commits"
+            help: "page number of results to return (1-based)"
             takes_value: true
-  - repo-get-single-commit:
+
+  - user-add-email:
       args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateEmailOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+
+  - create-fork:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateForkOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
         - owner:
             long: owner
             required: true
-            help: "owner of the repo"
+            help: "owner of the repo to fork"
             takes_value: true
         - repo:
             long: repo
             required: true
-            help: "name of the repo"
-            takes_value: true
-        - sha:
-            long: sha
-            required: true
-            help: "the commit hash"
+            help: "name of the repo to fork"
             takes_value: true
 
   - issue-edit-milestone:
@@ -1371,103 +544,6 @@ subcommands:
             help: "Path to payload (schema: EditMilestoneOption) or pass '-' for stdin"
             takes_value: true
             required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the milestone"
-            takes_value: true
-
-
-
-  - issue-edit-issue-deadline:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: EditDeadlineOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - index:
-            long: index
-            required: true
-            help: "index of the issue to create or update a deadline on"
-            takes_value: true
-
-  - repo-get-contents-list:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - ref:
-            long: ref
-            help: "The name of the commit/branch/tag. Default the repository’s default branch (usually master)"
-            takes_value: true
-  - repo-get-contents:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - filepath:
-            long: filepath
-            required: true
-            help: "path of the dir, file, symlink or submodule in the repo"
-            takes_value: true
-        - ref:
-            long: ref
-            help: "The name of the commit/branch/tag. Default the repository’s default branch (usually master)"
-            takes_value: true
-
-  - issue-get-milestones-list:
-      args:
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - state:
-            long: state
-            help: "Milestone state, Recognised values are open, closed and all. Defaults to \"open\""
-            takes_value: true
-  - issue-get-milestone:
-      args:
         - owner:
             long: owner
             required: true
@@ -1503,11 +579,28 @@ subcommands:
             takes_value: true
 
 
-  - repo-edit-release-attachment:
+  - org-edit-hook:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: EditAttachmentOptions) or pass '-' for stdin"
+            help: "Path to payload (schema: EditHookOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - org:
+            long: org
+            required: true
+            help: "name of the organization"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the hook to update"
+            takes_value: true
+  - repo-edit-hook:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditHookOption) or pass '-' for stdin"
             takes_value: true
             required: true
         - owner:
@@ -1523,33 +616,28 @@ subcommands:
         - id:
             long: id
             required: true
-            help: "id of the release"
-            takes_value: true
-        - attachment-id:
-            long: attachment-id
-            required: true
-            help: "id of the attachment to edit"
+            help: "index of the hook"
             takes_value: true
 
-  - user-get-heatmap-data:
-      args:
-        - username:
-            long: username
-            required: true
-            help: "username of user to get"
-            takes_value: true
-
-
-  - user-delete-email:
+  - repo-edit:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: DeleteEmailOption) or pass '-' for stdin"
+            help: "Path to payload (schema: EditRepoOption) or pass '-' for stdin"
             takes_value: true
             required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo to edit"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo to edit"
+            takes_value: true
 
-
-  - repo-signing-key:
+  - repo-list-keys:
       args:
         - owner:
             long: owner
@@ -1561,11 +649,15 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
-  - get-signing-key:
-
-
-
-  - repo-list-tags:
+        - key-id:
+            long: key-id
+            help: "the key_id to search for"
+            takes_value: true
+        - fingerprint:
+            long: fingerprint
+            help: "fingerprint of the key"
+            takes_value: true
+  - repo-get-key:
       args:
         - owner:
             long: owner
@@ -1576,6 +668,11 @@ subcommands:
             long: repo
             required: true
             help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the key to get"
             takes_value: true
 
   - org-edit-team:
@@ -1591,6 +688,185 @@ subcommands:
             help: "id of the team to edit"
             takes_value: true
 
+
+  - get-tree:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - sha:
+            long: sha
+            required: true
+            help: "sha of the commit"
+            takes_value: true
+        - recursive:
+            long: recursive
+            help: "show all directories and files"
+            takes_value: true
+        - page:
+            long: page
+            help: "page number; the \'truncated\' field in the response will be true if there are still more items after this page, false if the last page"
+            takes_value: true
+        - per-page:
+            long: per-page
+            help: "number of items per page; default is 1000 or what is set in app.ini as DEFAULT_GIT_TREES_PER_PAGE"
+            takes_value: true
+
+
+
+  - org-list-teams:
+      args:
+        - org:
+            long: org
+            required: true
+            help: "name of the organization"
+            takes_value: true
+  - org-get-team:
+      args:
+        - id:
+            long: id
+            required: true
+            help: "id of the team to get"
+            takes_value: true
+  - user-list-teams:
+
+
+  - get-version:
+
+  - repo-list-topics:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+
+  - admin-create-org:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateOrgOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - username:
+            long: username
+            required: true
+            help: "username of the user that will own the created organization"
+            takes_value: true
+  - org-create:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateOrgOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+
+
+  - user-get-tokens:
+      args:
+        - username:
+            long: username
+            required: true
+            help: "username of user"
+            takes_value: true
+
+
+  - repo-update-file:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: UpdateFileOptions) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - filepath:
+            long: filepath
+            required: true
+            help: "path of the file to update"
+            takes_value: true
+
+  - user-get-heatmap-data:
+      args:
+        - username:
+            long: username
+            required: true
+            help: "username of user to get"
+            takes_value: true
+
+  - issue-get-repo-comments:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - since:
+            long: since
+            help: "if provided, only comments updated since the provided time are returned."
+            takes_value: true
+  - issue-get-comments:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - index:
+            long: index
+            required: true
+            help: "index of the issue"
+            takes_value: true
+        - since:
+            long: since
+            help: "if provided, only comments updated since the specified time are returned."
+            takes_value: true
+
+
+  - user-search:
+      args:
+        - q:
+            long: q
+            help: "keyword"
+            takes_value: true
+        - uid:
+            long: uid
+            help: "ID of the user to search for"
+            takes_value: true
+        - limit:
+            long: limit
+            help: "maximum number of users to return"
+            takes_value: true
 
   - user-current-check-subscription:
       args:
@@ -1618,7 +894,7 @@ subcommands:
             takes_value: true
 
 
-  - repo-list-release-attachments:
+  - repo-get-combined-status-by-ref:
       args:
         - owner:
             long: owner
@@ -1630,12 +906,16 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
-        - id:
-            long: id
+        - ref:
+            long: ref
             required: true
-            help: "id of the release"
+            help: "name of branch/tag/commit"
             takes_value: true
-  - repo-create-release-attachment:
+        - page:
+            long: page
+            help: "page number of results"
+            takes_value: true
+  - repo-list-statuses:
       args:
         - owner:
             long: owner
@@ -1647,22 +927,43 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
-        - id:
-            long: id
+        - sha:
+            long: sha
             required: true
-            help: "id of the release"
+            help: "sha of the commit"
             takes_value: true
-        - name:
-            long: name
-            help: "name of the attachment"
+        - page:
+            long: page
+            help: "page number of results"
             takes_value: true
-        - attachment:
-            long: attachment
-            required: true
-            help: "attachment to upload"
+        - sort:
+            long: sort
+            help: "type of sort"
             takes_value: true
-  - repo-get-release-attachment:
+        - state:
+            long: state
+            help: "type of state"
+            takes_value: true
+
+  - org-create-hook:
       args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateHookOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - org:
+            long: org
+            required: true
+            help: "name of the organization"
+            takes_value: true
+  - repo-create-hook:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateHookOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
         - owner:
             long: owner
             required: true
@@ -1673,16 +974,67 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
-        - id:
-            long: id
-            required: true
-            help: "id of the release"
+
+
+  - org-edit:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditOrgOption) or pass '-' for stdin"
             takes_value: true
-        - attachment-id:
-            long: attachment-id
             required: true
-            help: "id of the attachment to get"
+        - org:
+            long: org
+            required: true
+            help: "name of the organization to edit"
             takes_value: true
+
+
+
+  - admin-get-all-orgs:
+      args:
+        - page:
+            long: page
+            help: "page number of results to return (1-based)"
+            takes_value: true
+        - limit:
+            long: limit
+            help: "page size of results, maximum page size is 50"
+            takes_value: true
+  - org-get:
+      args:
+        - org:
+            long: org
+            required: true
+            help: "name of the organization to get"
+            takes_value: true
+  - org-list-current-user-orgs:
+  - org-list-user-orgs:
+      args:
+        - username:
+            long: username
+            required: true
+            help: "username of user"
+            takes_value: true
+
+  - issue-create-label:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateLabelOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+
 
   - admin-get-all-users:
   - org-list-members:
@@ -1796,38 +1148,6 @@ subcommands:
             help: "username of user"
             takes_value: true
 
-  - user-current-post-gpg-key:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateGpgKeyOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-
-
-  - repo-add-collaborator:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: AddCollaboratorOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
-        - collaborator:
-            long: collaborator
-            required: true
-            help: "username of the collaborator to add"
-            takes_value: true
-
   - issue-edit-comment:
       args:
         - payload:
@@ -1878,13 +1198,48 @@ subcommands:
             help: "id of the comment to edit"
             takes_value: true
 
-  - org-edit-hook:
+
+  - repo-create-file:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: EditHookOption) or pass '-' for stdin"
+            help: "Path to payload (schema: CreateFileOptions) or pass '-' for stdin"
             takes_value: true
             required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - filepath:
+            long: filepath
+            required: true
+            help: "path of the file to create"
+            takes_value: true
+
+
+  - repo-migrate:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: MigrateRepoForm) or pass '-' for stdin"
+            takes_value: true
+            required: true
+
+  - org-list-hooks:
+      args:
+        - org:
+            long: org
+            required: true
+            help: "name of the organization"
+            takes_value: true
+  - org-get-hook:
+      args:
         - org:
             long: org
             required: true
@@ -1893,15 +1248,22 @@ subcommands:
         - id:
             long: id
             required: true
-            help: "id of the hook to update"
+            help: "id of the hook to get"
             takes_value: true
-  - repo-edit-hook:
+  - repo-list-hooks:
       args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: EditHookOption) or pass '-' for stdin"
-            takes_value: true
+        - owner:
+            long: owner
             required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+  - repo-get-hook:
+      args:
         - owner:
             long: owner
             required: true
@@ -1915,17 +1277,11 @@ subcommands:
         - id:
             long: id
             required: true
-            help: "index of the hook"
+            help: "id of the hook to get"
             takes_value: true
 
-
-  - repo-create-release:
+  - issue-get-milestones-list:
       args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateReleaseOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
         - owner:
             long: owner
             required: true
@@ -1936,48 +1292,69 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
-
-  - team-search:
-      args:
-        - org:
-            long: org
-            required: true
-            help: "name of the organization"
+        - state:
+            long: state
+            help: "Milestone state, Recognised values are open, closed and all. Defaults to \"open\""
             takes_value: true
+  - issue-get-milestone:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the milestone"
+            takes_value: true
+
+  - user-current-list-keys:
+      args:
+        - fingerprint:
+            long: fingerprint
+            help: "fingerprint of the key"
+            takes_value: true
+  - user-current-get-key:
+      args:
+        - id:
+            long: id
+            required: true
+            help: "id of key to get"
+            takes_value: true
+  - user-list-keys:
+      args:
+        - username:
+            long: username
+            required: true
+            help: "username of user"
+            takes_value: true
+        - fingerprint:
+            long: fingerprint
+            help: "fingerprint of the key"
+            takes_value: true
+
+
+  - topic-search:
+      args:
         - q:
             long: q
+            required: true
             help: "keywords to search"
             takes_value: true
-        - include-desc:
-            long: include-desc
-            help: "include search within team description (defaults to true)"
-            takes_value: true
-        - limit:
-            long: limit
-            help: "limit size of results"
-            takes_value: true
-        - page:
-            long: page
-            help: "page number of results to return (1-based)"
-            takes_value: true
 
-  - repo-update-topics:
+  - render-markdown:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: RepoTopicOptions) or pass '-' for stdin"
+            help: "Path to payload (schema: MarkdownOption) or pass '-' for stdin"
             takes_value: true
             required: true
-        - owner:
-            long: owner
-            required: true
-            help: "owner of the repo"
-            takes_value: true
-        - repo:
-            long: repo
-            required: true
-            help: "name of the repo"
-            takes_value: true
 
 
   - issue-replace-labels:
@@ -2026,35 +1403,405 @@ subcommands:
             takes_value: true
 
 
-
-  - user-current-list-keys:
+  - admin-edit-user:
       args:
-        - fingerprint:
-            long: fingerprint
-            help: "fingerprint of the key"
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditUserOption) or pass '-' for stdin"
             takes_value: true
-  - user-current-get-key:
-      args:
-        - id:
-            long: id
             required: true
-            help: "id of key to get"
-            takes_value: true
-  - user-list-keys:
-      args:
         - username:
             long: username
             required: true
+            help: "username of user to edit"
+            takes_value: true
+
+  - repo-list-git-hooks:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+  - repo-get-git-hook:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the hook to get"
+            takes_value: true
+
+  - issue-create-milestone:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateMilestoneOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+
+
+  - repo-create-status:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateStatusOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - sha:
+            long: sha
+            required: true
+            help: "sha of the commit"
+            takes_value: true
+
+
+  - repo-list-pull-requests:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - page:
+            long: page
+            help: "Page number"
+            takes_value: true
+        - state:
+            long: state
+            help: "State of pull request: open or closed (optional)"
+            takes_value: true
+        - sort:
+            long: sort
+            help: "Type of sort"
+            takes_value: true
+        - milestone:
+            long: milestone
+            help: "ID of the milestone"
+            takes_value: true
+        - labels:
+            long: labels
+            help: "Label IDs"
+            takes_value: true
+  - repo-get-pull-request:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - index:
+            long: index
+            required: true
+            help: "index of the pull request to get"
+            takes_value: true
+
+  - repo-create-release:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateReleaseOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+
+  - repo-edit-pull-request:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditPullRequestOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - index:
+            long: index
+            required: true
+            help: "index of the pull request to edit"
+            takes_value: true
+
+  - get-tag:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - sha:
+            long: sha
+            required: true
+            help: "sha of the tag. The Git tags API only supports annotated tag objects, not lightweight tags."
+            takes_value: true
+
+
+
+  - issue-edit-label:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditLabelOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the label to edit"
+            takes_value: true
+
+
+
+  - user-current-post-gpg-key:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateGpgKeyOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+
+
+  - issue-tracked-times:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "index of the issue"
+            takes_value: true
+  - repo-tracked-times:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+  - user-tracked-times:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - user:
+            long: user
+            required: true
             help: "username of user"
             takes_value: true
-        - fingerprint:
-            long: fingerprint
-            help: "fingerprint of the key"
+  - user-current-tracked-times:
+
+  - repo-signing-key:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+  - get-signing-key:
+
+  - repo-list-release-attachments:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the release"
+            takes_value: true
+  - repo-create-release-attachment:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the release"
+            takes_value: true
+        - name:
+            long: name
+            help: "name of the attachment"
+            takes_value: true
+        - attachment:
+            long: attachment
+            required: true
+            help: "attachment to upload"
+            takes_value: true
+  - repo-get-release-attachment:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the release"
+            takes_value: true
+        - attachment-id:
+            long: attachment-id
+            required: true
+            help: "id of the attachment to get"
             takes_value: true
 
+  - repo-create-pull-request:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreatePullRequestOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
 
-
-
+  - issue-edit-issue:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditIssueOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - index:
+            long: index
+            required: true
+            help: "index of the issue to edit"
+            takes_value: true
 
   - issue-create-issue:
       args:
@@ -2074,29 +1821,176 @@ subcommands:
             help: "name of the repo"
             takes_value: true
 
-  - create-fork:
+  - repo-list-branches:
       args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateForkOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
         - owner:
             long: owner
             required: true
-            help: "owner of the repo to fork"
+            help: "owner of the repo"
             takes_value: true
         - repo:
             long: repo
             required: true
-            help: "name of the repo to fork"
+            help: "name of the repo"
+            takes_value: true
+  - repo-get-branch:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - branch:
+            long: branch
+            required: true
+            help: "branch to get"
             takes_value: true
 
-  - issue-create-label:
+  - issue-get-labels:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - index:
+            long: index
+            required: true
+            help: "index of the issue"
+            takes_value: true
+  - issue-list-labels:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+  - issue-get-label:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the label to get"
+            takes_value: true
+
+  - user-create-token:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: CreateLabelOption) or pass '-' for stdin"
+            help: "Path to payload (schema: PostUsersUsernameTokensBody) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - username:
+            long: username
+            required: true
+            help: "username of user"
+            takes_value: true
+
+  - issue-get-comment-reactions:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the comment to edit"
+            takes_value: true
+  - issue-get-issue-reactions:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - index:
+            long: index
+            required: true
+            help: "index of the issue"
+            takes_value: true
+
+  - user-get-stop-watches:
+
+  - repo-list-releases:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - page:
+            long: page
+            help: "page wants to load"
+            takes_value: true
+        - per-page:
+            long: per-page
+            help: "items count every page wants to load"
+            takes_value: true
+  - repo-get-release:
+      args:
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the release to get"
+            takes_value: true
+
+  - repo-delete-file:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: DeleteFileOptions) or pass '-' for stdin"
             takes_value: true
             required: true
         - owner:
@@ -2109,6 +2003,128 @@ subcommands:
             required: true
             help: "name of the repo"
             takes_value: true
+        - filepath:
+            long: filepath
+            required: true
+            help: "path of the file to delete"
+            takes_value: true
+
+  - repo-edit-git-hook:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditGitHookOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the hook to get"
+            takes_value: true
+
+  - issue-add-time:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: AddTimeOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "index of the issue to add tracked time to"
+            takes_value: true
+
+  - admin-create-user:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateUserOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+
+
+  - issue-edit-issue-deadline:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditDeadlineOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - index:
+            long: index
+            required: true
+            help: "index of the issue to create or update a deadline on"
+            takes_value: true
+
+  - org-create-team:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateTeamOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - org:
+            long: org
+            required: true
+            help: "name of the organization"
+            takes_value: true
+
+
+  - repo-edit-release:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: EditReleaseOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - owner:
+            long: owner
+            required: true
+            help: "owner of the repo"
+            takes_value: true
+        - repo:
+            long: repo
+            required: true
+            help: "name of the repo"
+            takes_value: true
+        - id:
+            long: id
+            required: true
+            help: "id of the release to edit"
+            takes_value: true
+
+
 
   - issue-search-issues:
       args:
@@ -2177,45 +2193,6 @@ subcommands:
             required: true
             help: "index of the issue to get"
             takes_value: true
-
-  - org-create-team:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateTeamOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-        - org:
-            long: org
-            required: true
-            help: "name of the organization"
-            takes_value: true
-
-
-  - admin-create-user:
-      args:
-        - payload:
-            long: payload
-            help: "Path to payload (schema: CreateUserOption) or pass '-' for stdin"
-            takes_value: true
-            required: true
-
-  - org-list-teams:
-      args:
-        - org:
-            long: org
-            required: true
-            help: "name of the organization"
-            takes_value: true
-  - org-get-team:
-      args:
-        - id:
-            long: id
-            required: true
-            help: "id of the team to get"
-            takes_value: true
-  - user-list-teams:
-
 
   - org-list-repos:
       args:
@@ -2287,11 +2264,36 @@ subcommands:
             help: "username of the user"
             takes_value: true
 
+  - user-list-emails:
 
-  - render-markdown:
+  - admin-create-repo:
       args:
         - payload:
             long: payload
-            help: "Path to payload (schema: MarkdownOption) or pass '-' for stdin"
+            help: "Path to payload (schema: CreateRepoOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - username:
+            long: username
+            required: true
+            help: "username of the user. This user will own the created repository"
+            takes_value: true
+  - create-org-repo:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateRepoOption) or pass '-' for stdin"
+            takes_value: true
+            required: true
+        - org:
+            long: org
+            required: true
+            help: "name of organization"
+            takes_value: true
+  - create-current-user-repo:
+      args:
+        - payload:
+            long: payload
+            help: "Path to payload (schema: CreateRepoOption) or pass '-' for stdin"
             takes_value: true
             required: true

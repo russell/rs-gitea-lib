@@ -162,6 +162,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<crate::reaction_response::ReactionResponse, EditReactionOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`EditReactionOption::issue_delete_comment_reaction`](./struct.EditReactionOption.html#method.issue_delete_comment_reaction) method for a `DELETE` operation associated with `EditReactionOption`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
@@ -223,6 +234,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         Ok(req
         .json(&self.inner.body)
         .header(http::header::ACCEPT.as_str(), "application/json"))
+    }
+}
+
+impl crate::client::ResponseWrapper<serde_json::Value, EditReactionOptionDeleteBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }
 
@@ -289,6 +311,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<crate::reaction_response::ReactionResponse, EditReactionOptionPostBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`EditReactionOption::issue_delete_issue_reaction`](./struct.EditReactionOption.html#method.issue_delete_issue_reaction) method for a `DELETE` operation associated with `EditReactionOption`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
@@ -350,5 +383,16 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         Ok(req
         .json(&self.inner.body)
         .header(http::header::ACCEPT.as_str(), "application/json"))
+    }
+}
+
+impl crate::client::ResponseWrapper<serde_json::Value, EditReactionOptionDeleteBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }

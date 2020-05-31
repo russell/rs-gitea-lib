@@ -107,3 +107,14 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         .header(http::header::ACCEPT.as_str(), "application/json"))
     }
 }
+
+impl crate::client::ResponseWrapper<serde_json::Value, RepoTopicOptionsPutBuilder<crate::generics::OwnerExists, crate::generics::RepoExists>> {
+    #[inline]
+    pub fn invalidtopics(&self) -> Option<crate::util::Delimited<String, crate::util::Csv>> {
+        self.headers.get("invalidtopics").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}

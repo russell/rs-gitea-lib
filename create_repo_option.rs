@@ -242,6 +242,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<crate::repository::Repository, CreateRepoOptionPostBuilder<crate::generics::UsernameExists, crate::generics::NameExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`CreateRepoOption::create_org_repo`](./struct.CreateRepoOption.html#method.create_org_repo) method for a `POST` operation associated with `CreateRepoOption`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
@@ -338,6 +349,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<crate::repository::Repository, CreateRepoOptionPostBuilder1<crate::generics::OrgExists, crate::generics::NameExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`CreateRepoOption::create_current_user_repo`](./struct.CreateRepoOption.html#method.create_current_user_repo) method for a `POST` operation associated with `CreateRepoOption`.
 #[derive(Debug, Clone)]
 pub struct CreateRepoOptionPostBuilder2<Name> {
@@ -416,5 +438,16 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         use crate::client::Request;
         Ok(req
         .json(&self.body))
+    }
+}
+
+impl crate::client::ResponseWrapper<crate::repository::Repository, CreateRepoOptionPostBuilder2<crate::generics::NameExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }

@@ -190,6 +190,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<Vec<TrackedTime>, TrackedTimeGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`TrackedTime::user_tracked_times`](./struct.TrackedTime.html#method.user_tracked_times) method for a `GET` operation associated with `TrackedTime`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
@@ -237,6 +248,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
 
     fn rel_path(&self) -> std::borrow::Cow<'static, str> {
         format!("/repos/{owner}/{repo}/times/{user}", owner=self.inner.param_owner.as_ref().expect("missing parameter owner?"), repo=self.inner.param_repo.as_ref().expect("missing parameter repo?"), user=self.inner.param_user.as_ref().expect("missing parameter user?")).into()
+    }
+}
+
+impl crate::client::ResponseWrapper<Vec<TrackedTime>, TrackedTimeGetBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::UserExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }
 

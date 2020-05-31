@@ -177,6 +177,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
+impl crate::client::ResponseWrapper<Status, StatusGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::RefExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
 /// Builder created by [`Status::repo_list_statuses`](./struct.Status.html#method.repo_list_statuses) method for a `GET` operation associated with `Status`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
@@ -258,5 +269,16 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
             ("sort", self.inner.param_sort.as_ref().map(std::string::ToString::to_string)),
             ("state", self.inner.param_state.as_ref().map(std::string::ToString::to_string))
         ]))
+    }
+}
+
+impl crate::client::ResponseWrapper<Vec<Status>, StatusGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }
