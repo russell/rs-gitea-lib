@@ -145,7 +145,7 @@ impl ContentsResponseBuilder {
 
     /// `type` will be `file`, `dir`, `symlink`, or `submodule`
     #[inline]
-    pub fn r#type(mut self, value: impl Into<String>) -> Self {
+    pub fn type_(mut self, value: impl Into<String>) -> Self {
         self.body.type_ = Some(value.into());
         self
     }
@@ -190,7 +190,7 @@ impl<Owner, Repo> ContentsResponseGetBuilder<Owner, Repo> {
 
     /// The name of the commit/branch/tag. Default the repository’s default branch (usually master)
     #[inline]
-    pub fn r#ref(mut self, value: impl Into<String>) -> Self {
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
         self.inner.param_ref = Some(value.into());
         self
     }
@@ -256,7 +256,7 @@ impl<Owner, Repo, Filepath> ContentsResponseGetBuilder1<Owner, Repo, Filepath> {
 
     /// The name of the commit/branch/tag. Default the repository’s default branch (usually master)
     #[inline]
-    pub fn r#ref(mut self, value: impl Into<String>) -> Self {
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
         self.inner.param_ref = Some(value.into());
         self
     }

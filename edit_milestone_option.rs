@@ -138,7 +138,7 @@ impl<Owner, Repo, Id> EditMilestoneOptionPatchBuilder<Owner, Repo, Id> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditMilestoneOptionPatchBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
-    type Output = crate::patch_repos_owner_repo_milestones_id_response::PatchReposOwnerRepoMilestonesIdResponse;
+    type Output = crate::milestone::Milestone;
 
     const METHOD: http::Method = http::Method::PATCH;
 

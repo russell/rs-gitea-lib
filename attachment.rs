@@ -1,7 +1,7 @@
 
 /// Attachment a generic attachment
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse {
+pub struct Attachment {
     pub browser_download_url: Option<String>,
     pub created_at: Option<String>,
     pub download_count: Option<i64>,
@@ -11,18 +11,18 @@ pub struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse {
     pub uuid: Option<String>,
 }
 
-impl PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse {
+impl Attachment {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseBuilder {
-        PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseBuilder {
+    pub fn builder() -> AttachmentBuilder {
+        AttachmentBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn repo_list_release_attachments() -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId> {
-        PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder {
+    pub fn repo_list_release_attachments() -> AttachmentGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId> {
+        AttachmentGetBuilder {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -31,8 +31,8 @@ impl PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse {
     }
 
     #[inline]
-    pub fn repo_create_release_attachment() -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId, crate::generics::MissingAttachment> {
-        PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder {
+    pub fn repo_create_release_attachment() -> AttachmentPostBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId, crate::generics::MissingAttachment> {
+        AttachmentPostBuilder {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -42,8 +42,8 @@ impl PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse {
     }
 
     #[inline]
-    pub fn repo_get_release_attachment() -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId, crate::generics::MissingAttachmentId> {
-        PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1 {
+    pub fn repo_get_release_attachment() -> AttachmentGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId, crate::generics::MissingAttachmentId> {
+        AttachmentGetBuilder1 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -53,19 +53,19 @@ impl PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse {
     }
 }
 
-impl Into<PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse> for PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseBuilder {
-    fn into(self) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse {
+impl Into<Attachment> for AttachmentBuilder {
+    fn into(self) -> Attachment {
         self.body
     }
 }
 
-/// Builder for [`PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse`](./struct.PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse.html) object.
+/// Builder for [`Attachment`](./struct.Attachment.html) object.
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseBuilder {
-    body: self::PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse,
+pub struct AttachmentBuilder {
+    body: self::Attachment,
 }
 
-impl PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseBuilder {
+impl AttachmentBuilder {
     #[inline]
     pub fn browser_download_url(mut self, value: impl Into<String>) -> Self {
         self.body.browser_download_url = Some(value.into());
@@ -109,48 +109,48 @@ impl PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseBuilder {
     }
 }
 
-/// Builder created by [`PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse::repo_list_release_attachments`](./struct.PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse.html#method.repo_list_release_attachments) method for a `GET` operation associated with `PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse`.
+/// Builder created by [`Attachment::repo_list_release_attachments`](./struct.Attachment.html#method.repo_list_release_attachments) method for a `GET` operation associated with `Attachment`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder<Owner, Repo, Id> {
-    inner: PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilderContainer,
+pub struct AttachmentGetBuilder<Owner, Repo, Id> {
+    inner: AttachmentGetBuilderContainer,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_id: core::marker::PhantomData<Id>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilderContainer {
+struct AttachmentGetBuilderContainer {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_id: Option<i64>,
 }
 
-impl<Owner, Repo, Id> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder<Owner, Repo, Id> {
+impl<Owner, Repo, Id> AttachmentGetBuilder<Owner, Repo, Id> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder<crate::generics::OwnerExists, Repo, Id> {
+    pub fn owner(mut self, value: impl Into<String>) -> AttachmentGetBuilder<crate::generics::OwnerExists, Repo, Id> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder<Owner, crate::generics::RepoExists, Id> {
+    pub fn repo(mut self, value: impl Into<String>) -> AttachmentGetBuilder<Owner, crate::generics::RepoExists, Id> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// id of the release
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder<Owner, Repo, crate::generics::IdExists> {
+    pub fn id(mut self, value: impl Into<i64>) -> AttachmentGetBuilder<Owner, Repo, crate::generics::IdExists> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
-    type Output = Vec<PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for AttachmentGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
+    type Output = Vec<Attachment>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -159,11 +159,11 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse::repo_create_release_attachment`](./struct.PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse.html#method.repo_create_release_attachment) method for a `POST` operation associated with `PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse`.
+/// Builder created by [`Attachment::repo_create_release_attachment`](./struct.Attachment.html#method.repo_create_release_attachment) method for a `POST` operation associated with `Attachment`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<Owner, Repo, Id, Attachment> {
-    inner: PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilderContainer,
+pub struct AttachmentPostBuilder<Owner, Repo, Id, Attachment> {
+    inner: AttachmentPostBuilderContainer,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_id: core::marker::PhantomData<Id>,
@@ -171,7 +171,7 @@ pub struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<Ow
 }
 
 #[derive(Debug, Default, Clone)]
-struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilderContainer {
+struct AttachmentPostBuilderContainer {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_id: Option<i64>,
@@ -179,24 +179,24 @@ struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilderContain
     param_attachment: Option<std::path::PathBuf>,
 }
 
-impl<Owner, Repo, Id, Attachment> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<Owner, Repo, Id, Attachment> {
+impl<Owner, Repo, Id, Attachment> AttachmentPostBuilder<Owner, Repo, Id, Attachment> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<crate::generics::OwnerExists, Repo, Id, Attachment> {
+    pub fn owner(mut self, value: impl Into<String>) -> AttachmentPostBuilder<crate::generics::OwnerExists, Repo, Id, Attachment> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<Owner, crate::generics::RepoExists, Id, Attachment> {
+    pub fn repo(mut self, value: impl Into<String>) -> AttachmentPostBuilder<Owner, crate::generics::RepoExists, Id, Attachment> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// id of the release
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<Owner, Repo, crate::generics::IdExists, Attachment> {
+    pub fn id(mut self, value: impl Into<i64>) -> AttachmentPostBuilder<Owner, Repo, crate::generics::IdExists, Attachment> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -210,14 +210,14 @@ impl<Owner, Repo, Id, Attachment> PatchReposOwnerRepoReleasesIdAssetsAttachmentI
 
     /// attachment to upload
     #[inline]
-    pub fn attachment(mut self, value: impl AsRef<std::path::Path>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<Owner, Repo, Id, crate::generics::AttachmentExists> {
+    pub fn attachment(mut self, value: impl AsRef<std::path::Path>) -> AttachmentPostBuilder<Owner, Repo, Id, crate::generics::AttachmentExists> {
         self.inner.param_attachment = Some(value.as_ref().into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponsePostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists, crate::generics::AttachmentExists> {
-    type Output = PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for AttachmentPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists, crate::generics::AttachmentExists> {
+    type Output = Attachment;
 
     const METHOD: http::Method = http::Method::POST;
 
@@ -242,11 +242,11 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse::repo_get_release_attachment`](./struct.PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse.html#method.repo_get_release_attachment) method for a `GET` operation associated with `PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse`.
+/// Builder created by [`Attachment::repo_get_release_attachment`](./struct.Attachment.html#method.repo_get_release_attachment) method for a `GET` operation associated with `Attachment`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<Owner, Repo, Id, AttachmentId> {
-    inner: PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1Container,
+pub struct AttachmentGetBuilder1<Owner, Repo, Id, AttachmentId> {
+    inner: AttachmentGetBuilder1Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_id: core::marker::PhantomData<Id>,
@@ -254,45 +254,45 @@ pub struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<Ow
 }
 
 #[derive(Debug, Default, Clone)]
-struct PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1Container {
+struct AttachmentGetBuilder1Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_id: Option<i64>,
     param_attachment_id: Option<i64>,
 }
 
-impl<Owner, Repo, Id, AttachmentId> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<Owner, Repo, Id, AttachmentId> {
+impl<Owner, Repo, Id, AttachmentId> AttachmentGetBuilder1<Owner, Repo, Id, AttachmentId> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<crate::generics::OwnerExists, Repo, Id, AttachmentId> {
+    pub fn owner(mut self, value: impl Into<String>) -> AttachmentGetBuilder1<crate::generics::OwnerExists, Repo, Id, AttachmentId> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<Owner, crate::generics::RepoExists, Id, AttachmentId> {
+    pub fn repo(mut self, value: impl Into<String>) -> AttachmentGetBuilder1<Owner, crate::generics::RepoExists, Id, AttachmentId> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// id of the release
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<Owner, Repo, crate::generics::IdExists, AttachmentId> {
+    pub fn id(mut self, value: impl Into<i64>) -> AttachmentGetBuilder1<Owner, Repo, crate::generics::IdExists, AttachmentId> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// id of the attachment to get
     #[inline]
-    pub fn attachment_id(mut self, value: impl Into<i64>) -> PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<Owner, Repo, Id, crate::generics::AttachmentIdExists> {
+    pub fn attachment_id(mut self, value: impl Into<i64>) -> AttachmentGetBuilder1<Owner, Repo, Id, crate::generics::AttachmentIdExists> {
         self.inner.param_attachment_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponseGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists, crate::generics::AttachmentIdExists> {
-    type Output = PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for AttachmentGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists, crate::generics::AttachmentIdExists> {
+    type Output = Attachment;
 
     const METHOD: http::Method = http::Method::GET;
 

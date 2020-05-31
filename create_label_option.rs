@@ -123,7 +123,7 @@ impl<Owner, Repo, Color, Name> CreateLabelOptionPostBuilder<Owner, Repo, Color, 
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateLabelOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ColorExists, crate::generics::NameExists> {
-    type Output = crate::patch_repos_owner_repo_labels_id_response::PatchReposOwnerRepoLabelsIdResponse;
+    type Output = crate::label::Label;
 
     const METHOD: http::Method = http::Method::POST;
 

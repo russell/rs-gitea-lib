@@ -1,7 +1,7 @@
 
 /// Organization represents an organization
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct PostOrgsResponse {
+pub struct Organization {
     pub avatar_url: Option<String>,
     pub description: Option<String>,
     pub full_name: Option<String>,
@@ -13,58 +13,58 @@ pub struct PostOrgsResponse {
     pub website: Option<String>,
 }
 
-impl PostOrgsResponse {
+impl Organization {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> PostOrgsResponseBuilder {
-        PostOrgsResponseBuilder {
+    pub fn builder() -> OrganizationBuilder {
+        OrganizationBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn admin_get_all_orgs() -> PostOrgsResponseGetBuilder {
-        PostOrgsResponseGetBuilder {
+    pub fn admin_get_all_orgs() -> OrganizationGetBuilder {
+        OrganizationGetBuilder {
             param_page: None,
             param_limit: None,
         }
     }
 
     #[inline]
-    pub fn org_get() -> PostOrgsResponseGetBuilder1<crate::generics::MissingOrg> {
-        PostOrgsResponseGetBuilder1 {
+    pub fn org_get() -> OrganizationGetBuilder1<crate::generics::MissingOrg> {
+        OrganizationGetBuilder1 {
             inner: Default::default(),
             _param_org: core::marker::PhantomData,
         }
     }
 
     #[inline]
-    pub fn org_list_current_user_orgs() -> PostOrgsResponseGetBuilder2 {
-        PostOrgsResponseGetBuilder2
+    pub fn org_list_current_user_orgs() -> OrganizationGetBuilder2 {
+        OrganizationGetBuilder2
     }
 
     #[inline]
-    pub fn org_list_user_orgs() -> PostOrgsResponseGetBuilder3<crate::generics::MissingUsername> {
-        PostOrgsResponseGetBuilder3 {
+    pub fn org_list_user_orgs() -> OrganizationGetBuilder3<crate::generics::MissingUsername> {
+        OrganizationGetBuilder3 {
             inner: Default::default(),
             _param_username: core::marker::PhantomData,
         }
     }
 }
 
-impl Into<PostOrgsResponse> for PostOrgsResponseBuilder {
-    fn into(self) -> PostOrgsResponse {
+impl Into<Organization> for OrganizationBuilder {
+    fn into(self) -> Organization {
         self.body
     }
 }
 
-/// Builder for [`PostOrgsResponse`](./struct.PostOrgsResponse.html) object.
+/// Builder for [`Organization`](./struct.Organization.html) object.
 #[derive(Debug, Clone)]
-pub struct PostOrgsResponseBuilder {
-    body: self::PostOrgsResponse,
+pub struct OrganizationBuilder {
+    body: self::Organization,
 }
 
-impl PostOrgsResponseBuilder {
+impl OrganizationBuilder {
     #[inline]
     pub fn avatar_url(mut self, value: impl Into<String>) -> Self {
         self.body.avatar_url = Some(value.into());
@@ -120,14 +120,14 @@ impl PostOrgsResponseBuilder {
     }
 }
 
-/// Builder created by [`PostOrgsResponse::admin_get_all_orgs`](./struct.PostOrgsResponse.html#method.admin_get_all_orgs) method for a `GET` operation associated with `PostOrgsResponse`.
+/// Builder created by [`Organization::admin_get_all_orgs`](./struct.Organization.html#method.admin_get_all_orgs) method for a `GET` operation associated with `Organization`.
 #[derive(Debug, Clone)]
-pub struct PostOrgsResponseGetBuilder {
+pub struct OrganizationGetBuilder {
     param_page: Option<i64>,
     param_limit: Option<i64>,
 }
 
-impl PostOrgsResponseGetBuilder {
+impl OrganizationGetBuilder {
     /// page number of results to return (1-based)
     #[inline]
     pub fn page(mut self, value: impl Into<i64>) -> Self {
@@ -143,8 +143,8 @@ impl PostOrgsResponseGetBuilder {
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostOrgsResponseGetBuilder {
-    type Output = Vec<PostOrgsResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for OrganizationGetBuilder {
+    type Output = Vec<Organization>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -162,30 +162,30 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PostOrgsResponse::org_get`](./struct.PostOrgsResponse.html#method.org_get) method for a `GET` operation associated with `PostOrgsResponse`.
+/// Builder created by [`Organization::org_get`](./struct.Organization.html#method.org_get) method for a `GET` operation associated with `Organization`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PostOrgsResponseGetBuilder1<Org> {
-    inner: PostOrgsResponseGetBuilder1Container,
+pub struct OrganizationGetBuilder1<Org> {
+    inner: OrganizationGetBuilder1Container,
     _param_org: core::marker::PhantomData<Org>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PostOrgsResponseGetBuilder1Container {
+struct OrganizationGetBuilder1Container {
     param_org: Option<String>,
 }
 
-impl<Org> PostOrgsResponseGetBuilder1<Org> {
+impl<Org> OrganizationGetBuilder1<Org> {
     /// name of the organization to get
     #[inline]
-    pub fn org(mut self, value: impl Into<String>) -> PostOrgsResponseGetBuilder1<crate::generics::OrgExists> {
+    pub fn org(mut self, value: impl Into<String>) -> OrganizationGetBuilder1<crate::generics::OrgExists> {
         self.inner.param_org = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostOrgsResponseGetBuilder1<crate::generics::OrgExists> {
-    type Output = PostOrgsResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for OrganizationGetBuilder1<crate::generics::OrgExists> {
+    type Output = Organization;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -194,13 +194,13 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PostOrgsResponse::org_list_current_user_orgs`](./struct.PostOrgsResponse.html#method.org_list_current_user_orgs) method for a `GET` operation associated with `PostOrgsResponse`.
+/// Builder created by [`Organization::org_list_current_user_orgs`](./struct.Organization.html#method.org_list_current_user_orgs) method for a `GET` operation associated with `Organization`.
 #[derive(Debug, Clone)]
-pub struct PostOrgsResponseGetBuilder2;
+pub struct OrganizationGetBuilder2;
 
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostOrgsResponseGetBuilder2 {
-    type Output = Vec<PostOrgsResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for OrganizationGetBuilder2 {
+    type Output = Vec<Organization>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -209,30 +209,30 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PostOrgsResponse::org_list_user_orgs`](./struct.PostOrgsResponse.html#method.org_list_user_orgs) method for a `GET` operation associated with `PostOrgsResponse`.
+/// Builder created by [`Organization::org_list_user_orgs`](./struct.Organization.html#method.org_list_user_orgs) method for a `GET` operation associated with `Organization`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PostOrgsResponseGetBuilder3<Username> {
-    inner: PostOrgsResponseGetBuilder3Container,
+pub struct OrganizationGetBuilder3<Username> {
+    inner: OrganizationGetBuilder3Container,
     _param_username: core::marker::PhantomData<Username>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PostOrgsResponseGetBuilder3Container {
+struct OrganizationGetBuilder3Container {
     param_username: Option<String>,
 }
 
-impl<Username> PostOrgsResponseGetBuilder3<Username> {
+impl<Username> OrganizationGetBuilder3<Username> {
     /// username of user
     #[inline]
-    pub fn username(mut self, value: impl Into<String>) -> PostOrgsResponseGetBuilder3<crate::generics::UsernameExists> {
+    pub fn username(mut self, value: impl Into<String>) -> OrganizationGetBuilder3<crate::generics::UsernameExists> {
         self.inner.param_username = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostOrgsResponseGetBuilder3<crate::generics::UsernameExists> {
-    type Output = Vec<PostOrgsResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for OrganizationGetBuilder3<crate::generics::UsernameExists> {
+    type Output = Vec<Organization>;
 
     const METHOD: http::Method = http::Method::GET;
 

@@ -194,7 +194,7 @@ impl<Owner, Repo, Filepath, Content> CreateFileOptionsPostBuilder<Owner, Repo, F
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateFileOptionsPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::FilepathExists, crate::generics::ContentExists> {
-    type Output = crate::post_repos_owner_repo_contents_filepath_response::PostReposOwnerRepoContentsFilepathResponse;
+    type Output = crate::file_response::FileResponse;
 
     const METHOD: http::Method = http::Method::POST;
 

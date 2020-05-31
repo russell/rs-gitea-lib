@@ -1,7 +1,7 @@
 
 /// GPGKey a user GPG key to sign commit and tag in repository
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct GetUserGpgKeysIdResponse {
+pub struct GpgKey {
     pub can_certify: Option<bool>,
     pub can_encrypt_comms: Option<bool>,
     pub can_encrypt_storage: Option<bool>,
@@ -16,50 +16,50 @@ pub struct GetUserGpgKeysIdResponse {
     pub subkeys: Option<Vec<String>>,
 }
 
-impl GetUserGpgKeysIdResponse {
+impl GpgKey {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> GetUserGpgKeysIdResponseBuilder {
-        GetUserGpgKeysIdResponseBuilder {
+    pub fn builder() -> GpgKeyBuilder {
+        GpgKeyBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn user_current_list_gpg_keys() -> GetUserGpgKeysIdResponseGetBuilder {
-        GetUserGpgKeysIdResponseGetBuilder
+    pub fn user_current_list_gpg_keys() -> GpgKeyGetBuilder {
+        GpgKeyGetBuilder
     }
 
     #[inline]
-    pub fn user_current_get_gpg_key() -> GetUserGpgKeysIdResponseGetBuilder1<crate::generics::MissingId> {
-        GetUserGpgKeysIdResponseGetBuilder1 {
+    pub fn user_current_get_gpg_key() -> GpgKeyGetBuilder1<crate::generics::MissingId> {
+        GpgKeyGetBuilder1 {
             inner: Default::default(),
             _param_id: core::marker::PhantomData,
         }
     }
 
     #[inline]
-    pub fn user_list_gpg_keys() -> GetUserGpgKeysIdResponseGetBuilder2<crate::generics::MissingUsername> {
-        GetUserGpgKeysIdResponseGetBuilder2 {
+    pub fn user_list_gpg_keys() -> GpgKeyGetBuilder2<crate::generics::MissingUsername> {
+        GpgKeyGetBuilder2 {
             inner: Default::default(),
             _param_username: core::marker::PhantomData,
         }
     }
 }
 
-impl Into<GetUserGpgKeysIdResponse> for GetUserGpgKeysIdResponseBuilder {
-    fn into(self) -> GetUserGpgKeysIdResponse {
+impl Into<GpgKey> for GpgKeyBuilder {
+    fn into(self) -> GpgKey {
         self.body
     }
 }
 
-/// Builder for [`GetUserGpgKeysIdResponse`](./struct.GetUserGpgKeysIdResponse.html) object.
+/// Builder for [`GpgKey`](./struct.GpgKey.html) object.
 #[derive(Debug, Clone)]
-pub struct GetUserGpgKeysIdResponseBuilder {
-    body: self::GetUserGpgKeysIdResponse,
+pub struct GpgKeyBuilder {
+    body: self::GpgKey,
 }
 
-impl GetUserGpgKeysIdResponseBuilder {
+impl GpgKeyBuilder {
     #[inline]
     pub fn can_certify(mut self, value: impl Into<bool>) -> Self {
         self.body.can_certify = Some(value.into());
@@ -133,13 +133,13 @@ impl GetUserGpgKeysIdResponseBuilder {
     }
 }
 
-/// Builder created by [`GetUserGpgKeysIdResponse::user_current_list_gpg_keys`](./struct.GetUserGpgKeysIdResponse.html#method.user_current_list_gpg_keys) method for a `GET` operation associated with `GetUserGpgKeysIdResponse`.
+/// Builder created by [`GpgKey::user_current_list_gpg_keys`](./struct.GpgKey.html#method.user_current_list_gpg_keys) method for a `GET` operation associated with `GpgKey`.
 #[derive(Debug, Clone)]
-pub struct GetUserGpgKeysIdResponseGetBuilder;
+pub struct GpgKeyGetBuilder;
 
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for GetUserGpgKeysIdResponseGetBuilder {
-    type Output = Vec<GetUserGpgKeysIdResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for GpgKeyGetBuilder {
+    type Output = Vec<GpgKey>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -148,30 +148,30 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`GetUserGpgKeysIdResponse::user_current_get_gpg_key`](./struct.GetUserGpgKeysIdResponse.html#method.user_current_get_gpg_key) method for a `GET` operation associated with `GetUserGpgKeysIdResponse`.
+/// Builder created by [`GpgKey::user_current_get_gpg_key`](./struct.GpgKey.html#method.user_current_get_gpg_key) method for a `GET` operation associated with `GpgKey`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct GetUserGpgKeysIdResponseGetBuilder1<Id> {
-    inner: GetUserGpgKeysIdResponseGetBuilder1Container,
+pub struct GpgKeyGetBuilder1<Id> {
+    inner: GpgKeyGetBuilder1Container,
     _param_id: core::marker::PhantomData<Id>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct GetUserGpgKeysIdResponseGetBuilder1Container {
+struct GpgKeyGetBuilder1Container {
     param_id: Option<i64>,
 }
 
-impl<Id> GetUserGpgKeysIdResponseGetBuilder1<Id> {
+impl<Id> GpgKeyGetBuilder1<Id> {
     /// id of key to get
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> GetUserGpgKeysIdResponseGetBuilder1<crate::generics::IdExists> {
+    pub fn id(mut self, value: impl Into<i64>) -> GpgKeyGetBuilder1<crate::generics::IdExists> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for GetUserGpgKeysIdResponseGetBuilder1<crate::generics::IdExists> {
-    type Output = GetUserGpgKeysIdResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for GpgKeyGetBuilder1<crate::generics::IdExists> {
+    type Output = GpgKey;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -180,30 +180,30 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`GetUserGpgKeysIdResponse::user_list_gpg_keys`](./struct.GetUserGpgKeysIdResponse.html#method.user_list_gpg_keys) method for a `GET` operation associated with `GetUserGpgKeysIdResponse`.
+/// Builder created by [`GpgKey::user_list_gpg_keys`](./struct.GpgKey.html#method.user_list_gpg_keys) method for a `GET` operation associated with `GpgKey`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct GetUserGpgKeysIdResponseGetBuilder2<Username> {
-    inner: GetUserGpgKeysIdResponseGetBuilder2Container,
+pub struct GpgKeyGetBuilder2<Username> {
+    inner: GpgKeyGetBuilder2Container,
     _param_username: core::marker::PhantomData<Username>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct GetUserGpgKeysIdResponseGetBuilder2Container {
+struct GpgKeyGetBuilder2Container {
     param_username: Option<String>,
 }
 
-impl<Username> GetUserGpgKeysIdResponseGetBuilder2<Username> {
+impl<Username> GpgKeyGetBuilder2<Username> {
     /// username of user
     #[inline]
-    pub fn username(mut self, value: impl Into<String>) -> GetUserGpgKeysIdResponseGetBuilder2<crate::generics::UsernameExists> {
+    pub fn username(mut self, value: impl Into<String>) -> GpgKeyGetBuilder2<crate::generics::UsernameExists> {
         self.inner.param_username = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for GetUserGpgKeysIdResponseGetBuilder2<crate::generics::UsernameExists> {
-    type Output = Vec<GetUserGpgKeysIdResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for GpgKeyGetBuilder2<crate::generics::UsernameExists> {
+    type Output = Vec<GpgKey>;
 
     const METHOD: http::Method = http::Method::GET;
 

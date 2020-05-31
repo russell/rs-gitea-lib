@@ -122,7 +122,7 @@ impl<Owner, Repo, Id, Body> EditIssueCommentOptionPatchBuilder<Owner, Repo, Id, 
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditIssueCommentOptionPatchBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists, crate::generics::BodyExists> {
-    type Output = crate::post_repos_owner_repo_issues_index_comments_response::PostReposOwnerRepoIssuesIndexCommentsResponse;
+    type Output = crate::comment::Comment;
 
     const METHOD: http::Method = http::Method::PATCH;
 
@@ -195,7 +195,7 @@ impl<Owner, Repo, Index, Id, Body> EditIssueCommentOptionPatchBuilder1<Owner, Re
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditIssueCommentOptionPatchBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists, crate::generics::IdExists, crate::generics::BodyExists> {
-    type Output = crate::post_repos_owner_repo_issues_index_comments_response::PostReposOwnerRepoIssuesIndexCommentsResponse;
+    type Output = crate::comment::Comment;
 
     const METHOD: http::Method = http::Method::PATCH;
 

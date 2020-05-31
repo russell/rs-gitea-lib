@@ -55,7 +55,7 @@ impl ReferenceBuilder {
     }
 
     #[inline]
-    pub fn r#ref(mut self, value: impl Into<String>) -> Self {
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
         self.body.ref_ = Some(value.into());
         self
     }
@@ -142,7 +142,7 @@ impl<Owner, Repo, Ref> ReferenceGetBuilder1<Owner, Repo, Ref> {
 
     /// part or full name of the ref
     #[inline]
-    pub fn r#ref(mut self, value: impl Into<String>) -> ReferenceGetBuilder1<Owner, Repo, crate::generics::RefExists> {
+    pub fn ref_(mut self, value: impl Into<String>) -> ReferenceGetBuilder1<Owner, Repo, crate::generics::RefExists> {
         self.inner.param_ref = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }

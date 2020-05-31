@@ -23,6 +23,11 @@ pub enum CreateOrgOptionVisibility {
     #[serde(rename = "private")]
     Private,
 }
+impl Default for CreateOrgOptionVisibility {
+    fn default() -> Self {
+        CreateOrgOptionVisibility::Public
+    }
+}
 
 impl CreateOrgOption {
     /// Create a builder for this object.
@@ -186,7 +191,7 @@ impl<Username> CreateOrgOptionPostBuilder<Username> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateOrgOptionPostBuilder<crate::generics::UsernameExists> {
-    type Output = crate::post_orgs_response::PostOrgsResponse;
+    type Output = crate::organization::Organization;
 
     const METHOD: http::Method = http::Method::POST;
 
@@ -254,7 +259,7 @@ impl<Username> CreateOrgOptionPostBuilder1<Username> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateOrgOptionPostBuilder1<crate::generics::UsernameExists> {
-    type Output = crate::post_orgs_response::PostOrgsResponse;
+    type Output = crate::organization::Organization;
 
     const METHOD: http::Method = http::Method::POST;
 

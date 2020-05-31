@@ -1,7 +1,7 @@
 
 /// Milestone milestone is a collection of issues on one repository
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct PatchReposOwnerRepoMilestonesIdResponse {
+pub struct Milestone {
     pub closed_at: Option<String>,
     pub closed_issues: Option<i64>,
     pub description: Option<String>,
@@ -12,18 +12,18 @@ pub struct PatchReposOwnerRepoMilestonesIdResponse {
     pub title: Option<String>,
 }
 
-impl PatchReposOwnerRepoMilestonesIdResponse {
+impl Milestone {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> PatchReposOwnerRepoMilestonesIdResponseBuilder {
-        PatchReposOwnerRepoMilestonesIdResponseBuilder {
+    pub fn builder() -> MilestoneBuilder {
+        MilestoneBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn issue_get_milestones_list() -> PatchReposOwnerRepoMilestonesIdResponseGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo> {
-        PatchReposOwnerRepoMilestonesIdResponseGetBuilder {
+    pub fn issue_get_milestones_list() -> MilestoneGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo> {
+        MilestoneGetBuilder {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -31,8 +31,8 @@ impl PatchReposOwnerRepoMilestonesIdResponse {
     }
 
     #[inline]
-    pub fn issue_get_milestone() -> PatchReposOwnerRepoMilestonesIdResponseGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId> {
-        PatchReposOwnerRepoMilestonesIdResponseGetBuilder1 {
+    pub fn issue_get_milestone() -> MilestoneGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId> {
+        MilestoneGetBuilder1 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -41,19 +41,19 @@ impl PatchReposOwnerRepoMilestonesIdResponse {
     }
 }
 
-impl Into<PatchReposOwnerRepoMilestonesIdResponse> for PatchReposOwnerRepoMilestonesIdResponseBuilder {
-    fn into(self) -> PatchReposOwnerRepoMilestonesIdResponse {
+impl Into<Milestone> for MilestoneBuilder {
+    fn into(self) -> Milestone {
         self.body
     }
 }
 
-/// Builder for [`PatchReposOwnerRepoMilestonesIdResponse`](./struct.PatchReposOwnerRepoMilestonesIdResponse.html) object.
+/// Builder for [`Milestone`](./struct.Milestone.html) object.
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoMilestonesIdResponseBuilder {
-    body: self::PatchReposOwnerRepoMilestonesIdResponse,
+pub struct MilestoneBuilder {
+    body: self::Milestone,
 }
 
-impl PatchReposOwnerRepoMilestonesIdResponseBuilder {
+impl MilestoneBuilder {
     #[inline]
     pub fn closed_at(mut self, value: impl Into<String>) -> Self {
         self.body.closed_at = Some(value.into());
@@ -103,33 +103,33 @@ impl PatchReposOwnerRepoMilestonesIdResponseBuilder {
     }
 }
 
-/// Builder created by [`PatchReposOwnerRepoMilestonesIdResponse::issue_get_milestones_list`](./struct.PatchReposOwnerRepoMilestonesIdResponse.html#method.issue_get_milestones_list) method for a `GET` operation associated with `PatchReposOwnerRepoMilestonesIdResponse`.
+/// Builder created by [`Milestone::issue_get_milestones_list`](./struct.Milestone.html#method.issue_get_milestones_list) method for a `GET` operation associated with `Milestone`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoMilestonesIdResponseGetBuilder<Owner, Repo> {
-    inner: PatchReposOwnerRepoMilestonesIdResponseGetBuilderContainer,
+pub struct MilestoneGetBuilder<Owner, Repo> {
+    inner: MilestoneGetBuilderContainer,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PatchReposOwnerRepoMilestonesIdResponseGetBuilderContainer {
+struct MilestoneGetBuilderContainer {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_state: Option<String>,
 }
 
-impl<Owner, Repo> PatchReposOwnerRepoMilestonesIdResponseGetBuilder<Owner, Repo> {
+impl<Owner, Repo> MilestoneGetBuilder<Owner, Repo> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PatchReposOwnerRepoMilestonesIdResponseGetBuilder<crate::generics::OwnerExists, Repo> {
+    pub fn owner(mut self, value: impl Into<String>) -> MilestoneGetBuilder<crate::generics::OwnerExists, Repo> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PatchReposOwnerRepoMilestonesIdResponseGetBuilder<Owner, crate::generics::RepoExists> {
+    pub fn repo(mut self, value: impl Into<String>) -> MilestoneGetBuilder<Owner, crate::generics::RepoExists> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -142,8 +142,8 @@ impl<Owner, Repo> PatchReposOwnerRepoMilestonesIdResponseGetBuilder<Owner, Repo>
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PatchReposOwnerRepoMilestonesIdResponseGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists> {
-    type Output = Vec<PatchReposOwnerRepoMilestonesIdResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for MilestoneGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists> {
+    type Output = Vec<Milestone>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -160,48 +160,48 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PatchReposOwnerRepoMilestonesIdResponse::issue_get_milestone`](./struct.PatchReposOwnerRepoMilestonesIdResponse.html#method.issue_get_milestone) method for a `GET` operation associated with `PatchReposOwnerRepoMilestonesIdResponse`.
+/// Builder created by [`Milestone::issue_get_milestone`](./struct.Milestone.html#method.issue_get_milestone) method for a `GET` operation associated with `Milestone`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoMilestonesIdResponseGetBuilder1<Owner, Repo, Id> {
-    inner: PatchReposOwnerRepoMilestonesIdResponseGetBuilder1Container,
+pub struct MilestoneGetBuilder1<Owner, Repo, Id> {
+    inner: MilestoneGetBuilder1Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_id: core::marker::PhantomData<Id>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PatchReposOwnerRepoMilestonesIdResponseGetBuilder1Container {
+struct MilestoneGetBuilder1Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_id: Option<i64>,
 }
 
-impl<Owner, Repo, Id> PatchReposOwnerRepoMilestonesIdResponseGetBuilder1<Owner, Repo, Id> {
+impl<Owner, Repo, Id> MilestoneGetBuilder1<Owner, Repo, Id> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PatchReposOwnerRepoMilestonesIdResponseGetBuilder1<crate::generics::OwnerExists, Repo, Id> {
+    pub fn owner(mut self, value: impl Into<String>) -> MilestoneGetBuilder1<crate::generics::OwnerExists, Repo, Id> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PatchReposOwnerRepoMilestonesIdResponseGetBuilder1<Owner, crate::generics::RepoExists, Id> {
+    pub fn repo(mut self, value: impl Into<String>) -> MilestoneGetBuilder1<Owner, crate::generics::RepoExists, Id> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// id of the milestone
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> PatchReposOwnerRepoMilestonesIdResponseGetBuilder1<Owner, Repo, crate::generics::IdExists> {
+    pub fn id(mut self, value: impl Into<i64>) -> MilestoneGetBuilder1<Owner, Repo, crate::generics::IdExists> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PatchReposOwnerRepoMilestonesIdResponseGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
-    type Output = PatchReposOwnerRepoMilestonesIdResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for MilestoneGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
+    type Output = Milestone;
 
     const METHOD: http::Method = http::Method::GET;
 

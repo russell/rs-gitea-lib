@@ -28,8 +28,16 @@ pub mod api_error {
     include!("./api_error.rs");
 }
 
+pub mod attachment {
+    include!("./attachment.rs");
+}
+
 pub mod branch {
     include!("./branch.rs");
+}
+
+pub mod comment {
+    include!("./comment.rs");
 }
 
 pub mod commit {
@@ -128,6 +136,10 @@ pub mod delete_file_options {
     include!("./delete_file_options.rs");
 }
 
+pub mod deploy_key {
+    include!("./deploy_key.rs");
+}
+
 pub mod edit_attachment_options {
     include!("./edit_attachment_options.rs");
 }
@@ -212,16 +224,12 @@ pub mod file_links_response {
     include!("./file_links_response.rs");
 }
 
+pub mod file_response {
+    include!("./file_response.rs");
+}
+
 pub mod get_orgs_org_teams_search_response {
     include!("./get_orgs_org_teams_search_response.rs");
-}
-
-pub mod get_repos_owner_repo_keys_id_response {
-    include!("./get_repos_owner_repo_keys_id_response.rs");
-}
-
-pub mod get_user_gpg_keys_id_response {
-    include!("./get_user_gpg_keys_id_response.rs");
 }
 
 pub mod get_users_search_response {
@@ -236,6 +244,10 @@ pub mod git_entry {
     include!("./git_entry.rs");
 }
 
+pub mod git_hook {
+    include!("./git_hook.rs");
+}
+
 pub mod git_object {
     include!("./git_object.rs");
 }
@@ -244,8 +256,16 @@ pub mod git_tree_response {
     include!("./git_tree_response.rs");
 }
 
+pub mod gpg_key {
+    include!("./gpg_key.rs");
+}
+
 pub mod gpg_key_email {
     include!("./gpg_key_email.rs");
+}
+
+pub mod hook {
+    include!("./hook.rs");
 }
 
 pub mod identity {
@@ -256,12 +276,20 @@ pub mod internal_tracker {
     include!("./internal_tracker.rs");
 }
 
+pub mod issue {
+    include!("./issue.rs");
+}
+
 pub mod issue_deadline {
     include!("./issue_deadline.rs");
 }
 
 pub mod issue_labels_option {
     include!("./issue_labels_option.rs");
+}
+
+pub mod label {
+    include!("./label.rs");
 }
 
 pub mod markdown_option {
@@ -276,28 +304,16 @@ pub mod migrate_repo_form {
     include!("./migrate_repo_form.rs");
 }
 
+pub mod milestone {
+    include!("./milestone.rs");
+}
+
 pub mod miscellaneous {
     include!("./miscellaneous.rs");
 }
 
-pub mod patch_repos_owner_repo_hooks_git_id_response {
-    include!("./patch_repos_owner_repo_hooks_git_id_response.rs");
-}
-
-pub mod patch_repos_owner_repo_issues_index_response {
-    include!("./patch_repos_owner_repo_issues_index_response.rs");
-}
-
-pub mod patch_repos_owner_repo_labels_id_response {
-    include!("./patch_repos_owner_repo_labels_id_response.rs");
-}
-
-pub mod patch_repos_owner_repo_milestones_id_response {
-    include!("./patch_repos_owner_repo_milestones_id_response.rs");
-}
-
-pub mod patch_repos_owner_repo_releases_id_assets_attachment_id_response {
-    include!("./patch_repos_owner_repo_releases_id_assets_attachment_id_response.rs");
+pub mod organization {
+    include!("./organization.rs");
 }
 
 pub mod payload_commit {
@@ -314,22 +330,6 @@ pub mod payload_user {
 
 pub mod permission {
     include!("./permission.rs");
-}
-
-pub mod post_orgs_response {
-    include!("./post_orgs_response.rs");
-}
-
-pub mod post_repos_owner_repo_contents_filepath_response {
-    include!("./post_repos_owner_repo_contents_filepath_response.rs");
-}
-
-pub mod post_repos_owner_repo_hooks_response {
-    include!("./post_repos_owner_repo_hooks_response.rs");
-}
-
-pub mod post_repos_owner_repo_issues_index_comments_response {
-    include!("./post_repos_owner_repo_issues_index_comments_response.rs");
 }
 
 pub mod post_users_username_tokens_body {

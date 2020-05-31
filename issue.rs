@@ -1,7 +1,7 @@
 
 /// Issue represents an issue in a repository
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct PatchReposOwnerRepoIssuesIndexResponse {
+pub struct Issue {
     pub assignee: Option<crate::user::User>,
     pub assignees: Option<Vec<crate::user::User>>,
     pub body: Option<String>,
@@ -10,8 +10,8 @@ pub struct PatchReposOwnerRepoIssuesIndexResponse {
     pub created_at: Option<String>,
     pub due_date: Option<String>,
     pub id: Option<i64>,
-    pub labels: Option<Vec<crate::patch_repos_owner_repo_labels_id_response::PatchReposOwnerRepoLabelsIdResponse>>,
-    pub milestone: Option<crate::patch_repos_owner_repo_milestones_id_response::PatchReposOwnerRepoMilestonesIdResponse>,
+    pub labels: Option<Vec<crate::label::Label>>,
+    pub milestone: Option<crate::milestone::Milestone>,
     pub number: Option<i64>,
     pub original_author: Option<String>,
     pub original_author_id: Option<i64>,
@@ -24,18 +24,18 @@ pub struct PatchReposOwnerRepoIssuesIndexResponse {
     pub user: Option<crate::user::User>,
 }
 
-impl PatchReposOwnerRepoIssuesIndexResponse {
+impl Issue {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> PatchReposOwnerRepoIssuesIndexResponseBuilder {
-        PatchReposOwnerRepoIssuesIndexResponseBuilder {
+    pub fn builder() -> IssueBuilder {
+        IssueBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn issue_search_issues() -> PatchReposOwnerRepoIssuesIndexResponseGetBuilder {
-        PatchReposOwnerRepoIssuesIndexResponseGetBuilder {
+    pub fn issue_search_issues() -> IssueGetBuilder {
+        IssueGetBuilder {
             param_state: None,
             param_labels: None,
             param_page: None,
@@ -45,8 +45,8 @@ impl PatchReposOwnerRepoIssuesIndexResponse {
     }
 
     #[inline]
-    pub fn issue_list_issues() -> PatchReposOwnerRepoIssuesIndexResponseGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo> {
-        PatchReposOwnerRepoIssuesIndexResponseGetBuilder1 {
+    pub fn issue_list_issues() -> IssueGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo> {
+        IssueGetBuilder1 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -54,8 +54,8 @@ impl PatchReposOwnerRepoIssuesIndexResponse {
     }
 
     #[inline]
-    pub fn issue_get_issue() -> PatchReposOwnerRepoIssuesIndexResponseGetBuilder2<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingIndex> {
-        PatchReposOwnerRepoIssuesIndexResponseGetBuilder2 {
+    pub fn issue_get_issue() -> IssueGetBuilder2<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingIndex> {
+        IssueGetBuilder2 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -64,19 +64,19 @@ impl PatchReposOwnerRepoIssuesIndexResponse {
     }
 }
 
-impl Into<PatchReposOwnerRepoIssuesIndexResponse> for PatchReposOwnerRepoIssuesIndexResponseBuilder {
-    fn into(self) -> PatchReposOwnerRepoIssuesIndexResponse {
+impl Into<Issue> for IssueBuilder {
+    fn into(self) -> Issue {
         self.body
     }
 }
 
-/// Builder for [`PatchReposOwnerRepoIssuesIndexResponse`](./struct.PatchReposOwnerRepoIssuesIndexResponse.html) object.
+/// Builder for [`Issue`](./struct.Issue.html) object.
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoIssuesIndexResponseBuilder {
-    body: self::PatchReposOwnerRepoIssuesIndexResponse,
+pub struct IssueBuilder {
+    body: self::Issue,
 }
 
-impl PatchReposOwnerRepoIssuesIndexResponseBuilder {
+impl IssueBuilder {
     #[inline]
     pub fn assignee(mut self, value: crate::user::User) -> Self {
         self.body.assignee = Some(value.into());
@@ -126,13 +126,13 @@ impl PatchReposOwnerRepoIssuesIndexResponseBuilder {
     }
 
     #[inline]
-    pub fn labels(mut self, value: impl Iterator<Item = crate::patch_repos_owner_repo_labels_id_response::PatchReposOwnerRepoLabelsIdResponse>) -> Self {
+    pub fn labels(mut self, value: impl Iterator<Item = crate::label::Label>) -> Self {
         self.body.labels = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
         self
     }
 
     #[inline]
-    pub fn milestone(mut self, value: crate::patch_repos_owner_repo_milestones_id_response::PatchReposOwnerRepoMilestonesIdResponse) -> Self {
+    pub fn milestone(mut self, value: crate::milestone::Milestone) -> Self {
         self.body.milestone = Some(value.into());
         self
     }
@@ -198,9 +198,9 @@ impl PatchReposOwnerRepoIssuesIndexResponseBuilder {
     }
 }
 
-/// Builder created by [`PatchReposOwnerRepoIssuesIndexResponse::issue_search_issues`](./struct.PatchReposOwnerRepoIssuesIndexResponse.html#method.issue_search_issues) method for a `GET` operation associated with `PatchReposOwnerRepoIssuesIndexResponse`.
+/// Builder created by [`Issue::issue_search_issues`](./struct.Issue.html#method.issue_search_issues) method for a `GET` operation associated with `Issue`.
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoIssuesIndexResponseGetBuilder {
+pub struct IssueGetBuilder {
     param_state: Option<String>,
     param_labels: Option<String>,
     param_page: Option<i64>,
@@ -208,7 +208,7 @@ pub struct PatchReposOwnerRepoIssuesIndexResponseGetBuilder {
     param_priority_repo_id: Option<i64>,
 }
 
-impl PatchReposOwnerRepoIssuesIndexResponseGetBuilder {
+impl IssueGetBuilder {
     /// whether issue is open or closed
     #[inline]
     pub fn state(mut self, value: impl Into<String>) -> Self {
@@ -245,8 +245,8 @@ impl PatchReposOwnerRepoIssuesIndexResponseGetBuilder {
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PatchReposOwnerRepoIssuesIndexResponseGetBuilder {
-    type Output = Vec<PatchReposOwnerRepoIssuesIndexResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for IssueGetBuilder {
+    type Output = Vec<Issue>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -267,17 +267,17 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PatchReposOwnerRepoIssuesIndexResponse::issue_list_issues`](./struct.PatchReposOwnerRepoIssuesIndexResponse.html#method.issue_list_issues) method for a `GET` operation associated with `PatchReposOwnerRepoIssuesIndexResponse`.
+/// Builder created by [`Issue::issue_list_issues`](./struct.Issue.html#method.issue_list_issues) method for a `GET` operation associated with `Issue`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoIssuesIndexResponseGetBuilder1<Owner, Repo> {
-    inner: PatchReposOwnerRepoIssuesIndexResponseGetBuilder1Container,
+pub struct IssueGetBuilder1<Owner, Repo> {
+    inner: IssueGetBuilder1Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PatchReposOwnerRepoIssuesIndexResponseGetBuilder1Container {
+struct IssueGetBuilder1Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_state: Option<String>,
@@ -286,17 +286,17 @@ struct PatchReposOwnerRepoIssuesIndexResponseGetBuilder1Container {
     param_q: Option<String>,
 }
 
-impl<Owner, Repo> PatchReposOwnerRepoIssuesIndexResponseGetBuilder1<Owner, Repo> {
+impl<Owner, Repo> IssueGetBuilder1<Owner, Repo> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PatchReposOwnerRepoIssuesIndexResponseGetBuilder1<crate::generics::OwnerExists, Repo> {
+    pub fn owner(mut self, value: impl Into<String>) -> IssueGetBuilder1<crate::generics::OwnerExists, Repo> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PatchReposOwnerRepoIssuesIndexResponseGetBuilder1<Owner, crate::generics::RepoExists> {
+    pub fn repo(mut self, value: impl Into<String>) -> IssueGetBuilder1<Owner, crate::generics::RepoExists> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -330,8 +330,8 @@ impl<Owner, Repo> PatchReposOwnerRepoIssuesIndexResponseGetBuilder1<Owner, Repo>
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PatchReposOwnerRepoIssuesIndexResponseGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists> {
-    type Output = Vec<PatchReposOwnerRepoIssuesIndexResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for IssueGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists> {
+    type Output = Vec<Issue>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -351,48 +351,48 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PatchReposOwnerRepoIssuesIndexResponse::issue_get_issue`](./struct.PatchReposOwnerRepoIssuesIndexResponse.html#method.issue_get_issue) method for a `GET` operation associated with `PatchReposOwnerRepoIssuesIndexResponse`.
+/// Builder created by [`Issue::issue_get_issue`](./struct.Issue.html#method.issue_get_issue) method for a `GET` operation associated with `Issue`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PatchReposOwnerRepoIssuesIndexResponseGetBuilder2<Owner, Repo, Index> {
-    inner: PatchReposOwnerRepoIssuesIndexResponseGetBuilder2Container,
+pub struct IssueGetBuilder2<Owner, Repo, Index> {
+    inner: IssueGetBuilder2Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_index: core::marker::PhantomData<Index>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PatchReposOwnerRepoIssuesIndexResponseGetBuilder2Container {
+struct IssueGetBuilder2Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_index: Option<i64>,
 }
 
-impl<Owner, Repo, Index> PatchReposOwnerRepoIssuesIndexResponseGetBuilder2<Owner, Repo, Index> {
+impl<Owner, Repo, Index> IssueGetBuilder2<Owner, Repo, Index> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PatchReposOwnerRepoIssuesIndexResponseGetBuilder2<crate::generics::OwnerExists, Repo, Index> {
+    pub fn owner(mut self, value: impl Into<String>) -> IssueGetBuilder2<crate::generics::OwnerExists, Repo, Index> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PatchReposOwnerRepoIssuesIndexResponseGetBuilder2<Owner, crate::generics::RepoExists, Index> {
+    pub fn repo(mut self, value: impl Into<String>) -> IssueGetBuilder2<Owner, crate::generics::RepoExists, Index> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// index of the issue to get
     #[inline]
-    pub fn index(mut self, value: impl Into<i64>) -> PatchReposOwnerRepoIssuesIndexResponseGetBuilder2<Owner, Repo, crate::generics::IndexExists> {
+    pub fn index(mut self, value: impl Into<i64>) -> IssueGetBuilder2<Owner, Repo, crate::generics::IndexExists> {
         self.inner.param_index = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PatchReposOwnerRepoIssuesIndexResponseGetBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
-    type Output = PatchReposOwnerRepoIssuesIndexResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for IssueGetBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
+    type Output = Issue;
 
     const METHOD: http::Method = http::Method::GET;
 

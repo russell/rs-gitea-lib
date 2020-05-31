@@ -2,7 +2,7 @@
 /// Release represents a repository release
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct Release {
-    pub assets: Option<Vec<crate::patch_repos_owner_repo_releases_id_assets_attachment_id_response::PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse>>,
+    pub assets: Option<Vec<crate::attachment::Attachment>>,
     pub author: Option<crate::user::User>,
     pub body: Option<String>,
     pub created_at: Option<String>,
@@ -61,7 +61,7 @@ pub struct ReleaseBuilder {
 
 impl ReleaseBuilder {
     #[inline]
-    pub fn assets(mut self, value: impl Iterator<Item = crate::patch_repos_owner_repo_releases_id_assets_attachment_id_response::PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse>) -> Self {
+    pub fn assets(mut self, value: impl Iterator<Item = crate::attachment::Attachment>) -> Self {
         self.body.assets = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
         self
     }

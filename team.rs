@@ -7,7 +7,7 @@ pub struct Team {
     pub id: Option<i64>,
     pub includes_all_repositories: Option<bool>,
     pub name: Option<String>,
-    pub organization: Option<crate::post_orgs_response::PostOrgsResponse>,
+    pub organization: Option<crate::organization::Organization>,
     pub permission: Option<crate::team::TeamPermission>,
     pub units: Option<Vec<String>>,
 }
@@ -24,6 +24,11 @@ pub enum TeamPermission {
     Admin,
     #[serde(rename = "owner")]
     Owner,
+}
+impl Default for TeamPermission {
+    fn default() -> Self {
+        TeamPermission::None
+    }
 }
 
 impl Team {
@@ -101,7 +106,7 @@ impl TeamBuilder {
     }
 
     #[inline]
-    pub fn organization(mut self, value: crate::post_orgs_response::PostOrgsResponse) -> Self {
+    pub fn organization(mut self, value: crate::organization::Organization) -> Self {
         self.body.organization = Some(value.into());
         self
     }

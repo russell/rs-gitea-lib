@@ -146,7 +146,7 @@ impl<Owner, Repo, Ref> StatusGetBuilder<Owner, Repo, Ref> {
 
     /// name of branch/tag/commit
     #[inline]
-    pub fn r#ref(mut self, value: impl Into<String>) -> StatusGetBuilder<Owner, Repo, crate::generics::RefExists> {
+    pub fn ref_(mut self, value: impl Into<String>) -> StatusGetBuilder<Owner, Repo, crate::generics::RefExists> {
         self.inner.param_ref = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }

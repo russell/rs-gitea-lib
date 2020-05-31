@@ -99,7 +99,7 @@ impl<Owner, Repo, Id> EditGitHookOptionPatchBuilder<Owner, Repo, Id> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditGitHookOptionPatchBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
-    type Output = crate::patch_repos_owner_repo_hooks_git_id_response::PatchReposOwnerRepoHooksGitIdResponse;
+    type Output = crate::git_hook::GitHook;
 
     const METHOD: http::Method = http::Method::PATCH;
 

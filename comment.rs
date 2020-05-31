@@ -1,7 +1,7 @@
 
 /// Comment represents a comment on a commit or issue
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct PostReposOwnerRepoIssuesIndexCommentsResponse {
+pub struct Comment {
     pub body: Option<String>,
     pub created_at: Option<String>,
     pub html_url: Option<String>,
@@ -14,18 +14,18 @@ pub struct PostReposOwnerRepoIssuesIndexCommentsResponse {
     pub user: Option<crate::user::User>,
 }
 
-impl PostReposOwnerRepoIssuesIndexCommentsResponse {
+impl Comment {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> PostReposOwnerRepoIssuesIndexCommentsResponseBuilder {
-        PostReposOwnerRepoIssuesIndexCommentsResponseBuilder {
+    pub fn builder() -> CommentBuilder {
+        CommentBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn issue_get_repo_comments() -> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo> {
-        PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder {
+    pub fn issue_get_repo_comments() -> CommentGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo> {
+        CommentGetBuilder {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -33,8 +33,8 @@ impl PostReposOwnerRepoIssuesIndexCommentsResponse {
     }
 
     #[inline]
-    pub fn issue_get_comments() -> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingIndex> {
-        PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1 {
+    pub fn issue_get_comments() -> CommentGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingIndex> {
+        CommentGetBuilder1 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -43,19 +43,19 @@ impl PostReposOwnerRepoIssuesIndexCommentsResponse {
     }
 }
 
-impl Into<PostReposOwnerRepoIssuesIndexCommentsResponse> for PostReposOwnerRepoIssuesIndexCommentsResponseBuilder {
-    fn into(self) -> PostReposOwnerRepoIssuesIndexCommentsResponse {
+impl Into<Comment> for CommentBuilder {
+    fn into(self) -> Comment {
         self.body
     }
 }
 
-/// Builder for [`PostReposOwnerRepoIssuesIndexCommentsResponse`](./struct.PostReposOwnerRepoIssuesIndexCommentsResponse.html) object.
+/// Builder for [`Comment`](./struct.Comment.html) object.
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoIssuesIndexCommentsResponseBuilder {
-    body: self::PostReposOwnerRepoIssuesIndexCommentsResponse,
+pub struct CommentBuilder {
+    body: self::Comment,
 }
 
-impl PostReposOwnerRepoIssuesIndexCommentsResponseBuilder {
+impl CommentBuilder {
     #[inline]
     pub fn body(mut self, value: impl Into<String>) -> Self {
         self.body.body = Some(value.into());
@@ -117,33 +117,33 @@ impl PostReposOwnerRepoIssuesIndexCommentsResponseBuilder {
     }
 }
 
-/// Builder created by [`PostReposOwnerRepoIssuesIndexCommentsResponse::issue_get_repo_comments`](./struct.PostReposOwnerRepoIssuesIndexCommentsResponse.html#method.issue_get_repo_comments) method for a `GET` operation associated with `PostReposOwnerRepoIssuesIndexCommentsResponse`.
+/// Builder created by [`Comment::issue_get_repo_comments`](./struct.Comment.html#method.issue_get_repo_comments) method for a `GET` operation associated with `Comment`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder<Owner, Repo> {
-    inner: PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilderContainer,
+pub struct CommentGetBuilder<Owner, Repo> {
+    inner: CommentGetBuilderContainer,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilderContainer {
+struct CommentGetBuilderContainer {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_since: Option<String>,
 }
 
-impl<Owner, Repo> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder<Owner, Repo> {
+impl<Owner, Repo> CommentGetBuilder<Owner, Repo> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder<crate::generics::OwnerExists, Repo> {
+    pub fn owner(mut self, value: impl Into<String>) -> CommentGetBuilder<crate::generics::OwnerExists, Repo> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder<Owner, crate::generics::RepoExists> {
+    pub fn repo(mut self, value: impl Into<String>) -> CommentGetBuilder<Owner, crate::generics::RepoExists> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -156,8 +156,8 @@ impl<Owner, Repo> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder<Owner,
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists> {
-    type Output = Vec<PostReposOwnerRepoIssuesIndexCommentsResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CommentGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists> {
+    type Output = Vec<Comment>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -174,42 +174,42 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PostReposOwnerRepoIssuesIndexCommentsResponse::issue_get_comments`](./struct.PostReposOwnerRepoIssuesIndexCommentsResponse.html#method.issue_get_comments) method for a `GET` operation associated with `PostReposOwnerRepoIssuesIndexCommentsResponse`.
+/// Builder created by [`Comment::issue_get_comments`](./struct.Comment.html#method.issue_get_comments) method for a `GET` operation associated with `Comment`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1<Owner, Repo, Index> {
-    inner: PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1Container,
+pub struct CommentGetBuilder1<Owner, Repo, Index> {
+    inner: CommentGetBuilder1Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_index: core::marker::PhantomData<Index>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1Container {
+struct CommentGetBuilder1Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_index: Option<i64>,
     param_since: Option<String>,
 }
 
-impl<Owner, Repo, Index> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1<Owner, Repo, Index> {
+impl<Owner, Repo, Index> CommentGetBuilder1<Owner, Repo, Index> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1<crate::generics::OwnerExists, Repo, Index> {
+    pub fn owner(mut self, value: impl Into<String>) -> CommentGetBuilder1<crate::generics::OwnerExists, Repo, Index> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1<Owner, crate::generics::RepoExists, Index> {
+    pub fn repo(mut self, value: impl Into<String>) -> CommentGetBuilder1<Owner, crate::generics::RepoExists, Index> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// index of the issue
     #[inline]
-    pub fn index(mut self, value: impl Into<i64>) -> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1<Owner, Repo, crate::generics::IndexExists> {
+    pub fn index(mut self, value: impl Into<i64>) -> CommentGetBuilder1<Owner, Repo, crate::generics::IndexExists> {
         self.inner.param_index = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -222,8 +222,8 @@ impl<Owner, Repo, Index> PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostReposOwnerRepoIssuesIndexCommentsResponseGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
-    type Output = Vec<PostReposOwnerRepoIssuesIndexCommentsResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CommentGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
+    type Output = Vec<Comment>;
 
     const METHOD: http::Method = http::Method::GET;
 

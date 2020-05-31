@@ -14,14 +14,14 @@ pub struct PullRequest {
     pub head: Option<crate::pr_branch_info::PrBranchInfo>,
     pub html_url: Option<String>,
     pub id: Option<i64>,
-    pub labels: Option<Vec<crate::patch_repos_owner_repo_labels_id_response::PatchReposOwnerRepoLabelsIdResponse>>,
+    pub labels: Option<Vec<crate::label::Label>>,
     pub merge_base: Option<String>,
     pub merge_commit_sha: Option<String>,
     pub mergeable: Option<bool>,
     pub merged: Option<bool>,
     pub merged_at: Option<String>,
     pub merged_by: Option<crate::user::User>,
-    pub milestone: Option<crate::patch_repos_owner_repo_milestones_id_response::PatchReposOwnerRepoMilestonesIdResponse>,
+    pub milestone: Option<crate::milestone::Milestone>,
     pub number: Option<i64>,
     pub patch_url: Option<String>,
     pub state: Option<String>,
@@ -146,7 +146,7 @@ impl PullRequestBuilder {
     }
 
     #[inline]
-    pub fn labels(mut self, value: impl Iterator<Item = crate::patch_repos_owner_repo_labels_id_response::PatchReposOwnerRepoLabelsIdResponse>) -> Self {
+    pub fn labels(mut self, value: impl Iterator<Item = crate::label::Label>) -> Self {
         self.body.labels = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
         self
     }
@@ -188,7 +188,7 @@ impl PullRequestBuilder {
     }
 
     #[inline]
-    pub fn milestone(mut self, value: crate::patch_repos_owner_repo_milestones_id_response::PatchReposOwnerRepoMilestonesIdResponse) -> Self {
+    pub fn milestone(mut self, value: crate::milestone::Milestone) -> Self {
         self.body.milestone = Some(value.into());
         self
     }
@@ -323,7 +323,7 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
             ("page", self.inner.param_page.as_ref().map(std::string::ToString::to_string)),
             ("state", self.inner.param_state.as_ref().map(std::string::ToString::to_string)),
             ("sort", self.inner.param_sort.as_ref().map(std::string::ToString::to_string)),
-            ("milestone", self.inner.param_milestone.as_ref().map(std::string::ToString::to_string)),
+            ("milestone", self.inner.param_milestone.as_ref().map(std::string::ToString::to_string))
         ])
         .query({
             &self.inner.param_labels.as_ref().map(|v| {

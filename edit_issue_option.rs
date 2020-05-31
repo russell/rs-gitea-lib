@@ -190,7 +190,7 @@ impl<Owner, Repo, Index> EditIssueOptionPatchBuilder<Owner, Repo, Index> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditIssueOptionPatchBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
-    type Output = crate::patch_repos_owner_repo_issues_index_response::PatchReposOwnerRepoIssuesIndexResponse;
+    type Output = crate::issue::Issue;
 
     const METHOD: http::Method = http::Method::PATCH;
 

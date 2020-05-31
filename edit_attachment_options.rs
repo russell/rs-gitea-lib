@@ -109,7 +109,7 @@ impl<Owner, Repo, Id, AttachmentId> EditAttachmentOptionsPatchBuilder<Owner, Rep
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditAttachmentOptionsPatchBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists, crate::generics::AttachmentIdExists> {
-    type Output = crate::patch_repos_owner_repo_releases_id_assets_attachment_id_response::PatchReposOwnerRepoReleasesIdAssetsAttachmentIdResponse;
+    type Output = crate::attachment::Attachment;
 
     const METHOD: http::Method = http::Method::PATCH;
 

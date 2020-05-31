@@ -118,7 +118,7 @@ impl<Owner, Repo, Index> IssueLabelsOptionPutBuilder<Owner, Repo, Index> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for IssueLabelsOptionPutBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
-    type Output = Vec<crate::patch_repos_owner_repo_labels_id_response::PatchReposOwnerRepoLabelsIdResponse>;
+    type Output = Vec<crate::label::Label>;
 
     const METHOD: http::Method = http::Method::PUT;
 
@@ -182,7 +182,7 @@ impl<Owner, Repo, Index> IssueLabelsOptionPostBuilder<Owner, Repo, Index> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for IssueLabelsOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists> {
-    type Output = Vec<crate::patch_repos_owner_repo_labels_id_response::PatchReposOwnerRepoLabelsIdResponse>;
+    type Output = Vec<crate::label::Label>;
 
     const METHOD: http::Method = http::Method::POST;
 

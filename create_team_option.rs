@@ -19,6 +19,11 @@ pub enum CreateTeamOptionPermission {
     #[serde(rename = "admin")]
     Admin,
 }
+impl Default for CreateTeamOptionPermission {
+    fn default() -> Self {
+        CreateTeamOptionPermission::Read
+    }
+}
 
 impl CreateTeamOption {
     /// Create a builder for this object.

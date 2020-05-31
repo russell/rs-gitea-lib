@@ -193,7 +193,7 @@ impl<Owner, Repo, Title> CreateIssueOptionPostBuilder<Owner, Repo, Title> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateIssueOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::TitleExists> {
-    type Output = crate::patch_repos_owner_repo_issues_index_response::PatchReposOwnerRepoIssuesIndexResponse;
+    type Output = crate::issue::Issue;
 
     const METHOD: http::Method = http::Method::POST;
 

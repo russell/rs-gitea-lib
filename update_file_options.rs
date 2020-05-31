@@ -230,7 +230,7 @@ impl<Owner, Repo, Filepath, Content, Sha> UpdateFileOptionsPutBuilder<Owner, Rep
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for UpdateFileOptionsPutBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::FilepathExists, crate::generics::ContentExists, crate::generics::ShaExists> {
-    type Output = crate::post_repos_owner_repo_contents_filepath_response::PostReposOwnerRepoContentsFilepathResponse;
+    type Output = crate::file_response::FileResponse;
 
     const METHOD: http::Method = http::Method::PUT;
 

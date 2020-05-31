@@ -144,7 +144,7 @@ impl<Org, Id> EditHookOptionPatchBuilder<Org, Id> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditHookOptionPatchBuilder<crate::generics::OrgExists, crate::generics::IdExists> {
-    type Output = crate::post_repos_owner_repo_hooks_response::PostReposOwnerRepoHooksResponse;
+    type Output = crate::hook::Hook;
 
     const METHOD: http::Method = http::Method::PATCH;
 
@@ -225,7 +225,7 @@ impl<Owner, Repo, Id> EditHookOptionPatchBuilder1<Owner, Repo, Id> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditHookOptionPatchBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
-    type Output = crate::post_repos_owner_repo_hooks_response::PostReposOwnerRepoHooksResponse;
+    type Output = crate::hook::Hook;
 
     const METHOD: http::Method = http::Method::PATCH;
 

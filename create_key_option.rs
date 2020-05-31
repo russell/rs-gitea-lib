@@ -225,7 +225,7 @@ impl<Owner, Repo, Key, Title> CreateKeyOptionPostBuilder1<Owner, Repo, Key, Titl
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateKeyOptionPostBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::KeyExists, crate::generics::TitleExists> {
-    type Output = crate::get_repos_owner_repo_keys_id_response::GetReposOwnerRepoKeysIdResponse;
+    type Output = crate::deploy_key::DeployKey;
 
     const METHOD: http::Method = http::Method::POST;
 

@@ -22,6 +22,11 @@ pub enum EditOrgOptionVisibility {
     #[serde(rename = "private")]
     Private,
 }
+impl Default for EditOrgOptionVisibility {
+    fn default() -> Self {
+        EditOrgOptionVisibility::Public
+    }
+}
 
 impl EditOrgOption {
     /// Create a builder for this object.
@@ -159,7 +164,7 @@ impl<Org> EditOrgOptionPatchBuilder<Org> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for EditOrgOptionPatchBuilder<crate::generics::OrgExists> {
-    type Output = crate::post_orgs_response::PostOrgsResponse;
+    type Output = crate::organization::Organization;
 
     const METHOD: http::Method = http::Method::PATCH;
 

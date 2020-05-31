@@ -70,7 +70,7 @@ impl<ArmoredPublicKey> CreateGpgKeyOptionPostBuilder<ArmoredPublicKey> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateGpgKeyOptionPostBuilder<crate::generics::ArmoredPublicKeyExists> {
-    type Output = crate::get_user_gpg_keys_id_response::GetUserGpgKeysIdResponse;
+    type Output = crate::gpg_key::GpgKey;
 
     const METHOD: http::Method = http::Method::POST;
 

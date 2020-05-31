@@ -38,7 +38,7 @@ impl AnnotatedTagObjectBuilder {
     }
 
     #[inline]
-    pub fn r#type(mut self, value: impl Into<String>) -> Self {
+    pub fn type_(mut self, value: impl Into<String>) -> Self {
         self.body.type_ = Some(value.into());
         self
     }

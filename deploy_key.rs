@@ -1,7 +1,7 @@
 
 /// DeployKey a deploy key
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct GetReposOwnerRepoKeysIdResponse {
+pub struct DeployKey {
     pub created_at: Option<String>,
     pub fingerprint: Option<String>,
     pub id: Option<i64>,
@@ -13,18 +13,18 @@ pub struct GetReposOwnerRepoKeysIdResponse {
     pub url: Option<String>,
 }
 
-impl GetReposOwnerRepoKeysIdResponse {
+impl DeployKey {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> GetReposOwnerRepoKeysIdResponseBuilder {
-        GetReposOwnerRepoKeysIdResponseBuilder {
+    pub fn builder() -> DeployKeyBuilder {
+        DeployKeyBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn repo_list_keys() -> GetReposOwnerRepoKeysIdResponseGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo> {
-        GetReposOwnerRepoKeysIdResponseGetBuilder {
+    pub fn repo_list_keys() -> DeployKeyGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo> {
+        DeployKeyGetBuilder {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -32,8 +32,8 @@ impl GetReposOwnerRepoKeysIdResponse {
     }
 
     #[inline]
-    pub fn repo_get_key() -> GetReposOwnerRepoKeysIdResponseGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId> {
-        GetReposOwnerRepoKeysIdResponseGetBuilder1 {
+    pub fn repo_get_key() -> DeployKeyGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId> {
+        DeployKeyGetBuilder1 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -42,19 +42,19 @@ impl GetReposOwnerRepoKeysIdResponse {
     }
 }
 
-impl Into<GetReposOwnerRepoKeysIdResponse> for GetReposOwnerRepoKeysIdResponseBuilder {
-    fn into(self) -> GetReposOwnerRepoKeysIdResponse {
+impl Into<DeployKey> for DeployKeyBuilder {
+    fn into(self) -> DeployKey {
         self.body
     }
 }
 
-/// Builder for [`GetReposOwnerRepoKeysIdResponse`](./struct.GetReposOwnerRepoKeysIdResponse.html) object.
+/// Builder for [`DeployKey`](./struct.DeployKey.html) object.
 #[derive(Debug, Clone)]
-pub struct GetReposOwnerRepoKeysIdResponseBuilder {
-    body: self::GetReposOwnerRepoKeysIdResponse,
+pub struct DeployKeyBuilder {
+    body: self::DeployKey,
 }
 
-impl GetReposOwnerRepoKeysIdResponseBuilder {
+impl DeployKeyBuilder {
     #[inline]
     pub fn created_at(mut self, value: impl Into<String>) -> Self {
         self.body.created_at = Some(value.into());
@@ -110,34 +110,34 @@ impl GetReposOwnerRepoKeysIdResponseBuilder {
     }
 }
 
-/// Builder created by [`GetReposOwnerRepoKeysIdResponse::repo_list_keys`](./struct.GetReposOwnerRepoKeysIdResponse.html#method.repo_list_keys) method for a `GET` operation associated with `GetReposOwnerRepoKeysIdResponse`.
+/// Builder created by [`DeployKey::repo_list_keys`](./struct.DeployKey.html#method.repo_list_keys) method for a `GET` operation associated with `DeployKey`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct GetReposOwnerRepoKeysIdResponseGetBuilder<Owner, Repo> {
-    inner: GetReposOwnerRepoKeysIdResponseGetBuilderContainer,
+pub struct DeployKeyGetBuilder<Owner, Repo> {
+    inner: DeployKeyGetBuilderContainer,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct GetReposOwnerRepoKeysIdResponseGetBuilderContainer {
+struct DeployKeyGetBuilderContainer {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_key_id: Option<i64>,
     param_fingerprint: Option<String>,
 }
 
-impl<Owner, Repo> GetReposOwnerRepoKeysIdResponseGetBuilder<Owner, Repo> {
+impl<Owner, Repo> DeployKeyGetBuilder<Owner, Repo> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> GetReposOwnerRepoKeysIdResponseGetBuilder<crate::generics::OwnerExists, Repo> {
+    pub fn owner(mut self, value: impl Into<String>) -> DeployKeyGetBuilder<crate::generics::OwnerExists, Repo> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> GetReposOwnerRepoKeysIdResponseGetBuilder<Owner, crate::generics::RepoExists> {
+    pub fn repo(mut self, value: impl Into<String>) -> DeployKeyGetBuilder<Owner, crate::generics::RepoExists> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -157,8 +157,8 @@ impl<Owner, Repo> GetReposOwnerRepoKeysIdResponseGetBuilder<Owner, Repo> {
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for GetReposOwnerRepoKeysIdResponseGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists> {
-    type Output = Vec<GetReposOwnerRepoKeysIdResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for DeployKeyGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists> {
+    type Output = Vec<DeployKey>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -176,48 +176,48 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`GetReposOwnerRepoKeysIdResponse::repo_get_key`](./struct.GetReposOwnerRepoKeysIdResponse.html#method.repo_get_key) method for a `GET` operation associated with `GetReposOwnerRepoKeysIdResponse`.
+/// Builder created by [`DeployKey::repo_get_key`](./struct.DeployKey.html#method.repo_get_key) method for a `GET` operation associated with `DeployKey`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct GetReposOwnerRepoKeysIdResponseGetBuilder1<Owner, Repo, Id> {
-    inner: GetReposOwnerRepoKeysIdResponseGetBuilder1Container,
+pub struct DeployKeyGetBuilder1<Owner, Repo, Id> {
+    inner: DeployKeyGetBuilder1Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_id: core::marker::PhantomData<Id>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct GetReposOwnerRepoKeysIdResponseGetBuilder1Container {
+struct DeployKeyGetBuilder1Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_id: Option<i64>,
 }
 
-impl<Owner, Repo, Id> GetReposOwnerRepoKeysIdResponseGetBuilder1<Owner, Repo, Id> {
+impl<Owner, Repo, Id> DeployKeyGetBuilder1<Owner, Repo, Id> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> GetReposOwnerRepoKeysIdResponseGetBuilder1<crate::generics::OwnerExists, Repo, Id> {
+    pub fn owner(mut self, value: impl Into<String>) -> DeployKeyGetBuilder1<crate::generics::OwnerExists, Repo, Id> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> GetReposOwnerRepoKeysIdResponseGetBuilder1<Owner, crate::generics::RepoExists, Id> {
+    pub fn repo(mut self, value: impl Into<String>) -> DeployKeyGetBuilder1<Owner, crate::generics::RepoExists, Id> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// id of the key to get
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> GetReposOwnerRepoKeysIdResponseGetBuilder1<Owner, Repo, crate::generics::IdExists> {
+    pub fn id(mut self, value: impl Into<i64>) -> DeployKeyGetBuilder1<Owner, Repo, crate::generics::IdExists> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for GetReposOwnerRepoKeysIdResponseGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
-    type Output = GetReposOwnerRepoKeysIdResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for DeployKeyGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
+    type Output = DeployKey;
 
     const METHOD: http::Method = http::Method::GET;
 

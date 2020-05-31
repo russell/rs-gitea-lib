@@ -1,7 +1,7 @@
 
 /// Hook a hook is a web hook when one repository changed
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct PostReposOwnerRepoHooksResponse {
+pub struct Hook {
     pub active: Option<bool>,
     pub config: Option<std::collections::BTreeMap<String, String>>,
     pub created_at: Option<String>,
@@ -12,26 +12,26 @@ pub struct PostReposOwnerRepoHooksResponse {
     pub updated_at: Option<String>,
 }
 
-impl PostReposOwnerRepoHooksResponse {
+impl Hook {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> PostReposOwnerRepoHooksResponseBuilder {
-        PostReposOwnerRepoHooksResponseBuilder {
+    pub fn builder() -> HookBuilder {
+        HookBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn org_list_hooks() -> PostReposOwnerRepoHooksResponseGetBuilder<crate::generics::MissingOrg> {
-        PostReposOwnerRepoHooksResponseGetBuilder {
+    pub fn org_list_hooks() -> HookGetBuilder<crate::generics::MissingOrg> {
+        HookGetBuilder {
             inner: Default::default(),
             _param_org: core::marker::PhantomData,
         }
     }
 
     #[inline]
-    pub fn org_get_hook() -> PostReposOwnerRepoHooksResponseGetBuilder1<crate::generics::MissingOrg, crate::generics::MissingId> {
-        PostReposOwnerRepoHooksResponseGetBuilder1 {
+    pub fn org_get_hook() -> HookGetBuilder1<crate::generics::MissingOrg, crate::generics::MissingId> {
+        HookGetBuilder1 {
             inner: Default::default(),
             _param_org: core::marker::PhantomData,
             _param_id: core::marker::PhantomData,
@@ -39,8 +39,8 @@ impl PostReposOwnerRepoHooksResponse {
     }
 
     #[inline]
-    pub fn repo_list_hooks() -> PostReposOwnerRepoHooksResponseGetBuilder2<crate::generics::MissingOwner, crate::generics::MissingRepo> {
-        PostReposOwnerRepoHooksResponseGetBuilder2 {
+    pub fn repo_list_hooks() -> HookGetBuilder2<crate::generics::MissingOwner, crate::generics::MissingRepo> {
+        HookGetBuilder2 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -48,8 +48,8 @@ impl PostReposOwnerRepoHooksResponse {
     }
 
     #[inline]
-    pub fn repo_get_hook() -> PostReposOwnerRepoHooksResponseGetBuilder3<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId> {
-        PostReposOwnerRepoHooksResponseGetBuilder3 {
+    pub fn repo_get_hook() -> HookGetBuilder3<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingId> {
+        HookGetBuilder3 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -58,19 +58,19 @@ impl PostReposOwnerRepoHooksResponse {
     }
 }
 
-impl Into<PostReposOwnerRepoHooksResponse> for PostReposOwnerRepoHooksResponseBuilder {
-    fn into(self) -> PostReposOwnerRepoHooksResponse {
+impl Into<Hook> for HookBuilder {
+    fn into(self) -> Hook {
         self.body
     }
 }
 
-/// Builder for [`PostReposOwnerRepoHooksResponse`](./struct.PostReposOwnerRepoHooksResponse.html) object.
+/// Builder for [`Hook`](./struct.Hook.html) object.
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoHooksResponseBuilder {
-    body: self::PostReposOwnerRepoHooksResponse,
+pub struct HookBuilder {
+    body: self::Hook,
 }
 
-impl PostReposOwnerRepoHooksResponseBuilder {
+impl HookBuilder {
     #[inline]
     pub fn active(mut self, value: impl Into<bool>) -> Self {
         self.body.active = Some(value.into());
@@ -102,7 +102,7 @@ impl PostReposOwnerRepoHooksResponseBuilder {
     }
 
     #[inline]
-    pub fn r#type(mut self, value: impl Into<String>) -> Self {
+    pub fn type_(mut self, value: impl Into<String>) -> Self {
         self.body.type_ = Some(value.into());
         self
     }
@@ -114,30 +114,30 @@ impl PostReposOwnerRepoHooksResponseBuilder {
     }
 }
 
-/// Builder created by [`PostReposOwnerRepoHooksResponse::org_list_hooks`](./struct.PostReposOwnerRepoHooksResponse.html#method.org_list_hooks) method for a `GET` operation associated with `PostReposOwnerRepoHooksResponse`.
+/// Builder created by [`Hook::org_list_hooks`](./struct.Hook.html#method.org_list_hooks) method for a `GET` operation associated with `Hook`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoHooksResponseGetBuilder<Org> {
-    inner: PostReposOwnerRepoHooksResponseGetBuilderContainer,
+pub struct HookGetBuilder<Org> {
+    inner: HookGetBuilderContainer,
     _param_org: core::marker::PhantomData<Org>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PostReposOwnerRepoHooksResponseGetBuilderContainer {
+struct HookGetBuilderContainer {
     param_org: Option<String>,
 }
 
-impl<Org> PostReposOwnerRepoHooksResponseGetBuilder<Org> {
+impl<Org> HookGetBuilder<Org> {
     /// name of the organization
     #[inline]
-    pub fn org(mut self, value: impl Into<String>) -> PostReposOwnerRepoHooksResponseGetBuilder<crate::generics::OrgExists> {
+    pub fn org(mut self, value: impl Into<String>) -> HookGetBuilder<crate::generics::OrgExists> {
         self.inner.param_org = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostReposOwnerRepoHooksResponseGetBuilder<crate::generics::OrgExists> {
-    type Output = Vec<PostReposOwnerRepoHooksResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for HookGetBuilder<crate::generics::OrgExists> {
+    type Output = Vec<Hook>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -146,39 +146,39 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PostReposOwnerRepoHooksResponse::org_get_hook`](./struct.PostReposOwnerRepoHooksResponse.html#method.org_get_hook) method for a `GET` operation associated with `PostReposOwnerRepoHooksResponse`.
+/// Builder created by [`Hook::org_get_hook`](./struct.Hook.html#method.org_get_hook) method for a `GET` operation associated with `Hook`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoHooksResponseGetBuilder1<Org, Id> {
-    inner: PostReposOwnerRepoHooksResponseGetBuilder1Container,
+pub struct HookGetBuilder1<Org, Id> {
+    inner: HookGetBuilder1Container,
     _param_org: core::marker::PhantomData<Org>,
     _param_id: core::marker::PhantomData<Id>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PostReposOwnerRepoHooksResponseGetBuilder1Container {
+struct HookGetBuilder1Container {
     param_org: Option<String>,
     param_id: Option<i64>,
 }
 
-impl<Org, Id> PostReposOwnerRepoHooksResponseGetBuilder1<Org, Id> {
+impl<Org, Id> HookGetBuilder1<Org, Id> {
     /// name of the organization
     #[inline]
-    pub fn org(mut self, value: impl Into<String>) -> PostReposOwnerRepoHooksResponseGetBuilder1<crate::generics::OrgExists, Id> {
+    pub fn org(mut self, value: impl Into<String>) -> HookGetBuilder1<crate::generics::OrgExists, Id> {
         self.inner.param_org = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// id of the hook to get
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> PostReposOwnerRepoHooksResponseGetBuilder1<Org, crate::generics::IdExists> {
+    pub fn id(mut self, value: impl Into<i64>) -> HookGetBuilder1<Org, crate::generics::IdExists> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostReposOwnerRepoHooksResponseGetBuilder1<crate::generics::OrgExists, crate::generics::IdExists> {
-    type Output = PostReposOwnerRepoHooksResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for HookGetBuilder1<crate::generics::OrgExists, crate::generics::IdExists> {
+    type Output = Hook;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -187,39 +187,39 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PostReposOwnerRepoHooksResponse::repo_list_hooks`](./struct.PostReposOwnerRepoHooksResponse.html#method.repo_list_hooks) method for a `GET` operation associated with `PostReposOwnerRepoHooksResponse`.
+/// Builder created by [`Hook::repo_list_hooks`](./struct.Hook.html#method.repo_list_hooks) method for a `GET` operation associated with `Hook`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoHooksResponseGetBuilder2<Owner, Repo> {
-    inner: PostReposOwnerRepoHooksResponseGetBuilder2Container,
+pub struct HookGetBuilder2<Owner, Repo> {
+    inner: HookGetBuilder2Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PostReposOwnerRepoHooksResponseGetBuilder2Container {
+struct HookGetBuilder2Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
 }
 
-impl<Owner, Repo> PostReposOwnerRepoHooksResponseGetBuilder2<Owner, Repo> {
+impl<Owner, Repo> HookGetBuilder2<Owner, Repo> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PostReposOwnerRepoHooksResponseGetBuilder2<crate::generics::OwnerExists, Repo> {
+    pub fn owner(mut self, value: impl Into<String>) -> HookGetBuilder2<crate::generics::OwnerExists, Repo> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PostReposOwnerRepoHooksResponseGetBuilder2<Owner, crate::generics::RepoExists> {
+    pub fn repo(mut self, value: impl Into<String>) -> HookGetBuilder2<Owner, crate::generics::RepoExists> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostReposOwnerRepoHooksResponseGetBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists> {
-    type Output = Vec<PostReposOwnerRepoHooksResponse>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for HookGetBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists> {
+    type Output = Vec<Hook>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -228,48 +228,48 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`PostReposOwnerRepoHooksResponse::repo_get_hook`](./struct.PostReposOwnerRepoHooksResponse.html#method.repo_get_hook) method for a `GET` operation associated with `PostReposOwnerRepoHooksResponse`.
+/// Builder created by [`Hook::repo_get_hook`](./struct.Hook.html#method.repo_get_hook) method for a `GET` operation associated with `Hook`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoHooksResponseGetBuilder3<Owner, Repo, Id> {
-    inner: PostReposOwnerRepoHooksResponseGetBuilder3Container,
+pub struct HookGetBuilder3<Owner, Repo, Id> {
+    inner: HookGetBuilder3Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_id: core::marker::PhantomData<Id>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct PostReposOwnerRepoHooksResponseGetBuilder3Container {
+struct HookGetBuilder3Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_id: Option<i64>,
 }
 
-impl<Owner, Repo, Id> PostReposOwnerRepoHooksResponseGetBuilder3<Owner, Repo, Id> {
+impl<Owner, Repo, Id> HookGetBuilder3<Owner, Repo, Id> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> PostReposOwnerRepoHooksResponseGetBuilder3<crate::generics::OwnerExists, Repo, Id> {
+    pub fn owner(mut self, value: impl Into<String>) -> HookGetBuilder3<crate::generics::OwnerExists, Repo, Id> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> PostReposOwnerRepoHooksResponseGetBuilder3<Owner, crate::generics::RepoExists, Id> {
+    pub fn repo(mut self, value: impl Into<String>) -> HookGetBuilder3<Owner, crate::generics::RepoExists, Id> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// id of the hook to get
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> PostReposOwnerRepoHooksResponseGetBuilder3<Owner, Repo, crate::generics::IdExists> {
+    pub fn id(mut self, value: impl Into<i64>) -> HookGetBuilder3<Owner, Repo, crate::generics::IdExists> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PostReposOwnerRepoHooksResponseGetBuilder3<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
-    type Output = PostReposOwnerRepoHooksResponse;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for HookGetBuilder3<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IdExists> {
+    type Output = Hook;
 
     const METHOD: http::Method = http::Method::GET;
 

@@ -1,35 +1,35 @@
 
 /// FileResponse contains information about a repo's file
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct PostReposOwnerRepoContentsFilepathResponse {
+pub struct FileResponse {
     pub commit: Option<crate::file_commit_response::FileCommitResponse>,
     pub content: Option<crate::contents_response::ContentsResponse>,
     pub verification: Option<crate::payload_commit_verification::PayloadCommitVerification>,
 }
 
-impl PostReposOwnerRepoContentsFilepathResponse {
+impl FileResponse {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> PostReposOwnerRepoContentsFilepathResponseBuilder {
-        PostReposOwnerRepoContentsFilepathResponseBuilder {
+    pub fn builder() -> FileResponseBuilder {
+        FileResponseBuilder {
             body: Default::default(),
         }
     }
 }
 
-impl Into<PostReposOwnerRepoContentsFilepathResponse> for PostReposOwnerRepoContentsFilepathResponseBuilder {
-    fn into(self) -> PostReposOwnerRepoContentsFilepathResponse {
+impl Into<FileResponse> for FileResponseBuilder {
+    fn into(self) -> FileResponse {
         self.body
     }
 }
 
-/// Builder for [`PostReposOwnerRepoContentsFilepathResponse`](./struct.PostReposOwnerRepoContentsFilepathResponse.html) object.
+/// Builder for [`FileResponse`](./struct.FileResponse.html) object.
 #[derive(Debug, Clone)]
-pub struct PostReposOwnerRepoContentsFilepathResponseBuilder {
-    body: self::PostReposOwnerRepoContentsFilepathResponse,
+pub struct FileResponseBuilder {
+    body: self::FileResponse,
 }
 
-impl PostReposOwnerRepoContentsFilepathResponseBuilder {
+impl FileResponseBuilder {
     #[inline]
     pub fn commit(mut self, value: crate::file_commit_response::FileCommitResponse) -> Self {
         self.body.commit = Some(value.into());

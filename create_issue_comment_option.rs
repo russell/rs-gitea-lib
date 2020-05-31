@@ -103,7 +103,7 @@ impl<Owner, Repo, Index, Body> CreateIssueCommentOptionPostBuilder<Owner, Repo, 
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateIssueCommentOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists, crate::generics::BodyExists> {
-    type Output = crate::post_repos_owner_repo_issues_index_comments_response::PostReposOwnerRepoIssuesIndexCommentsResponse;
+    type Output = crate::comment::Comment;
 
     const METHOD: http::Method = http::Method::POST;
 

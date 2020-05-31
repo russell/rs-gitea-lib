@@ -40,7 +40,7 @@ impl PrBranchInfoBuilder {
     }
 
     #[inline]
-    pub fn r#ref(mut self, value: impl Into<String>) -> Self {
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
         self.body.ref_ = Some(value.into());
         self
     }
