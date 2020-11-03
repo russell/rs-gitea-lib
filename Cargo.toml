@@ -5,7 +5,6 @@ authors = ["Russell Sim <russell.sim@gmail.com>"]
 edition = "2018"
 
 [lib]
-path = "lib.rs"
 
 [dependencies]
 async-trait = "0.1"
