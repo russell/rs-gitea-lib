@@ -5,6 +5,7 @@ pub struct PullReview {
     pub body: Option<String>,
     pub comments_count: Option<i64>,
     pub commit_id: Option<String>,
+    pub dismissed: Option<bool>,
     pub html_url: Option<String>,
     pub id: Option<i64>,
     pub official: Option<bool>,
@@ -45,6 +46,17 @@ impl PullReview {
             _param_id: core::marker::PhantomData,
         }
     }
+
+    #[inline]
+    pub fn repo_un_dismiss_pull_review() -> PullReviewPostBuilder2<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingIndex, crate::generics::MissingId> {
+        PullReviewPostBuilder2 {
+            inner: Default::default(),
+            _param_owner: core::marker::PhantomData,
+            _param_repo: core::marker::PhantomData,
+            _param_index: core::marker::PhantomData,
+            _param_id: core::marker::PhantomData,
+        }
+    }
 }
 
 impl Into<PullReview> for PullReviewBuilder {
@@ -75,6 +87,12 @@ impl PullReviewBuilder {
     #[inline]
     pub fn commit_id(mut self, value: impl Into<String>) -> Self {
         self.body.commit_id = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn dismissed(mut self, value: impl Into<bool>) -> Self {
+        self.body.dismissed = Some(value.into());
         self
     }
 
@@ -264,5 +282,75 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
 
     fn rel_path(&self) -> std::borrow::Cow<'static, str> {
         format!("/repos/{owner}/{repo}/pulls/{index}/reviews/{id}", owner=self.inner.param_owner.as_ref().expect("missing parameter owner?"), repo=self.inner.param_repo.as_ref().expect("missing parameter repo?"), index=self.inner.param_index.as_ref().expect("missing parameter index?"), id=self.inner.param_id.as_ref().expect("missing parameter id?")).into()
+    }
+}
+
+/// Builder created by [`PullReview::repo_un_dismiss_pull_review`](./struct.PullReview.html#method.repo_un_dismiss_pull_review) method for a `POST` operation associated with `PullReview`.
+#[repr(transparent)]
+#[derive(Debug, Clone)]
+pub struct PullReviewPostBuilder2<Owner, Repo, Index, Id> {
+    inner: PullReviewPostBuilder2Container,
+    _param_owner: core::marker::PhantomData<Owner>,
+    _param_repo: core::marker::PhantomData<Repo>,
+    _param_index: core::marker::PhantomData<Index>,
+    _param_id: core::marker::PhantomData<Id>,
+}
+
+#[derive(Debug, Default, Clone)]
+struct PullReviewPostBuilder2Container {
+    param_owner: Option<String>,
+    param_repo: Option<String>,
+    param_index: Option<i64>,
+    param_id: Option<i64>,
+}
+
+impl<Owner, Repo, Index, Id> PullReviewPostBuilder2<Owner, Repo, Index, Id> {
+    /// owner of the repo
+    #[inline]
+    pub fn owner(mut self, value: impl Into<String>) -> PullReviewPostBuilder2<crate::generics::OwnerExists, Repo, Index, Id> {
+        self.inner.param_owner = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+
+    /// name of the repo
+    #[inline]
+    pub fn repo(mut self, value: impl Into<String>) -> PullReviewPostBuilder2<Owner, crate::generics::RepoExists, Index, Id> {
+        self.inner.param_repo = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+
+    /// index of the pull request
+    #[inline]
+    pub fn index(mut self, value: impl Into<i64>) -> PullReviewPostBuilder2<Owner, Repo, crate::generics::IndexExists, Id> {
+        self.inner.param_index = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+
+    /// id of the review
+    #[inline]
+    pub fn id(mut self, value: impl Into<i64>) -> PullReviewPostBuilder2<Owner, Repo, Index, crate::generics::IdExists> {
+        self.inner.param_id = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+}
+
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for PullReviewPostBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists, crate::generics::IdExists> {
+    type Output = PullReview;
+
+    const METHOD: http::Method = http::Method::POST;
+
+    fn rel_path(&self) -> std::borrow::Cow<'static, str> {
+        format!("/repos/{owner}/{repo}/pulls/{index}/reviews/{id}/undismissals", owner=self.inner.param_owner.as_ref().expect("missing parameter owner?"), repo=self.inner.param_repo.as_ref().expect("missing parameter repo?"), index=self.inner.param_index.as_ref().expect("missing parameter index?"), id=self.inner.param_id.as_ref().expect("missing parameter id?")).into()
+    }
+}
+
+impl crate::client::ResponseWrapper<PullReview, PullReviewPostBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::IndexExists, crate::generics::IdExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
     }
 }

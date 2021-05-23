@@ -18,6 +18,8 @@ pub struct Issue {
     pub original_author: Option<String>,
     pub original_author_id: Option<i64>,
     pub pull_request: Option<crate::pull_request_meta::PullRequestMeta>,
+    #[serde(rename = "ref")]
+    pub ref_: Option<String>,
     pub repository: Option<crate::repository_meta::RepositoryMeta>,
     pub state: Option<String>,
     pub title: Option<String>,
@@ -43,7 +45,14 @@ impl Issue {
             param_q: None,
             param_priority_repo_id: None,
             param_type: None,
+            param_since: None,
+            param_before: None,
+            param_assigned: None,
+            param_created: None,
+            param_mentioned: None,
+            param_review_requested: None,
             param_page: None,
+            param_limit: None,
         }
     }
 
@@ -177,6 +186,12 @@ impl IssueBuilder {
     }
 
     #[inline]
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
+        self.body.ref_ = Some(value.into());
+        self
+    }
+
+    #[inline]
     pub fn repository(mut self, value: crate::repository_meta::RepositoryMeta) -> Self {
         self.body.repository = Some(value.into());
         self
@@ -221,7 +236,14 @@ pub struct IssueGetBuilder {
     param_q: Option<String>,
     param_priority_repo_id: Option<i64>,
     param_type: Option<String>,
+    param_since: Option<String>,
+    param_before: Option<String>,
+    param_assigned: Option<bool>,
+    param_created: Option<bool>,
+    param_mentioned: Option<bool>,
+    param_review_requested: Option<bool>,
     param_page: Option<i64>,
+    param_limit: Option<i64>,
 }
 
 impl IssueGetBuilder {
@@ -260,10 +282,59 @@ impl IssueGetBuilder {
         self
     }
 
-    /// page number of requested issues
+    /// Only show notifications updated after the given time. This is a timestamp in RFC 3339 format
+    #[inline]
+    pub fn since(mut self, value: impl Into<String>) -> Self {
+        self.param_since = Some(value.into());
+        self
+    }
+
+    /// Only show notifications updated before the given time. This is a timestamp in RFC 3339 format
+    #[inline]
+    pub fn before(mut self, value: impl Into<String>) -> Self {
+        self.param_before = Some(value.into());
+        self
+    }
+
+    /// filter (issues / pulls) assigned to you, default is false
+    #[inline]
+    pub fn assigned(mut self, value: impl Into<bool>) -> Self {
+        self.param_assigned = Some(value.into());
+        self
+    }
+
+    /// filter (issues / pulls) created by you, default is false
+    #[inline]
+    pub fn created(mut self, value: impl Into<bool>) -> Self {
+        self.param_created = Some(value.into());
+        self
+    }
+
+    /// filter (issues / pulls) mentioning you, default is false
+    #[inline]
+    pub fn mentioned(mut self, value: impl Into<bool>) -> Self {
+        self.param_mentioned = Some(value.into());
+        self
+    }
+
+    /// filter pulls requesting your review, default is false
+    #[inline]
+    pub fn review_requested(mut self, value: impl Into<bool>) -> Self {
+        self.param_review_requested = Some(value.into());
+        self
+    }
+
+    /// page number of results to return (1-based)
     #[inline]
     pub fn page(mut self, value: impl Into<i64>) -> Self {
         self.param_page = Some(value.into());
+        self
+    }
+
+    /// page size of results
+    #[inline]
+    pub fn limit(mut self, value: impl Into<i64>) -> Self {
+        self.param_limit = Some(value.into());
         self
     }
 }
@@ -286,7 +357,14 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
             ("q", self.param_q.as_ref().map(std::string::ToString::to_string)),
             ("priority_repo_id", self.param_priority_repo_id.as_ref().map(std::string::ToString::to_string)),
             ("type", self.param_type.as_ref().map(std::string::ToString::to_string)),
-            ("page", self.param_page.as_ref().map(std::string::ToString::to_string))
+            ("since", self.param_since.as_ref().map(std::string::ToString::to_string)),
+            ("before", self.param_before.as_ref().map(std::string::ToString::to_string)),
+            ("assigned", self.param_assigned.as_ref().map(std::string::ToString::to_string)),
+            ("created", self.param_created.as_ref().map(std::string::ToString::to_string)),
+            ("mentioned", self.param_mentioned.as_ref().map(std::string::ToString::to_string)),
+            ("review_requested", self.param_review_requested.as_ref().map(std::string::ToString::to_string)),
+            ("page", self.param_page.as_ref().map(std::string::ToString::to_string)),
+            ("limit", self.param_limit.as_ref().map(std::string::ToString::to_string))
         ]))
     }
 }

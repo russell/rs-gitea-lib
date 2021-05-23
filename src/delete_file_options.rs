@@ -14,6 +14,8 @@ pub struct DeleteFileOptions {
     pub new_branch: Option<String>,
     /// sha is the SHA for the file that already exists
     pub sha: String,
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    pub signoff: Option<bool>,
 }
 
 impl DeleteFileOptions {
@@ -103,6 +105,13 @@ impl<Sha> DeleteFileOptionsBuilder<Sha> {
         self.body.sha = value.into();
         unsafe { std::mem::transmute(self) }
     }
+
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    #[inline]
+    pub fn signoff(mut self, value: impl Into<bool>) -> Self {
+        self.body.signoff = Some(value.into());
+        self
+    }
 }
 
 /// Builder created by [`DeleteFileOptions::repo_delete_file`](./struct.DeleteFileOptions.html#method.repo_delete_file) method for a `DELETE` operation associated with `DeleteFileOptions`.
@@ -190,6 +199,13 @@ impl<Owner, Repo, Filepath, Sha> DeleteFileOptionsDeleteBuilder<Owner, Repo, Fil
     pub fn sha(mut self, value: impl Into<String>) -> DeleteFileOptionsDeleteBuilder<Owner, Repo, Filepath, crate::generics::ShaExists> {
         self.inner.body.sha = value.into();
         unsafe { std::mem::transmute(self) }
+    }
+
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    #[inline]
+    pub fn signoff(mut self, value: impl Into<bool>) -> Self {
+        self.inner.body.signoff = Some(value.into());
+        self
     }
 }
 

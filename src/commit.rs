@@ -4,6 +4,7 @@ pub struct Commit {
     pub commit: Option<crate::repo_commit::RepoCommit>,
     pub committer: Option<crate::user::User>,
     pub created: Option<String>,
+    pub files: Option<Vec<crate::commit_affected_files::CommitAffectedFiles>>,
     pub html_url: Option<String>,
     pub parents: Option<Vec<crate::commit_meta::CommitMeta>>,
     pub sha: Option<String>,
@@ -73,6 +74,12 @@ impl CommitBuilder {
     #[inline]
     pub fn created(mut self, value: impl Into<String>) -> Self {
         self.body.created = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn files(mut self, value: impl Iterator<Item = crate::commit_affected_files::CommitAffectedFiles>) -> Self {
+        self.body.files = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
         self
     }
 

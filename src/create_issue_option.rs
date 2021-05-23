@@ -2,7 +2,7 @@
 /// CreateIssueOption options to create one issue
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct CreateIssueOption {
-    /// username of assignee
+    /// deprecated
     pub assignee: Option<String>,
     pub assignees: Option<Vec<String>>,
     pub body: Option<String>,
@@ -12,6 +12,8 @@ pub struct CreateIssueOption {
     pub labels: Option<Vec<i64>>,
     /// milestone id
     pub milestone: Option<i64>,
+    #[serde(rename = "ref")]
+    pub ref_: Option<String>,
     pub title: String,
 }
 
@@ -56,7 +58,7 @@ pub struct CreateIssueOptionBuilder<Title> {
 }
 
 impl<Title> CreateIssueOptionBuilder<Title> {
-    /// username of assignee
+    /// deprecated
     #[inline]
     pub fn assignee(mut self, value: impl Into<String>) -> Self {
         self.body.assignee = Some(value.into());
@@ -102,6 +104,12 @@ impl<Title> CreateIssueOptionBuilder<Title> {
     }
 
     #[inline]
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
+        self.body.ref_ = Some(value.into());
+        self
+    }
+
+    #[inline]
     pub fn title(mut self, value: impl Into<String>) -> CreateIssueOptionBuilder<crate::generics::TitleExists> {
         self.body.title = value.into();
         unsafe { std::mem::transmute(self) }
@@ -140,7 +148,7 @@ impl<Owner, Repo, Title> CreateIssueOptionPostBuilder<Owner, Repo, Title> {
         unsafe { std::mem::transmute(self) }
     }
 
-    /// username of assignee
+    /// deprecated
     #[inline]
     pub fn assignee(mut self, value: impl Into<String>) -> Self {
         self.inner.body.assignee = Some(value.into());
@@ -182,6 +190,12 @@ impl<Owner, Repo, Title> CreateIssueOptionPostBuilder<Owner, Repo, Title> {
     #[inline]
     pub fn milestone(mut self, value: impl Into<i64>) -> Self {
         self.inner.body.milestone = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
+        self.inner.body.ref_ = Some(value.into());
         self
     }
 

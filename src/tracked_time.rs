@@ -136,6 +136,7 @@ struct TrackedTimeGetBuilderContainer {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_index: Option<i64>,
+    param_user: Option<String>,
     param_since: Option<String>,
     param_before: Option<String>,
     param_page: Option<i64>,
@@ -162,6 +163,13 @@ impl<Owner, Repo, Index> TrackedTimeGetBuilder<Owner, Repo, Index> {
     pub fn index(mut self, value: impl Into<i64>) -> TrackedTimeGetBuilder<Owner, Repo, crate::generics::IndexExists> {
         self.inner.param_index = Some(value.into());
         unsafe { std::mem::transmute(self) }
+    }
+
+    /// optional filter by user (available for issue managers)
+    #[inline]
+    pub fn user(mut self, value: impl Into<String>) -> Self {
+        self.inner.param_user = Some(value.into());
+        self
     }
 
     /// Only show times updated after the given time. This is a timestamp in RFC 3339 format
@@ -206,6 +214,7 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         use crate::client::Request;
         Ok(req
         .query(&[
+            ("user", self.inner.param_user.as_ref().map(std::string::ToString::to_string)),
             ("since", self.inner.param_since.as_ref().map(std::string::ToString::to_string)),
             ("before", self.inner.param_before.as_ref().map(std::string::ToString::to_string)),
             ("page", self.inner.param_page.as_ref().map(std::string::ToString::to_string)),
@@ -249,7 +258,7 @@ impl<Owner, Repo> TrackedTimeGetBuilder1<Owner, Repo> {
         unsafe { std::mem::transmute(self) }
     }
 
-    /// optional filter by user
+    /// optional filter by user (available for issue managers)
     #[inline]
     pub fn user(mut self, value: impl Into<String>) -> Self {
         self.inner.param_user = Some(value.into());

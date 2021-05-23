@@ -12,6 +12,7 @@ pub struct MigrateRepoOptions {
     pub labels: Option<bool>,
     pub milestones: Option<bool>,
     pub mirror: Option<bool>,
+    pub mirror_interval: Option<String>,
     pub private: Option<bool>,
     pub pull_requests: Option<bool>,
     pub releases: Option<bool>,
@@ -138,6 +139,12 @@ impl<CloneAddr, RepoName> MigrateRepoOptionsBuilder<CloneAddr, RepoName> {
     }
 
     #[inline]
+    pub fn mirror_interval(mut self, value: impl Into<String>) -> Self {
+        self.body.mirror_interval = Some(value.into());
+        self
+    }
+
+    #[inline]
     pub fn private(mut self, value: impl Into<bool>) -> Self {
         self.body.private = Some(value.into());
         self
@@ -248,6 +255,12 @@ impl<CloneAddr, RepoName> MigrateRepoOptionsPostBuilder<CloneAddr, RepoName> {
     #[inline]
     pub fn mirror(mut self, value: impl Into<bool>) -> Self {
         self.body.mirror = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn mirror_interval(mut self, value: impl Into<String>) -> Self {
+        self.body.mirror_interval = Some(value.into());
         self
     }
 

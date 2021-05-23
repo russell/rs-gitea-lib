@@ -4,6 +4,8 @@
 pub struct MergePullRequestOption {
     #[serde(rename = "Do")]
     pub do_: crate::merge_pull_request_option::MergePullRequestOptionDo,
+    #[serde(rename = "MergeCommitID")]
+    pub merge_commit_id: Option<String>,
     #[serde(rename = "MergeMessageField")]
     pub merge_message_field: Option<String>,
     #[serde(rename = "MergeTitleField")]
@@ -21,6 +23,8 @@ pub enum MergePullRequestOptionDo {
     RebaseMerge,
     #[serde(rename = "squash")]
     Squash,
+    #[serde(rename = "manually-merged")]
+    ManuallyMerged,
 }
 impl Default for MergePullRequestOptionDo {
     fn default() -> Self {
@@ -74,6 +78,12 @@ impl<Do> MergePullRequestOptionBuilder<Do> {
     pub fn do_(mut self, value: crate::merge_pull_request_option::MergePullRequestOptionDo) -> MergePullRequestOptionBuilder<crate::generics::DoExists> {
         self.body.do_ = value.into();
         unsafe { std::mem::transmute(self) }
+    }
+
+    #[inline]
+    pub fn merge_commit_id(mut self, value: impl Into<String>) -> Self {
+        self.body.merge_commit_id = Some(value.into());
+        self
     }
 
     #[inline]
@@ -140,6 +150,12 @@ impl<Owner, Repo, Index, Do> MergePullRequestOptionPostBuilder<Owner, Repo, Inde
     pub fn do_(mut self, value: crate::merge_pull_request_option::MergePullRequestOptionDo) -> MergePullRequestOptionPostBuilder<Owner, Repo, Index, crate::generics::DoExists> {
         self.inner.body.do_ = value.into();
         unsafe { std::mem::transmute(self) }
+    }
+
+    #[inline]
+    pub fn merge_commit_id(mut self, value: impl Into<String>) -> Self {
+        self.inner.body.merge_commit_id = Some(value.into());
+        self
     }
 
     #[inline]

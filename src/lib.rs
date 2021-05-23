@@ -38,6 +38,10 @@ pub mod branch_protection {
     include!("./branch_protection.rs");
 }
 
+pub mod combined_status {
+    include!("./combined_status.rs");
+}
+
 pub mod comment {
     include!("./comment.rs");
 }
@@ -46,12 +50,20 @@ pub mod commit {
     include!("./commit.rs");
 }
 
+pub mod commit_affected_files {
+    include!("./commit_affected_files.rs");
+}
+
 pub mod commit_date_options {
     include!("./commit_date_options.rs");
 }
 
 pub mod commit_meta {
     include!("./commit_meta.rs");
+}
+
+pub mod commit_status {
+    include!("./commit_status.rs");
 }
 
 pub mod commit_user {
@@ -168,6 +180,10 @@ pub mod delete_file_options {
 
 pub mod deploy_key {
     include!("./deploy_key.rs");
+}
+
+pub mod dismiss_pull_review_options {
+    include!("./dismiss_pull_review_options.rs");
 }
 
 pub mod edit_attachment_options {
@@ -476,10 +492,6 @@ pub mod search_results {
 
 pub mod server_version {
     include!("./server_version.rs");
-}
-
-pub mod status {
-    include!("./status.rs");
 }
 
 pub mod stop_watch {

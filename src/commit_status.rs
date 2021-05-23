@@ -1,7 +1,7 @@
 
-/// Status holds a single Status of a single Commit
+/// CommitStatus holds a single status of a single Commit
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct Status {
+pub struct CommitStatus {
     pub context: Option<String>,
     pub created_at: Option<String>,
     pub creator: Option<crate::user::User>,
@@ -13,18 +13,18 @@ pub struct Status {
     pub url: Option<String>,
 }
 
-impl Status {
+impl CommitStatus {
     /// Create a builder for this object.
     #[inline]
-    pub fn builder() -> StatusBuilder {
-        StatusBuilder {
+    pub fn builder() -> CommitStatusBuilder {
+        CommitStatusBuilder {
             body: Default::default(),
         }
     }
 
     #[inline]
-    pub fn repo_get_combined_status_by_ref() -> StatusGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingRef> {
-        StatusGetBuilder {
+    pub fn repo_list_statuses_by_ref() -> CommitStatusGetBuilder<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingRef> {
+        CommitStatusGetBuilder {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -33,8 +33,8 @@ impl Status {
     }
 
     #[inline]
-    pub fn repo_list_statuses() -> StatusGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingSha> {
-        StatusGetBuilder1 {
+    pub fn repo_list_statuses() -> CommitStatusGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingSha> {
+        CommitStatusGetBuilder1 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
             _param_repo: core::marker::PhantomData,
@@ -43,19 +43,19 @@ impl Status {
     }
 }
 
-impl Into<Status> for StatusBuilder {
-    fn into(self) -> Status {
+impl Into<CommitStatus> for CommitStatusBuilder {
+    fn into(self) -> CommitStatus {
         self.body
     }
 }
 
-/// Builder for [`Status`](./struct.Status.html) object.
+/// Builder for [`CommitStatus`](./struct.CommitStatus.html) object.
 #[derive(Debug, Clone)]
-pub struct StatusBuilder {
-    body: self::Status,
+pub struct CommitStatusBuilder {
+    body: self::CommitStatus,
 }
 
-impl StatusBuilder {
+impl CommitStatusBuilder {
     #[inline]
     pub fn context(mut self, value: impl Into<String>) -> Self {
         self.body.context = Some(value.into());
@@ -111,56 +111,80 @@ impl StatusBuilder {
     }
 }
 
-/// Builder created by [`Status::repo_get_combined_status_by_ref`](./struct.Status.html#method.repo_get_combined_status_by_ref) method for a `GET` operation associated with `Status`.
+/// Builder created by [`CommitStatus::repo_list_statuses_by_ref`](./struct.CommitStatus.html#method.repo_list_statuses_by_ref) method for a `GET` operation associated with `CommitStatus`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct StatusGetBuilder<Owner, Repo, Ref> {
-    inner: StatusGetBuilderContainer,
+pub struct CommitStatusGetBuilder<Owner, Repo, Ref> {
+    inner: CommitStatusGetBuilderContainer,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_ref: core::marker::PhantomData<Ref>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct StatusGetBuilderContainer {
+struct CommitStatusGetBuilderContainer {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_ref: Option<String>,
+    param_sort: Option<String>,
+    param_state: Option<String>,
     param_page: Option<i64>,
+    param_limit: Option<i64>,
 }
 
-impl<Owner, Repo, Ref> StatusGetBuilder<Owner, Repo, Ref> {
+impl<Owner, Repo, Ref> CommitStatusGetBuilder<Owner, Repo, Ref> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> StatusGetBuilder<crate::generics::OwnerExists, Repo, Ref> {
+    pub fn owner(mut self, value: impl Into<String>) -> CommitStatusGetBuilder<crate::generics::OwnerExists, Repo, Ref> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> StatusGetBuilder<Owner, crate::generics::RepoExists, Ref> {
+    pub fn repo(mut self, value: impl Into<String>) -> CommitStatusGetBuilder<Owner, crate::generics::RepoExists, Ref> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of branch/tag/commit
     #[inline]
-    pub fn ref_(mut self, value: impl Into<String>) -> StatusGetBuilder<Owner, Repo, crate::generics::RefExists> {
+    pub fn ref_(mut self, value: impl Into<String>) -> CommitStatusGetBuilder<Owner, Repo, crate::generics::RefExists> {
         self.inner.param_ref = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
-    /// page number of results
+    /// type of sort
+    #[inline]
+    pub fn sort(mut self, value: impl Into<String>) -> Self {
+        self.inner.param_sort = Some(value.into());
+        self
+    }
+
+    /// type of state
+    #[inline]
+    pub fn state(mut self, value: impl Into<String>) -> Self {
+        self.inner.param_state = Some(value.into());
+        self
+    }
+
+    /// page number of results to return (1-based)
     #[inline]
     pub fn page(mut self, value: impl Into<i64>) -> Self {
         self.inner.param_page = Some(value.into());
         self
     }
+
+    /// page size of results
+    #[inline]
+    pub fn limit(mut self, value: impl Into<i64>) -> Self {
+        self.inner.param_limit = Some(value.into());
+        self
+    }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for StatusGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::RefExists> {
-    type Output = Status;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CommitStatusGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::RefExists> {
+    type Output = Vec<CommitStatus>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -172,12 +196,15 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
         use crate::client::Request;
         Ok(req
         .query(&[
-            ("page", self.inner.param_page.as_ref().map(std::string::ToString::to_string))
+            ("sort", self.inner.param_sort.as_ref().map(std::string::ToString::to_string)),
+            ("state", self.inner.param_state.as_ref().map(std::string::ToString::to_string)),
+            ("page", self.inner.param_page.as_ref().map(std::string::ToString::to_string)),
+            ("limit", self.inner.param_limit.as_ref().map(std::string::ToString::to_string))
         ]))
     }
 }
 
-impl crate::client::ResponseWrapper<Status, StatusGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::RefExists>> {
+impl crate::client::ResponseWrapper<Vec<CommitStatus>, CommitStatusGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::RefExists>> {
     #[inline]
     pub fn message(&self) -> Option<String> {
         self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
@@ -188,18 +215,18 @@ impl crate::client::ResponseWrapper<Status, StatusGetBuilder<crate::generics::Ow
     }
 }
 
-/// Builder created by [`Status::repo_list_statuses`](./struct.Status.html#method.repo_list_statuses) method for a `GET` operation associated with `Status`.
+/// Builder created by [`CommitStatus::repo_list_statuses`](./struct.CommitStatus.html#method.repo_list_statuses) method for a `GET` operation associated with `CommitStatus`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct StatusGetBuilder1<Owner, Repo, Sha> {
-    inner: StatusGetBuilder1Container,
+pub struct CommitStatusGetBuilder1<Owner, Repo, Sha> {
+    inner: CommitStatusGetBuilder1Container,
     _param_owner: core::marker::PhantomData<Owner>,
     _param_repo: core::marker::PhantomData<Repo>,
     _param_sha: core::marker::PhantomData<Sha>,
 }
 
 #[derive(Debug, Default, Clone)]
-struct StatusGetBuilder1Container {
+struct CommitStatusGetBuilder1Container {
     param_owner: Option<String>,
     param_repo: Option<String>,
     param_sha: Option<String>,
@@ -209,24 +236,24 @@ struct StatusGetBuilder1Container {
     param_limit: Option<i64>,
 }
 
-impl<Owner, Repo, Sha> StatusGetBuilder1<Owner, Repo, Sha> {
+impl<Owner, Repo, Sha> CommitStatusGetBuilder1<Owner, Repo, Sha> {
     /// owner of the repo
     #[inline]
-    pub fn owner(mut self, value: impl Into<String>) -> StatusGetBuilder1<crate::generics::OwnerExists, Repo, Sha> {
+    pub fn owner(mut self, value: impl Into<String>) -> CommitStatusGetBuilder1<crate::generics::OwnerExists, Repo, Sha> {
         self.inner.param_owner = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// name of the repo
     #[inline]
-    pub fn repo(mut self, value: impl Into<String>) -> StatusGetBuilder1<Owner, crate::generics::RepoExists, Sha> {
+    pub fn repo(mut self, value: impl Into<String>) -> CommitStatusGetBuilder1<Owner, crate::generics::RepoExists, Sha> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 
     /// sha of the commit
     #[inline]
-    pub fn sha(mut self, value: impl Into<String>) -> StatusGetBuilder1<Owner, Repo, crate::generics::ShaExists> {
+    pub fn sha(mut self, value: impl Into<String>) -> CommitStatusGetBuilder1<Owner, Repo, crate::generics::ShaExists> {
         self.inner.param_sha = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
@@ -260,8 +287,8 @@ impl<Owner, Repo, Sha> StatusGetBuilder1<Owner, Repo, Sha> {
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for StatusGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists> {
-    type Output = Vec<Status>;
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CommitStatusGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists> {
+    type Output = Vec<CommitStatus>;
 
     const METHOD: http::Method = http::Method::GET;
 
@@ -281,7 +308,7 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-impl crate::client::ResponseWrapper<Vec<Status>, StatusGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists>> {
+impl crate::client::ResponseWrapper<Vec<CommitStatus>, CommitStatusGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists>> {
     #[inline]
     pub fn message(&self) -> Option<String> {
         self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())

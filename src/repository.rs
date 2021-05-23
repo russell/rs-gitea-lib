@@ -28,6 +28,7 @@ pub struct Repository {
     pub internal: Option<bool>,
     pub internal_tracker: Option<crate::internal_tracker::InternalTracker>,
     pub mirror: Option<bool>,
+    pub mirror_interval: Option<String>,
     pub name: Option<String>,
     pub open_issues_count: Option<i64>,
     pub open_pr_counter: Option<i64>,
@@ -312,6 +313,12 @@ impl RepositoryBuilder {
     #[inline]
     pub fn mirror(mut self, value: impl Into<bool>) -> Self {
         self.body.mirror = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn mirror_interval(mut self, value: impl Into<String>) -> Self {
+        self.body.mirror_interval = Some(value.into());
         self
     }
 

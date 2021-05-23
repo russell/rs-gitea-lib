@@ -4,6 +4,7 @@
 pub struct EditBranchProtectionOption {
     pub approvals_whitelist_teams: Option<Vec<String>>,
     pub approvals_whitelist_username: Option<Vec<String>>,
+    pub block_on_official_review_requests: Option<bool>,
     pub block_on_outdated_branch: Option<bool>,
     pub block_on_rejected_reviews: Option<bool>,
     pub dismiss_stale_approvals: Option<bool>,
@@ -71,6 +72,12 @@ impl EditBranchProtectionOptionBuilder {
     #[inline]
     pub fn approvals_whitelist_username(mut self, value: impl Iterator<Item = impl Into<String>>) -> Self {
         self.body.approvals_whitelist_username = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
+        self
+    }
+
+    #[inline]
+    pub fn block_on_official_review_requests(mut self, value: impl Into<bool>) -> Self {
+        self.body.block_on_official_review_requests = Some(value.into());
         self
     }
 
@@ -226,6 +233,12 @@ impl<Owner, Repo, Name> EditBranchProtectionOptionPatchBuilder<Owner, Repo, Name
     #[inline]
     pub fn approvals_whitelist_username(mut self, value: impl Iterator<Item = impl Into<String>>) -> Self {
         self.inner.body.approvals_whitelist_username = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
+        self
+    }
+
+    #[inline]
+    pub fn block_on_official_review_requests(mut self, value: impl Into<bool>) -> Self {
+        self.inner.body.block_on_official_review_requests = Some(value.into());
         self
     }
 

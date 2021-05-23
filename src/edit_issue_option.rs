@@ -2,11 +2,14 @@
 /// EditIssueOption options for editing an issue
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct EditIssueOption {
+    /// deprecated
     pub assignee: Option<String>,
     pub assignees: Option<Vec<String>>,
     pub body: Option<String>,
     pub due_date: Option<String>,
     pub milestone: Option<i64>,
+    #[serde(rename = "ref")]
+    pub ref_: Option<String>,
     pub state: Option<String>,
     pub title: Option<String>,
     pub unset_due_date: Option<bool>,
@@ -51,6 +54,7 @@ pub struct EditIssueOptionBuilder {
 }
 
 impl EditIssueOptionBuilder {
+    /// deprecated
     #[inline]
     pub fn assignee(mut self, value: impl Into<String>) -> Self {
         self.body.assignee = Some(value.into());
@@ -78,6 +82,12 @@ impl EditIssueOptionBuilder {
     #[inline]
     pub fn milestone(mut self, value: impl Into<i64>) -> Self {
         self.body.milestone = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
+        self.body.ref_ = Some(value.into());
         self
     }
 
@@ -140,6 +150,7 @@ impl<Owner, Repo, Index> EditIssueOptionPatchBuilder<Owner, Repo, Index> {
         unsafe { std::mem::transmute(self) }
     }
 
+    /// deprecated
     #[inline]
     pub fn assignee(mut self, value: impl Into<String>) -> Self {
         self.inner.body.assignee = Some(value.into());
@@ -167,6 +178,12 @@ impl<Owner, Repo, Index> EditIssueOptionPatchBuilder<Owner, Repo, Index> {
     #[inline]
     pub fn milestone(mut self, value: impl Into<i64>) -> Self {
         self.inner.body.milestone = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn ref_(mut self, value: impl Into<String>) -> Self {
+        self.inner.body.ref_ = Some(value.into());
         self
     }
 

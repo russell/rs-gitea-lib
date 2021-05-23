@@ -1,5 +1,5 @@
 
-/// CreateStatusOption holds the information needed to create a new Status for a Commit
+/// CreateStatusOption holds the information needed to create a new CommitStatus for a Commit
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct CreateStatusOption {
     pub context: Option<String>,
@@ -138,7 +138,7 @@ impl<Owner, Repo, Sha> CreateStatusOptionPostBuilder<Owner, Repo, Sha> {
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for CreateStatusOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists> {
-    type Output = crate::status::Status;
+    type Output = crate::commit_status::CommitStatus;
 
     const METHOD: http::Method = http::Method::POST;
 
@@ -153,7 +153,7 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-impl crate::client::ResponseWrapper<crate::status::Status, CreateStatusOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists>> {
+impl crate::client::ResponseWrapper<crate::commit_status::CommitStatus, CreateStatusOptionPostBuilder<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::ShaExists>> {
     #[inline]
     pub fn message(&self) -> Option<String> {
         self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())

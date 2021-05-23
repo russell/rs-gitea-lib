@@ -3,10 +3,12 @@
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct StopWatch {
     pub created: Option<String>,
+    pub duration: Option<String>,
     pub issue_index: Option<i64>,
     pub issue_title: Option<String>,
     pub repo_name: Option<String>,
     pub repo_owner_name: Option<String>,
+    pub seconds: Option<i64>,
 }
 
 impl StopWatch {
@@ -47,6 +49,12 @@ impl StopWatchBuilder {
     }
 
     #[inline]
+    pub fn duration(mut self, value: impl Into<String>) -> Self {
+        self.body.duration = Some(value.into());
+        self
+    }
+
+    #[inline]
     pub fn issue_index(mut self, value: impl Into<i64>) -> Self {
         self.body.issue_index = Some(value.into());
         self
@@ -67,6 +75,12 @@ impl StopWatchBuilder {
     #[inline]
     pub fn repo_owner_name(mut self, value: impl Into<String>) -> Self {
         self.body.repo_owner_name = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn seconds(mut self, value: impl Into<i64>) -> Self {
+        self.body.seconds = Some(value.into());
         self
     }
 }

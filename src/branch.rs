@@ -123,6 +123,8 @@ pub struct BranchGetBuilder<Owner, Repo> {
 struct BranchGetBuilderContainer {
     param_owner: Option<String>,
     param_repo: Option<String>,
+    param_page: Option<i64>,
+    param_limit: Option<i64>,
 }
 
 impl<Owner, Repo> BranchGetBuilder<Owner, Repo> {
@@ -139,6 +141,20 @@ impl<Owner, Repo> BranchGetBuilder<Owner, Repo> {
         self.inner.param_repo = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
+
+    /// page number of results to return (1-based)
+    #[inline]
+    pub fn page(mut self, value: impl Into<i64>) -> Self {
+        self.inner.param_page = Some(value.into());
+        self
+    }
+
+    /// page size of results
+    #[inline]
+    pub fn limit(mut self, value: impl Into<i64>) -> Self {
+        self.inner.param_limit = Some(value.into());
+        self
+    }
 }
 
 impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for BranchGetBuilder<crate::generics::OwnerExists, crate::generics::RepoExists> {
@@ -148,6 +164,15 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
 
     fn rel_path(&self) -> std::borrow::Cow<'static, str> {
         format!("/repos/{owner}/{repo}/branches", owner=self.inner.param_owner.as_ref().expect("missing parameter owner?"), repo=self.inner.param_repo.as_ref().expect("missing parameter repo?")).into()
+    }
+
+    fn modify(&self, req: Client::Request) -> Result<Client::Request, crate::client::ApiError<Client::Response>> {
+        use crate::client::Request;
+        Ok(req
+        .query(&[
+            ("page", self.inner.param_page.as_ref().map(std::string::ToString::to_string)),
+            ("limit", self.inner.param_limit.as_ref().map(std::string::ToString::to_string))
+        ]))
     }
 }
 

@@ -49,16 +49,35 @@ impl Team {
     }
 
     #[inline]
-    pub fn org_get_team() -> TeamGetBuilder1<crate::generics::MissingId> {
+    pub fn repo_list_teams() -> TeamGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo> {
         TeamGetBuilder1 {
+            inner: Default::default(),
+            _param_owner: core::marker::PhantomData,
+            _param_repo: core::marker::PhantomData,
+        }
+    }
+
+    #[inline]
+    pub fn repo_check_team() -> TeamGetBuilder2<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingTeam> {
+        TeamGetBuilder2 {
+            inner: Default::default(),
+            _param_owner: core::marker::PhantomData,
+            _param_repo: core::marker::PhantomData,
+            _param_team: core::marker::PhantomData,
+        }
+    }
+
+    #[inline]
+    pub fn org_get_team() -> TeamGetBuilder3<crate::generics::MissingId> {
+        TeamGetBuilder3 {
             inner: Default::default(),
             _param_id: core::marker::PhantomData,
         }
     }
 
     #[inline]
-    pub fn user_list_teams() -> TeamGetBuilder2 {
-        TeamGetBuilder2 {
+    pub fn user_list_teams() -> TeamGetBuilder4 {
+        TeamGetBuilder4 {
             param_page: None,
             param_limit: None,
         }
@@ -184,29 +203,131 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`Team::org_get_team`](./struct.Team.html#method.org_get_team) method for a `GET` operation associated with `Team`.
+/// Builder created by [`Team::repo_list_teams`](./struct.Team.html#method.repo_list_teams) method for a `GET` operation associated with `Team`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
-pub struct TeamGetBuilder1<Id> {
+pub struct TeamGetBuilder1<Owner, Repo> {
     inner: TeamGetBuilder1Container,
-    _param_id: core::marker::PhantomData<Id>,
+    _param_owner: core::marker::PhantomData<Owner>,
+    _param_repo: core::marker::PhantomData<Repo>,
 }
 
 #[derive(Debug, Default, Clone)]
 struct TeamGetBuilder1Container {
+    param_owner: Option<String>,
+    param_repo: Option<String>,
+}
+
+impl<Owner, Repo> TeamGetBuilder1<Owner, Repo> {
+    /// owner of the repo
+    #[inline]
+    pub fn owner(mut self, value: impl Into<String>) -> TeamGetBuilder1<crate::generics::OwnerExists, Repo> {
+        self.inner.param_owner = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+
+    /// name of the repo
+    #[inline]
+    pub fn repo(mut self, value: impl Into<String>) -> TeamGetBuilder1<Owner, crate::generics::RepoExists> {
+        self.inner.param_repo = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+}
+
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for TeamGetBuilder1<crate::generics::OwnerExists, crate::generics::RepoExists> {
+    type Output = Vec<Team>;
+
+    const METHOD: http::Method = http::Method::GET;
+
+    fn rel_path(&self) -> std::borrow::Cow<'static, str> {
+        format!("/repos/{owner}/{repo}/teams", owner=self.inner.param_owner.as_ref().expect("missing parameter owner?"), repo=self.inner.param_repo.as_ref().expect("missing parameter repo?")).into()
+    }
+}
+
+/// Builder created by [`Team::repo_check_team`](./struct.Team.html#method.repo_check_team) method for a `GET` operation associated with `Team`.
+#[repr(transparent)]
+#[derive(Debug, Clone)]
+pub struct TeamGetBuilder2<Owner, Repo, Team> {
+    inner: TeamGetBuilder2Container,
+    _param_owner: core::marker::PhantomData<Owner>,
+    _param_repo: core::marker::PhantomData<Repo>,
+    _param_team: core::marker::PhantomData<Team>,
+}
+
+#[derive(Debug, Default, Clone)]
+struct TeamGetBuilder2Container {
+    param_owner: Option<String>,
+    param_repo: Option<String>,
+    param_team: Option<String>,
+}
+
+impl<Owner, Repo, Team> TeamGetBuilder2<Owner, Repo, Team> {
+    /// owner of the repo
+    #[inline]
+    pub fn owner(mut self, value: impl Into<String>) -> TeamGetBuilder2<crate::generics::OwnerExists, Repo, Team> {
+        self.inner.param_owner = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+
+    /// name of the repo
+    #[inline]
+    pub fn repo(mut self, value: impl Into<String>) -> TeamGetBuilder2<Owner, crate::generics::RepoExists, Team> {
+        self.inner.param_repo = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+
+    /// team name
+    #[inline]
+    pub fn team(mut self, value: impl Into<String>) -> TeamGetBuilder2<Owner, Repo, crate::generics::TeamExists> {
+        self.inner.param_team = Some(value.into());
+        unsafe { std::mem::transmute(self) }
+    }
+}
+
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for TeamGetBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::TeamExists> {
+    type Output = Team;
+
+    const METHOD: http::Method = http::Method::GET;
+
+    fn rel_path(&self) -> std::borrow::Cow<'static, str> {
+        format!("/repos/{owner}/{repo}/teams/{team}", owner=self.inner.param_owner.as_ref().expect("missing parameter owner?"), repo=self.inner.param_repo.as_ref().expect("missing parameter repo?"), team=self.inner.param_team.as_ref().expect("missing parameter team?")).into()
+    }
+}
+
+impl crate::client::ResponseWrapper<Team, TeamGetBuilder2<crate::generics::OwnerExists, crate::generics::RepoExists, crate::generics::TeamExists>> {
+    #[inline]
+    pub fn message(&self) -> Option<String> {
+        self.headers.get("message").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+    #[inline]
+    pub fn url(&self) -> Option<String> {
+        self.headers.get("url").and_then(|v| String::from_utf8_lossy(v.as_ref()).parse().ok())
+    }
+}
+
+/// Builder created by [`Team::org_get_team`](./struct.Team.html#method.org_get_team) method for a `GET` operation associated with `Team`.
+#[repr(transparent)]
+#[derive(Debug, Clone)]
+pub struct TeamGetBuilder3<Id> {
+    inner: TeamGetBuilder3Container,
+    _param_id: core::marker::PhantomData<Id>,
+}
+
+#[derive(Debug, Default, Clone)]
+struct TeamGetBuilder3Container {
     param_id: Option<i64>,
 }
 
-impl<Id> TeamGetBuilder1<Id> {
+impl<Id> TeamGetBuilder3<Id> {
     /// id of the team to get
     #[inline]
-    pub fn id(mut self, value: impl Into<i64>) -> TeamGetBuilder1<crate::generics::IdExists> {
+    pub fn id(mut self, value: impl Into<i64>) -> TeamGetBuilder3<crate::generics::IdExists> {
         self.inner.param_id = Some(value.into());
         unsafe { std::mem::transmute(self) }
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for TeamGetBuilder1<crate::generics::IdExists> {
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for TeamGetBuilder3<crate::generics::IdExists> {
     type Output = Team;
 
     const METHOD: http::Method = http::Method::GET;
@@ -218,12 +339,12 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
 
 /// Builder created by [`Team::user_list_teams`](./struct.Team.html#method.user_list_teams) method for a `GET` operation associated with `Team`.
 #[derive(Debug, Clone)]
-pub struct TeamGetBuilder2 {
+pub struct TeamGetBuilder4 {
     param_page: Option<i64>,
     param_limit: Option<i64>,
 }
 
-impl TeamGetBuilder2 {
+impl TeamGetBuilder4 {
     /// page number of results to return (1-based)
     #[inline]
     pub fn page(mut self, value: impl Into<i64>) -> Self {
@@ -239,7 +360,7 @@ impl TeamGetBuilder2 {
     }
 }
 
-impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for TeamGetBuilder2 {
+impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<Client> for TeamGetBuilder4 {
     type Output = Vec<Team>;
 
     const METHOD: http::Method = http::Method::GET;

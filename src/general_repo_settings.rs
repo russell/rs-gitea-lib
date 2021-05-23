@@ -3,7 +3,10 @@
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct GeneralRepoSettings {
     pub http_git_disabled: Option<bool>,
+    pub lfs_disabled: Option<bool>,
+    pub migrations_disabled: Option<bool>,
     pub mirrors_disabled: Option<bool>,
+    pub time_tracking_disabled: Option<bool>,
 }
 
 impl GeneralRepoSettings {
@@ -41,8 +44,26 @@ impl GeneralRepoSettingsBuilder {
     }
 
     #[inline]
+    pub fn lfs_disabled(mut self, value: impl Into<bool>) -> Self {
+        self.body.lfs_disabled = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn migrations_disabled(mut self, value: impl Into<bool>) -> Self {
+        self.body.migrations_disabled = Some(value.into());
+        self
+    }
+
+    #[inline]
     pub fn mirrors_disabled(mut self, value: impl Into<bool>) -> Self {
         self.body.mirrors_disabled = Some(value.into());
+        self
+    }
+
+    #[inline]
+    pub fn time_tracking_disabled(mut self, value: impl Into<bool>) -> Self {
+        self.body.time_tracking_disabled = Some(value.into());
         self
     }
 }

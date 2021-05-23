@@ -23,6 +23,7 @@ impl SearchResults {
             param_include_desc: None,
             param_uid: None,
             param_priority_owner_id: None,
+            param_team_id: None,
             param_starred_by: None,
             param_private: None,
             param_is_private: None,
@@ -72,6 +73,7 @@ pub struct SearchResultsGetBuilder {
     param_include_desc: Option<bool>,
     param_uid: Option<i64>,
     param_priority_owner_id: Option<i64>,
+    param_team_id: Option<i64>,
     param_starred_by: Option<i64>,
     param_private: Option<bool>,
     param_is_private: Option<bool>,
@@ -118,6 +120,13 @@ impl SearchResultsGetBuilder {
     #[inline]
     pub fn priority_owner_id(mut self, value: impl Into<i64>) -> Self {
         self.param_priority_owner_id = Some(value.into());
+        self
+    }
+
+    /// search only for repos that belong to the given team id
+    #[inline]
+    pub fn team_id(mut self, value: impl Into<i64>) -> Self {
+        self.param_team_id = Some(value.into());
         self
     }
 
@@ -217,6 +226,7 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
             ("includeDesc", self.param_include_desc.as_ref().map(std::string::ToString::to_string)),
             ("uid", self.param_uid.as_ref().map(std::string::ToString::to_string)),
             ("priority_owner_id", self.param_priority_owner_id.as_ref().map(std::string::ToString::to_string)),
+            ("team_id", self.param_team_id.as_ref().map(std::string::ToString::to_string)),
             ("starredBy", self.param_starred_by.as_ref().map(std::string::ToString::to_string)),
             ("private", self.param_private.as_ref().map(std::string::ToString::to_string)),
             ("is_private", self.param_is_private.as_ref().map(std::string::ToString::to_string)),

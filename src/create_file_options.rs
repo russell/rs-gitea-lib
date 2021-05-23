@@ -14,6 +14,8 @@ pub struct CreateFileOptions {
     pub message: Option<String>,
     /// new_branch (optional) will make a new branch from `branch` before creating the file
     pub new_branch: Option<String>,
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    pub signoff: Option<bool>,
 }
 
 impl CreateFileOptions {
@@ -103,6 +105,13 @@ impl<Content> CreateFileOptionsBuilder<Content> {
         self.body.new_branch = Some(value.into());
         self
     }
+
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    #[inline]
+    pub fn signoff(mut self, value: impl Into<bool>) -> Self {
+        self.body.signoff = Some(value.into());
+        self
+    }
 }
 
 /// Builder created by [`CreateFileOptions::repo_create_file`](./struct.CreateFileOptions.html#method.repo_create_file) method for a `POST` operation associated with `CreateFileOptions`.
@@ -189,6 +198,13 @@ impl<Owner, Repo, Filepath, Content> CreateFileOptionsPostBuilder<Owner, Repo, F
     #[inline]
     pub fn new_branch(mut self, value: impl Into<String>) -> Self {
         self.inner.body.new_branch = Some(value.into());
+        self
+    }
+
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    #[inline]
+    pub fn signoff(mut self, value: impl Into<bool>) -> Self {
+        self.inner.body.signoff = Some(value.into());
         self
     }
 }

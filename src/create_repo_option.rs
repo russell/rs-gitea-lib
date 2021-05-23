@@ -10,7 +10,7 @@ pub struct CreateRepoOption {
     pub description: Option<String>,
     /// Gitignores to use
     pub gitignores: Option<String>,
-    /// Issue Label set to use
+    /// Label-Set to use
     pub issue_labels: Option<String>,
     /// License to use
     pub license: Option<String>,
@@ -158,7 +158,7 @@ impl<Name> CreateRepoOptionBuilder<Name> {
         self
     }
 
-    /// Issue Label set to use
+    /// Label-Set to use
     #[inline]
     pub fn issue_labels(mut self, value: impl Into<String>) -> Self {
         self.body.issue_labels = Some(value.into());
@@ -259,7 +259,7 @@ impl<Username, Name> CreateRepoOptionPostBuilder<Username, Name> {
         self
     }
 
-    /// Issue Label set to use
+    /// Label-Set to use
     #[inline]
     pub fn issue_labels(mut self, value: impl Into<String>) -> Self {
         self.inner.body.issue_labels = Some(value.into());
@@ -387,7 +387,7 @@ impl<Org, Name> CreateRepoOptionPostBuilder1<Org, Name> {
         self
     }
 
-    /// Issue Label set to use
+    /// Label-Set to use
     #[inline]
     pub fn issue_labels(mut self, value: impl Into<String>) -> Self {
         self.inner.body.issue_labels = Some(value.into());
@@ -515,7 +515,7 @@ impl<Org, Name> CreateRepoOptionPostBuilder2<Org, Name> {
         self
     }
 
-    /// Issue Label set to use
+    /// Label-Set to use
     #[inline]
     pub fn issue_labels(mut self, value: impl Into<String>) -> Self {
         self.inner.body.issue_labels = Some(value.into());
@@ -628,7 +628,7 @@ impl<Name> CreateRepoOptionPostBuilder3<Name> {
         self
     }
 
-    /// Issue Label set to use
+    /// Label-Set to use
     #[inline]
     pub fn issue_labels(mut self, value: impl Into<String>) -> Self {
         self.body.issue_labels = Some(value.into());

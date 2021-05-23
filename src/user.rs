@@ -17,6 +17,8 @@ pub struct User {
     pub last_login: Option<String>,
     /// the user's username
     pub login: Option<String>,
+    /// Is user restricted
+    pub restricted: Option<bool>,
 }
 
 impl User {
@@ -222,6 +224,13 @@ impl UserBuilder {
     #[inline]
     pub fn login(mut self, value: impl Into<String>) -> Self {
         self.body.login = Some(value.into());
+        self
+    }
+
+    /// Is user restricted
+    #[inline]
+    pub fn restricted(mut self, value: impl Into<bool>) -> Self {
+        self.body.restricted = Some(value.into());
         self
     }
 }

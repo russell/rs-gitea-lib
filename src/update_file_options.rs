@@ -18,6 +18,8 @@ pub struct UpdateFileOptions {
     pub new_branch: Option<String>,
     /// sha is the SHA for the file that already exists
     pub sha: String,
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    pub signoff: Option<bool>,
 }
 
 impl UpdateFileOptions {
@@ -124,6 +126,13 @@ impl<Content, Sha> UpdateFileOptionsBuilder<Content, Sha> {
         self.body.sha = value.into();
         unsafe { std::mem::transmute(self) }
     }
+
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    #[inline]
+    pub fn signoff(mut self, value: impl Into<bool>) -> Self {
+        self.body.signoff = Some(value.into());
+        self
+    }
 }
 
 /// Builder created by [`UpdateFileOptions::repo_update_file`](./struct.UpdateFileOptions.html#method.repo_update_file) method for a `PUT` operation associated with `UpdateFileOptions`.
@@ -226,6 +235,13 @@ impl<Owner, Repo, Filepath, Content, Sha> UpdateFileOptionsPutBuilder<Owner, Rep
     pub fn sha(mut self, value: impl Into<String>) -> UpdateFileOptionsPutBuilder<Owner, Repo, Filepath, Content, crate::generics::ShaExists> {
         self.inner.body.sha = value.into();
         unsafe { std::mem::transmute(self) }
+    }
+
+    /// Add a Signed-off-by trailer by the committer at the end of the commit log message.
+    #[inline]
+    pub fn signoff(mut self, value: impl Into<bool>) -> Self {
+        self.inner.body.signoff = Some(value.into());
+        self
     }
 }
 

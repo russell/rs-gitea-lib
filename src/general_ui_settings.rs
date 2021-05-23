@@ -3,6 +3,7 @@
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct GeneralUiSettings {
     pub allowed_reactions: Option<Vec<String>>,
+    pub default_theme: Option<String>,
 }
 
 impl GeneralUiSettings {
@@ -36,6 +37,12 @@ impl GeneralUiSettingsBuilder {
     #[inline]
     pub fn allowed_reactions(mut self, value: impl Iterator<Item = impl Into<String>>) -> Self {
         self.body.allowed_reactions = Some(value.map(|value| value.into()).collect::<Vec<_>>().into());
+        self
+    }
+
+    #[inline]
+    pub fn default_theme(mut self, value: impl Into<String>) -> Self {
+        self.body.default_theme = Some(value.into());
         self
     }
 }

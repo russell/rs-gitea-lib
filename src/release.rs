@@ -38,7 +38,7 @@ impl Release {
     }
 
     #[inline]
-    pub fn repo_get_release_tag() -> ReleaseGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingTag> {
+    pub fn repo_get_release_by_tag() -> ReleaseGetBuilder1<crate::generics::MissingOwner, crate::generics::MissingRepo, crate::generics::MissingTag> {
         ReleaseGetBuilder1 {
             inner: Default::default(),
             _param_owner: core::marker::PhantomData,
@@ -237,7 +237,7 @@ impl<Client: crate::client::ApiClient + Sync + 'static> crate::client::Sendable<
     }
 }
 
-/// Builder created by [`Release::repo_get_release_tag`](./struct.Release.html#method.repo_get_release_tag) method for a `GET` operation associated with `Release`.
+/// Builder created by [`Release::repo_get_release_by_tag`](./struct.Release.html#method.repo_get_release_by_tag) method for a `GET` operation associated with `Release`.
 #[repr(transparent)]
 #[derive(Debug, Clone)]
 pub struct ReleaseGetBuilder1<Owner, Repo, Tag> {
@@ -269,7 +269,7 @@ impl<Owner, Repo, Tag> ReleaseGetBuilder1<Owner, Repo, Tag> {
         unsafe { std::mem::transmute(self) }
     }
 
-    /// tagname of the release to get
+    /// tag name of the release to get
     #[inline]
     pub fn tag(mut self, value: impl Into<String>) -> ReleaseGetBuilder1<Owner, Repo, crate::generics::TagExists> {
         self.inner.param_tag = Some(value.into());

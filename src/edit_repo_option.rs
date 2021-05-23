@@ -2,6 +2,8 @@
 /// EditRepoOption options when editing a repository's properties
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct EditRepoOption {
+    /// either `true` to allow mark pr as merged manually, or `false` to prevent it. `has_pull_requests` must be `true`.
+    pub allow_manual_merge: Option<bool>,
     /// either `true` to allow merging pull requests with a merge commit, or `false` to prevent merging pull requests with merge commits. `has_pull_requests` must be `true`.
     pub allow_merge_commits: Option<bool>,
     /// either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging. `has_pull_requests` must be `true`.
@@ -12,6 +14,8 @@ pub struct EditRepoOption {
     pub allow_squash_merge: Option<bool>,
     /// set to `true` to archive this repository.
     pub archived: Option<bool>,
+    /// either `true` to enable AutodetectManualMerge, or `false` to prevent it. `has_pull_requests` must be `true`, Note: In some special cases, misjudgments can occur.
+    pub autodetect_manual_merge: Option<bool>,
     /// sets the default branch for this repository.
     pub default_branch: Option<String>,
     /// a short description of the repository.
@@ -29,6 +33,8 @@ pub struct EditRepoOption {
     /// either `true` to ignore whitespace for conflicts, or `false` to not ignore whitespace. `has_pull_requests` must be `true`.
     pub ignore_whitespace_conflicts: Option<bool>,
     pub internal_tracker: Option<crate::internal_tracker::InternalTracker>,
+    /// set to a string like `8h30m0s` to set the mirror interval time
+    pub mirror_interval: Option<String>,
     /// name of the repository
     pub name: Option<String>,
     /// either `true` to make the repository private or `false` to make it public.
@@ -79,6 +85,13 @@ pub struct EditRepoOptionBuilder {
 }
 
 impl EditRepoOptionBuilder {
+    /// either `true` to allow mark pr as merged manually, or `false` to prevent it. `has_pull_requests` must be `true`.
+    #[inline]
+    pub fn allow_manual_merge(mut self, value: impl Into<bool>) -> Self {
+        self.body.allow_manual_merge = Some(value.into());
+        self
+    }
+
     /// either `true` to allow merging pull requests with a merge commit, or `false` to prevent merging pull requests with merge commits. `has_pull_requests` must be `true`.
     #[inline]
     pub fn allow_merge_commits(mut self, value: impl Into<bool>) -> Self {
@@ -111,6 +124,13 @@ impl EditRepoOptionBuilder {
     #[inline]
     pub fn archived(mut self, value: impl Into<bool>) -> Self {
         self.body.archived = Some(value.into());
+        self
+    }
+
+    /// either `true` to enable AutodetectManualMerge, or `false` to prevent it. `has_pull_requests` must be `true`, Note: In some special cases, misjudgments can occur.
+    #[inline]
+    pub fn autodetect_manual_merge(mut self, value: impl Into<bool>) -> Self {
+        self.body.autodetect_manual_merge = Some(value.into());
         self
     }
 
@@ -181,6 +201,13 @@ impl EditRepoOptionBuilder {
         self
     }
 
+    /// set to a string like `8h30m0s` to set the mirror interval time
+    #[inline]
+    pub fn mirror_interval(mut self, value: impl Into<String>) -> Self {
+        self.body.mirror_interval = Some(value.into());
+        self
+    }
+
     /// name of the repository
     #[inline]
     pub fn name(mut self, value: impl Into<String>) -> Self {
@@ -243,6 +270,13 @@ impl<Owner, Repo> EditRepoOptionPatchBuilder<Owner, Repo> {
         unsafe { std::mem::transmute(self) }
     }
 
+    /// either `true` to allow mark pr as merged manually, or `false` to prevent it. `has_pull_requests` must be `true`.
+    #[inline]
+    pub fn allow_manual_merge(mut self, value: impl Into<bool>) -> Self {
+        self.inner.body.allow_manual_merge = Some(value.into());
+        self
+    }
+
     /// either `true` to allow merging pull requests with a merge commit, or `false` to prevent merging pull requests with merge commits. `has_pull_requests` must be `true`.
     #[inline]
     pub fn allow_merge_commits(mut self, value: impl Into<bool>) -> Self {
@@ -275,6 +309,13 @@ impl<Owner, Repo> EditRepoOptionPatchBuilder<Owner, Repo> {
     #[inline]
     pub fn archived(mut self, value: impl Into<bool>) -> Self {
         self.inner.body.archived = Some(value.into());
+        self
+    }
+
+    /// either `true` to enable AutodetectManualMerge, or `false` to prevent it. `has_pull_requests` must be `true`, Note: In some special cases, misjudgments can occur.
+    #[inline]
+    pub fn autodetect_manual_merge(mut self, value: impl Into<bool>) -> Self {
+        self.inner.body.autodetect_manual_merge = Some(value.into());
         self
     }
 
@@ -342,6 +383,13 @@ impl<Owner, Repo> EditRepoOptionPatchBuilder<Owner, Repo> {
     #[inline]
     pub fn internal_tracker(mut self, value: crate::internal_tracker::InternalTracker) -> Self {
         self.inner.body.internal_tracker = Some(value.into());
+        self
+    }
+
+    /// set to a string like `8h30m0s` to set the mirror interval time
+    #[inline]
+    pub fn mirror_interval(mut self, value: impl Into<String>) -> Self {
+        self.inner.body.mirror_interval = Some(value.into());
         self
     }
 
